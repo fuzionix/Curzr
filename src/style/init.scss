@@ -1,0 +1,110 @@
+@import '../style/main.scss';
+
+/* ------------- */
+/* Generel Style */
+/* ------------- */
+
+html,
+body {
+  box-sizing: border-box;
+  max-width: 2560px;
+  margin: auto;
+  padding: 0;
+  background-color: $--background-color;
+  font-family: $--fonts-style-x !important;
+  font-weight: $--medium;
+  font-variation-settings: 'wght' $--medium;
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-x: hidden;
+  color: $--fonts-color;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 4.5rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: .875rem;
+}
+
+p {
+  font-size: .875rem;
+}
+
+small {
+  font-size: .875rem;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  appearance: none;
+  background: transparent;
+}
+
+button:focus {
+  outline: transparent;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: $--fonts-style-x;
+  font-weight: $--regular;
+  font-style: normal;
+  font-size: 1rem;
+}
+
+::selection {
+  color: #fff;
+  background-color: $--theme-color;
+}
+
+::placeholder {
+  color: #ddd;
+  transition: 250ms;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* ----------- */
+/* Font Import */
+/* ----------- */

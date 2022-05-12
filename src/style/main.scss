@@ -1,0 +1,51 @@
+/* ------------- */
+/* css Variables */
+/* ------------- */
+
+/* Theme color */
+$--color-white: #fff !default;
+$--color-black: #000 !default;
+$--color-transparent: #ffffff00 !default;
+
+$--theme-color: #34dcff;
+$--theme-color-light: mix($--color-white, $--theme-color, 20%) !default;
+$--theme-color-superlight: mix($--color-white, $--theme-color, 60%) !default;
+$--theme-color-extralight: mix($--color-white, $--theme-color, 80%) !default;
+$--theme-color-quitelight: mix($--color-white, $--theme-color, 90%) !default;
+$--theme-color-ultralight: mix($--color-white, $--theme-color, 95%) !default;
+$--theme-color-dark: mix($--color-black, $--theme-color, 50%) !default;
+$--fonts-color: #282828;
+$--background-color: #fff;
+$--background-sub-color: #fcfcfc;
+$--section-line-color: #eef1f4;
+
+$--nav-height: 75px;
+$--header-width: 350px;
+$--sidemenu-width: 60px;
+$--panel-width: 400px;
+
+$--common-radius: 12px;
+
+/* Font Family */
+
+$--fonts-style-x: 'Plus Jakarta Sans',
+sans-serif;
+$--fonts-style-y: 'Plus Jakarta Sans',
+sans-serif;
+
+/* Font Weight */
+
+$--light: 300;
+$--regular: 400;
+$--medium: 500;
+$--semi-bold: 600;
+$--bold: 700;
+
+/* ----- */
+/* Mixin */
+/* ----  */
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
