@@ -14,14 +14,14 @@ $--theme-color-extralight: mix($--color-white, $--theme-color, 80%) !default;
 $--theme-color-quitelight: mix($--color-white, $--theme-color, 90%) !default;
 $--theme-color-ultralight: mix($--color-white, $--theme-color, 95%) !default;
 $--theme-color-dark: mix($--color-black, $--theme-color, 50%) !default;
-$--fonts-color: #282828;
+$--fonts-color: #0a1028;
 $--background-color: #fff;
 $--background-sub-color: #fcfcfc;
 $--section-line-color: #eef1f4;
 
 $--nav-height: 75px;
 $--header-width: 350px;
-$--sidemenu-width: 60px;
+$--sidemenu-width: 300px;
 $--panel-width: 400px;
 
 $--common-radius: 12px;
@@ -48,4 +48,16 @@ $--bold: 700;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin sidemenu-active-bar($bar-color) {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -32px;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 24px;
+  border-radius: 20px;
+  background-color: $bar-color;
 }
