@@ -33,9 +33,27 @@
     </section>
     <section class="adv-list">
       <small class="subtitle">Advertisement</small>
+      <div class="adv-content">
+        This is ad content
+      </div>
     </section>
     <section class="notification">
-      4
+      <div class="message-container">
+        <div class="message-block">
+          <div class="close-btn">
+            <img src="../assets/icon/close-btn.svg" alt="close button" width="20">
+          </div>
+          <div class="header">
+            <img src="../assets/icon/noti-icon.svg" alt="notification icon" width="20">
+            <h6 class="title">What's New</h6>
+          </div>
+          <div class="main-content">
+            <p>
+              The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -63,7 +81,8 @@
   flex-direction: column;
   width: $--sidemenu-width;
   height: 100vh;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   box-shadow: 1px 0 0 $--section-line-color;
   transition: 250ms;
 
@@ -184,6 +203,8 @@
   }
 
   .adv-list {
+    display: flex;
+    flex-direction: column;
     width: inherit;
     padding: 2rem;
     box-shadow: 0 1px 0 $--section-line-color;
@@ -191,11 +212,95 @@
     .subtitle {
       color: #a6a9b599;
     }
+
+    .adv-content {
+      padding: 1rem 0;
+    }
   }
 
   .notification {
     flex: 1;
-    box-shadow: 0 1px 0 $--section-line-color;
+    display: flex;
+    flex-direction: column-reverse;
+
+    .message-container {
+      position: relative;
+      z-index: 1;
+      width: inherit;
+      min-height: 150px;
+      padding: 1.5rem 1rem;
+      box-shadow: 0 -1px 0 $--section-line-color;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        right: 40px;
+        width: 80px;
+        height: 80px;
+        background-color: #0ac295;
+        border-radius: 50%;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 120px;
+        left: -10px;
+        width: 60px;
+        height: 60px;
+        background-color: #0ac2b4;
+        border-radius: 50%;
+        z-index: -1;
+      }
+
+      .message-block {        
+        position: relative;
+        border-radius: $--common-radius;
+        background-color: darken(#f9f9fa77, 2.5%);
+        padding: 1.5rem;
+        backdrop-filter: blur(10px);
+
+        .close-btn {
+          position: absolute;
+          top: 4px;
+          right: 10px;
+          transform: translate(-50%, -50%);
+          transition: 250ms;
+
+          &:hover {
+            opacity: .8;
+            cursor: pointer;
+          }
+          
+          img {
+            width: 20px;
+          }
+        }
+
+        .header {
+          display: flex;
+          align-items: center;
+          padding-bottom: 1rem;
+          box-shadow: 0 1px 0 $--section-line-color;
+
+          img {
+            width: 24px;
+            margin-right: 1rem;
+          }
+
+          .title {
+            opacity: .4;
+          }
+        }
+
+        .main-content {
+          padding-top: 1rem;
+          opacity: .8;
+        }
+      }
+    }
   }
 }
 </style>
