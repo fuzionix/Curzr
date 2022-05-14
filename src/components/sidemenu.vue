@@ -2,29 +2,29 @@
   <div id="sidemenu" class="sidemenu">
     <section class="logo">
       <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="100">
-      <div class="slide-btn">
-        <img src="../assets/icon/btn-arrow.svg" alt="button arrow" width="100">
-      </div>
     </section>
     <section class="product-list">
       <small class="subtitle">Product</small>
       <div class="product-list-container">
         <div class="product-list-item">
-          <a href="#" class="item-btn item-btn-active">
-            <img src="../assets/icon/Shopping-bag-active.svg" alt="pointer store icon" width="20">
+          <a href="#" class="item-btn" :class="{ 'item-btn-active': route.path === '/' }">
+            <img v-if="route.path === '/'" src="../assets/icon/Shopping-bag-active.svg" alt="pointer store icon" width="20">
+            <img v-else src="../assets/icon/Shopping-bag.svg" alt="pointer store icon" width="20">
             <h6 class="item-name">Pointer Store</h6>
           </a>
         </div>
         <div class="product-list-item">
-          <a href="#" class="item-btn">
-            <img src="../assets/icon/Cursor.svg" alt="cursor builder icon" width="20">
+          <a href="#" class="item-btn" :class="{ 'item-btn-active': route.path === '/builder' }">
+            <img v-if="route.path === '/builder'" src="../assets/icon/Cursor-active.svg" alt="cursor builder icon" width="20">
+            <img v-else src="../assets/icon/Cursor.svg" alt="cursor builder icon" width="20">
             <h6 class="item-name">Cursor Builder</h6>
             <div class="status-badge status-badge-hot">HOT</div>
           </a>
         </div>
         <div class="product-list-item">
-          <a href="#" class="item-btn">
-            <img src="../assets/icon/Backpack.svg" alt="package icon" width="20">
+          <a href="#" class="item-btn" :class="{ 'item-btn-active': route.path === '/package' }">
+            <img v-if="route.path === '/package'" src="../assets/icon/Backpack-active.svg" alt="package icon" width="20">
+            <img v-else src="../assets/icon/Backpack.svg" alt="package icon" width="20">
             <h6 class="item-name">Package</h6>
             <div class="status-badge status-badge-new">NEW</div>
           </a>
@@ -64,6 +64,15 @@
     components: {
       
     },
+    data() {
+      return {
+        route: this.$router.currentRoute
+      }
+    },
+    created() {
+    },
+    mounted() {
+    },
     computed: {
       
     }
@@ -81,10 +90,11 @@
   flex-direction: column;
   width: $--sidemenu-width;
   height: 100vh;
+  background-color: #fff;
   overflow-x: hidden;
   overflow-y: scroll;
   box-shadow: 1px 0 0 $--section-line-color;
-  transition: 250ms;
+  transition: 0, transform 250ms;
 
   .logo {
     position: relative;
@@ -97,29 +107,6 @@
 
     img {
       width: 135px;
-    }
-
-    .slide-btn {
-      @include flex-center;
-      position: absolute;
-      right: 0;
-      transform: translateX(50%);
-      width: 40px;
-      height: 40px;
-      background-color: #fff;
-      border-radius: 50%;
-      box-shadow: 0 0 0 1px $--section-line-color;
-      transition: 250ms;
-      
-      &:hover {
-        background-color: $--section-line-color;
-      }
-
-      img {
-        position: relative;
-        right: 1px;
-        width: 12px;
-      }
     }
   }
 
