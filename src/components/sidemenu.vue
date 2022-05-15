@@ -93,7 +93,7 @@
   background-color: #fff;
   overflow-x: hidden;
   overflow-y: scroll;
-  box-shadow: 1px 0 0 $--section-line-color;
+  border-right: 1px solid $--section-line-color;
   transition: 0, transform 250ms;
 
   .logo {
