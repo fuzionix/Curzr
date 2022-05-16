@@ -4,16 +4,35 @@
       <img src="../assets/icon/search-icon.svg" alt="search icon" width="24">
       <input type="text" placeholder="Search Pointer e.g. Normal Pointer">
     </div>
+    <div class="filter-container">
+      <div class="filter-btn">
+        <img src="../assets/icon/Filter.svg" alt="filter button" width="24">
+        <filter-menu class="filter-menu"></filter-menu>
+      </div>
+      <div class="filtered-list">
+        
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  import filtermenu from '@/components/filter-menu.vue'
+
   export default {
     name: 'search-bar',
     components: {
-      
+      'filter-menu': filtermenu
+    },
+    data() {
+      return {
+        filterMenu: false
+      }
     },
     computed: {
+      
+    },
+    methods: {
       
     }
   }
@@ -32,7 +51,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 50%;
+    flex: 1;
     height: 100%;
     padding: 1rem 1.5rem;
     box-shadow: 1px 0 0 $--section-line-color;
@@ -58,6 +77,62 @@
 
       &:focus {
         border: 1px solid $--theme-color;
+      }
+    }
+  }
+
+  .filter-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    flex: 1;
+    padding: 1rem 1.5rem;
+
+    .filter-btn {
+      @include flex-center;
+      position: relative;
+      width: 36px;
+      height: 36px;
+      padding: .5rem;
+      border-radius: .5rem;
+      background-color: #fff0;
+      transition: 250ms;
+
+      &:hover {
+        background-color: $--section-line-color;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100px;
+          height: 100%;
+        }
+
+        .filter-menu {
+          transition: 250ms;
+          opacity: 1;
+          visibility: visible;
+        }
+
+        img {
+          opacity: 1;
+        }
+      }
+
+      &:active {
+        background-color: darken($--section-line-color, 10%);
+      }
+
+      img {
+        opacity: .5;
+        transition: 250ms;
+      }
+
+      .filter-menu {
+        opacity: 0;
+        visibility: hidden;
       }
     }
   }
