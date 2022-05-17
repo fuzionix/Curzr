@@ -47,7 +47,11 @@
   box-shadow: 0 16px 40px 0 $--section-line-color, 0 0 0 1px $--section-line-color;
 
   header {
+    .menu-title {
+      font-size: 1.125rem;
+    }
     .menu-subtitle {
+      font-size: .75rem;
       opacity: .6;
     }
   }
@@ -60,7 +64,7 @@
     .tag {
       padding: .25rem .75rem;
       margin: .25rem;
-      font-size: .875rem;
+      font-size: .75rem;
       border-radius: 2rem;
       box-shadow: 0 0 0 1px $--section-line-color;
       transition: 250ms;
@@ -79,6 +83,7 @@
       outline: none;
       border-radius: $--common-radius;
       background-color: $--section-line-color;
+      font-size: .875rem;
       transition: 250ms;
 
       &:hover {

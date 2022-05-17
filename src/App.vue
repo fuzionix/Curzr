@@ -30,7 +30,10 @@ export default {
 
   },
   metaInfo: {
-    
+    meta: [{
+      name: 'description',
+      content: 'Curzr is a website which provides tools and resources that help you to create a fascinating, interesting, and animated cursor by just a ‘copy and paste’.',
+    }]
   }
 }
 </script>

@@ -8,9 +8,9 @@
       <div class="product-list-container">
         <div class="product-list-item">
           <a href="#" class="item-btn" :class="{ 'item-btn-active': route.path === '/' }">
-            <img v-if="route.path === '/'" src="../assets/icon/Shopping-bag-active.svg" alt="pointer store icon" width="20">
-            <img v-else src="../assets/icon/Shopping-bag.svg" alt="pointer store icon" width="20">
-            <h6 class="item-name">Pointer Store</h6>
+            <img v-if="route.path === '/'" src="../assets/icon/Shopping-bag-active.svg" alt="pointer library icon" width="20">
+            <img v-else src="../assets/icon/Shopping-bag.svg" alt="pointer library icon" width="20">
+            <h6 class="item-name">Pointer Library</h6>
           </a>
         </div>
         <div class="product-list-item">

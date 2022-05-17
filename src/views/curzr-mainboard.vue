@@ -25,6 +25,10 @@
     },
     computed: {
       
+    },
+    metaInfo: {
+      title: 'Pointer Library',
+      titleTemplate: '%s | Curzr'
     }
   }
 </script>

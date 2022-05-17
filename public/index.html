@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en" dir="rtl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    
+    <!-- Apple Touch Icon (at least 200x200px) -->
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>curzr_logo.png">
+    <!-- To run web application in full-screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Status Bar Style (see Supported Meta Tags below for available values) -->
+    <!-- Has no effect unless you have the previous meta tag -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-config" content="browserconfig.xml" />
+    <!-- Helps prevent duplicate content issues -->
+    <!-- <link rel="canonical" href="http://localhost:8080/#/"> -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:8080/#/">
+    <meta property="og:title" content="Curzr">
+    <meta property="og:image" content="<%= BASE_URL %>curzr_logo-long.png">
+    <meta property="og:description" content="Curzr is a website which provides tools and resources that help you to create a fascinating, interesting, and animated cursor by just a ‘copy and paste’">
+    <meta property="og:site_name" content="Curzr">
+    <meta property="og:locale" content="en_US">
+    <!-- Next tags are optional but recommended -->
+    <meta property="og:image:width" content="1322">
+    <meta property="og:image:height" content="500">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@site_account">
+    <meta name="twitter:creator" content="@individual_account">
+    <meta name="twitter:url" content="http://localhost:8080/#/">
+    <meta name="twitter:title" content="Curzr">
+    <meta name="twitter:description" content="Curzr is a website which provides tools and resources that help you to create a fascinating, interesting, and animated cursor by just a ‘copy and paste’">
+    <meta name="twitter:image" content="<%= BASE_URL %>curzr_logo-long.png">
+
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
