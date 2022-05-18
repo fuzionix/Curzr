@@ -1,5 +1,5 @@
 <template>
-  <div id="sidemenu" class="sidemenu">
+  <aside id="sidemenu" class="sidemenu">
     <section class="logo">
       <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="100">
     </section>
@@ -55,7 +55,7 @@
         </div>
       </div>
     </section>
-  </div>
+  </aside>
 </template>
 
 <script>

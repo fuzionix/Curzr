@@ -1,5 +1,5 @@
 <template>
-  <div id="search-bar" class="search-bar">
+  <section id="search-bar" class="search-bar">
     <div class="search-container">
       <img src="../assets/icon/search-icon.svg" alt="search icon" width="24">
       <input type="text" placeholder="Search Pointer e.g. Normal Pointer">
@@ -13,7 +13,7 @@
         
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

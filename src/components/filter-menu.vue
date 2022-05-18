@@ -1,5 +1,5 @@
 <template>
-  <div id="filter-menu" class="filter-menu">
+  <section id="filter-menu" class="filter-menu">
     <header>
       <h5 class="menu-title">Filter by features</h5>
       <small class="menu-subtitle"><span class="tags-count">8</span> tags discovered</small>
@@ -10,7 +10,7 @@
     <footer>
       <button>Clear All</button>
     </footer>
-  </div>
+  </section>
 </template>
 
 <script>

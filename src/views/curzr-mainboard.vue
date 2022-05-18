@@ -1,12 +1,12 @@
 <template>
-  <div id="mainboard" class="mainboard">
+  <section id="mainboard" class="mainboard">
     <side-menu class="side-menu"></side-menu>
     <section class="main-section">
       <navigation-bar></navigation-bar>
       <search-bar></search-bar>
       <adjustment-bar></adjustment-bar>
     </section>
-  </div>
+  </section>
 </template>
 
 <script>

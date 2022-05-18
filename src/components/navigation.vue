@@ -1,5 +1,5 @@
 <template>
-  <div id="navigation" class="navigation">
+  <section id="navigation" class="navigation">
     <div class="slide-btn">
       <img src="../assets/icon/btn-arrow.svg" alt="button arrow" width="100">
     </div>
@@ -7,7 +7,7 @@
       <img src="../assets/icon/github.png" alt="github button" width="20">
       <h6 class="btn-name">GITHUB</h6>
     </a>
-  </div>
+  </section>
 </template>
 
 <script>
