@@ -4,7 +4,10 @@
     <section class="main-section">
       <navigation-bar></navigation-bar>
       <search-bar></search-bar>
-      <adjustment-bar></adjustment-bar>
+      <adjustment-bar
+        :cursorConfig="cursorConfig"
+      >
+      </adjustment-bar>
     </section>
   </section>
 </template>
@@ -22,6 +25,14 @@
       'navigation-bar': navigation,
       'search-bar': searchbar,
       'adjustment-bar': adjustmentbar
+    },
+    data() {
+      return {
+        cursorConfig: {
+          size: 25,
+          delay: 500
+        }
+      }
     },
     computed: {
       
