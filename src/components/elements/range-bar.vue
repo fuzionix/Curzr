@@ -7,7 +7,8 @@
       :max="minmax[1]" 
       v-model="sliderValue"
       ref="slider"
-      @input="changeWidth(); emitValue($event)">
+      @input="changeWidth(); emitValue($event)"
+    >
   </div>
 </template>
 

@@ -9,6 +9,7 @@
         @changeRangeValue="changeRangeValue"
       >
       </adjustment-bar>
+      <cursor-content></cursor-content>
     </section>
   </section>
 </template>
@@ -18,6 +19,7 @@
   import navigation from '@/components/navigation.vue'
   import searchbar from '@/components/search-bar.vue'
   import adjustmentbar from '@/components/adjustment-bar.vue'
+  import cursorContent from '@/components/cursor-content.vue'
   
   export default {
     name: 'main-board',
@@ -25,7 +27,8 @@
       'side-menu': sidemenu,
       'navigation-bar': navigation,
       'search-bar': searchbar,
-      'adjustment-bar': adjustmentbar
+      'adjustment-bar': adjustmentbar,
+      'cursor-content': cursorContent
     },
     data() {
       return {
