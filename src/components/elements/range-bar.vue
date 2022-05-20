@@ -1,13 +1,13 @@
 <template>
   <div id="range-bar" class="range-bar">
     <input 
-      id="slider" 
+      :id="id"
       type="range" 
       :min="minmax[0]" 
       :max="minmax[1]" 
       v-model="sliderValue"
       ref="slider"
-      @input="changeWidth">
+      @input="changeWidth(); emitValue($event)">
   </div>
 </template>
 
@@ -18,6 +18,10 @@
       
     },
     props: {
+      id: {
+        type: String,
+        required: true
+      },
       rangeValue: {
         type: Number,
         required: true
@@ -39,7 +43,6 @@
     },
     mounted() {
       this.filledWidth = this.sliderWidth * (this.sliderValue - this.minmax[0]) / (this.minmax[1] - this.minmax[0])
-      // console.log(this.filledWidth)
       this.$refs.slider.style.setProperty('--slider-width', this.sliderWidth + 'px');
       this.$refs.slider.style.setProperty('--filled-width', this.filledWidth + 'px');
     },
@@ -48,12 +51,15 @@
     watch: {
     },
     methods: {
-      show() {
-        console.log(this.minmax[1])
-      },
       changeWidth() {
         this.filledWidth = this.sliderWidth * (this.sliderValue - this.minmax[0]) / (this.minmax[1] - this.minmax[0])
         this.$refs.slider.style.setProperty('--filled-width', this.filledWidth + 'px');
+      },
+      emitValue(event) {
+        this.$emit('changeRangeValue', { 
+          value: event.target.value, 
+          id: event.target.id 
+        })
       }
     }
   }

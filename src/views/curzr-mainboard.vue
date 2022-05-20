@@ -6,6 +6,7 @@
       <search-bar></search-bar>
       <adjustment-bar
         :cursorConfig="cursorConfig"
+        @changeRangeValue="changeRangeValue"
       >
       </adjustment-bar>
     </section>
@@ -36,6 +37,18 @@
     },
     computed: {
       
+    },
+    methods: {
+      changeRangeValue(event) {
+        switch (event.id) {
+          case 'range-size':
+            this.cursorConfig.size = parseInt(event.value)
+            break
+          case 'range-delay':
+            this.cursorConfig.delay = parseInt(event.value)
+            break
+        }
+      }
     },
     metaInfo: {
       title: 'Pointer Library',

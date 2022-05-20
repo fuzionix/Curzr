@@ -6,28 +6,32 @@
         <small>Resize</small>
         <range-bar 
           class="range-bar"
+          id="range-size"
           :rangeValue="cursorConfig.size"
           :minmax="[0, 50]"
           :sliderWidth="120"
+          @changeRangeValue="changeRangeValue"
         >
         </range-bar>
       </div>
       <div class="transition-adjustment">
-        <img src="../assets/icon/Pathfinder.svg" alt="size adjustment icon" width="20">
+        <img src="../assets/icon/Pathfinder.svg" alt="delay adjustment icon" width="20">
         <small>Delay</small>
         <range-bar 
           class="range-bar"
+          id="range-delay"
           :rangeValue="cursorConfig.delay"
           :minmax="[0, 1000]"
           :sliderWidth="120"
+          @changeRangeValue="changeRangeValue"
         >
         </range-bar>
       </div>
       <div class="grid-view-adjustment">
-        <div class="wrapper wrapper-active">
+        <div class="wrapper wrapper-active" @click="changeState('Grid-view')" ref="gridBtn">
           <img src="../assets/icon/Grid.svg" alt="size adjustment icon" width="20">
         </div>
-        <div class="wrapper">
+        <div class="wrapper" @click="changeState('List-view')" ref="listBtn">
           <img src="../assets/icon/List.svg" alt="size adjustment icon" width="20">
         </div>
       </div>
@@ -53,6 +57,22 @@
       
     },
     methods: {
+      changeRangeValue(event) {
+        this.$emit('changeRangeValue', event)
+      },
+      changeState(mode) {
+        if (mode === 'Grid-view') {
+          this.$refs.gridBtn.classList.add('wrapper-active')
+          this.$refs.listBtn.classList.remove('wrapper-active')
+        } else {
+          this.$refs.gridBtn.classList.remove('wrapper-active')
+          this.$refs.listBtn.classList.add('wrapper-active')
+        }
+        this.$store.commit({
+          type: 'changeMode',
+          viewMode: mode
+        })
+      }
     }
   }
 </script>
@@ -92,6 +112,12 @@
         padding: .5rem;
         margin-left: .25rem;
         border-radius: 6px;
+        transition: 250ms;
+
+        &:hover {
+          box-shadow: 0 0 0 2px $--section-line-color inset;
+        }
+
         img {
           transform: rotate(90deg);
         }

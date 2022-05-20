@@ -5,10 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    viewMode: 'Grid-view'
   },
   getters: {
   },
   mutations: {
+    changeMode (value, mode) {
+      value.viewMode = mode.viewMode
+
+      console.log(value.viewMode)
+    }
   },
   actions: {
   },
