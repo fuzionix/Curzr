@@ -1,7 +1,9 @@
 <template>
   <section id="cursor-block" class="cursor-block">
     <header>
-      <div class="cursor-type">cursor-type</div>
+      <div class="cursor-type">
+        <badge-tag>badge test</badge-tag>
+      </div>
       <div class="cursor-features">cursor-features</div>
     </header>
     <main>
@@ -17,10 +19,11 @@
 </template>
 
 <script>
+  import badge from '@/components/elements/badge.vue'
   export default {
     name: 'cursor-block',
     components: {
-      
+      'badge-tag': badge
     },
     data() {
       return {

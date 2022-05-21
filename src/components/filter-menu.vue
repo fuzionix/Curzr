@@ -37,6 +37,7 @@
   position: absolute;
   top: 36px;
   right: 0;
+  z-index: 8;
   display: flex;
   flex-direction: column;
   width: 250px;
