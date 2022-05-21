@@ -30,10 +30,6 @@
       minmax: {
         type: Array,
         required: true
-      },
-      sliderWidth: {
-        type: Number,
-        required: false
       }
     },
     data() {
@@ -43,9 +39,7 @@
       }
     },
     mounted() {
-      this.filledWidth = this.sliderWidth * (this.sliderValue - this.minmax[0]) / (this.minmax[1] - this.minmax[0])
-      this.$refs.slider.style.setProperty('--slider-width', this.sliderWidth + 'px');
-      this.$refs.slider.style.setProperty('--filled-width', this.filledWidth + 'px');
+      this.changeWidth()
     },
     computed: {
     },
@@ -53,8 +47,9 @@
     },
     methods: {
       changeWidth() {
-        this.filledWidth = this.sliderWidth * (this.sliderValue - this.minmax[0]) / (this.minmax[1] - this.minmax[0])
-        this.$refs.slider.style.setProperty('--filled-width', this.filledWidth + 'px');
+        let sliderWidth = this.$refs.slider.clientWidth
+        this.filledWidth = sliderWidth * (this.sliderValue - this.minmax[0]) / (this.minmax[1] - this.minmax[0])
+        this.$refs.slider.style.setProperty('--filled-width', this.filledWidth + 'px')
       },
       emitValue(event) {
         this.$emit('changeRangeValue', { 
@@ -73,17 +68,17 @@
   align-items: center;
   min-width: 100px;
   max-width: 200px;
+  margin-left: 1.5rem;
 
   input[type="range"] {
-    --slider-width: 120px;
     --filled-width: 60px;
 
     position: relative;
     -webkit-appearance: none;
     z-index: 1;
-    width: var(--slider-width);
-    margin-left: 1.5rem;
+    width: 100%;
     height: 6px;
+    margin: 0;
     background: $--section-line-color;
     outline: none;
     border-radius: 6px;

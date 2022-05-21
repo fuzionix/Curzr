@@ -1,5 +1,5 @@
 <template>
-  <div id="adjustment-bar" class="adjustment-bar">
+  <section id="adjustment-bar" class="adjustment-bar">
     <div class="adjustment-container">
       <div class="size-adjustment">
         <img src="../assets/icon/Scale.svg" alt="size adjustment icon" width="20">
@@ -9,7 +9,6 @@
           id="range-size"
           :rangeValue="cursorConfig.size"
           :minmax="[0, 50]"
-          :sliderWidth="120"
           @changeRangeValue="changeRangeValue"
         >
         </range-bar>
@@ -22,7 +21,6 @@
           id="range-delay"
           :rangeValue="cursorConfig.delay"
           :minmax="[0, 1000]"
-          :sliderWidth="120"
           @changeRangeValue="changeRangeValue"
         >
         </range-bar>
@@ -36,7 +34,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -102,6 +100,10 @@
       small {
         opacity: .4;
         margin-left: 1rem;
+      }
+
+      .range-bar {
+        width: 120px;
       }
     }
 

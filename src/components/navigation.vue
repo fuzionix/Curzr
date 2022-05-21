@@ -29,7 +29,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  z-index: 1;
+  z-index: 10;
   width: calc(100% - $--sidemenu-width);
   height: $--nav-height;
   background-color: #fff;

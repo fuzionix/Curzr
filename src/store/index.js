@@ -12,8 +12,6 @@ export default new Vuex.Store({
   mutations: {
     changeMode (value, mode) {
       value.viewMode = mode.viewMode
-
-      console.log(value.viewMode)
     }
   },
   actions: {
