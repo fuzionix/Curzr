@@ -2,7 +2,7 @@
   <section id="cursor-block" class="cursor-block">
     <header>
       <div class="cursor-type">
-        <badge-tag>badge test</badge-tag>
+        <badge-tag>FREE</badge-tag>
       </div>
       <div class="cursor-features">cursor-features</div>
     </header>
@@ -10,7 +10,11 @@
       body
     </main>
     <footer>
-      footer
+      <div class="cursor-name">Normal Cursor</div>
+      <div class="button-section">
+        <normal-button class="normal-btn">Edit</normal-button>
+        <tilted-button class="tilted-btn">View Code</tilted-button>
+      </div>
     </footer>
     <div class="block-mask">
 
@@ -20,10 +24,15 @@
 
 <script>
   import badge from '@/components/elements/badge.vue'
+  import normalBtn from '@/components/elements/normal-button.vue'
+  import tiltedBtn from '@/components/elements/tilted-button.vue'
+
   export default {
     name: 'cursor-block',
     components: {
-      'badge-tag': badge
+      'badge-tag': badge,
+      'normal-button': normalBtn,
+      'tilted-button': tiltedBtn,
     },
     data() {
       return {
@@ -74,7 +83,7 @@
     display: flex;
     justify-content: space-between;
     z-index: 4;
-    padding: .5rem 1.5rem;
+    padding: .75rem 1.5rem;
   }
 
   main {
@@ -88,9 +97,18 @@
 
   footer {
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
     z-index: 4;
-    padding: .5rem 1.5rem;
+    padding: .75rem 1.5rem;
+
+    .button-section {
+      display: flex;
+
+      button:first-child {
+        margin-right: .75rem;
+      }
+    }
   }
 
   .block-mask {
