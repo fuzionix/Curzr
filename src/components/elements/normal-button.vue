@@ -22,6 +22,7 @@
 @import '../../style/main.scss';
 
 .normal-button {
+  margin-top: .5rem;
   padding: .875rem 2rem;
   border: none;
   font-size: .875rem;

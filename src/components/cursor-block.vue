@@ -104,6 +104,7 @@
 
     .button-section {
       display: flex;
+      align-items: flex-end;
 
       button:first-child {
         margin-right: .75rem;

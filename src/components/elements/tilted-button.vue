@@ -23,11 +23,21 @@
 
 .tilted-button {
   position: relative;
-  padding: .875rem 1.25rem;
+  width: 110px;
+  height: 50px;
+  padding: .875rem 1rem .5rem;
   border: none;
   font-size: .875rem;
   color: #fff;
   border-radius: 6px;
   background-color: $--theme-color;
+  background: url('../../assets/button-background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 250ms;
+
+  &:hover {
+    filter: hue-rotate(20deg);
+  }
 }
 </style>
