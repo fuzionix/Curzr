@@ -22,12 +22,28 @@
 @import '../../style/main.scss';
 
 .normal-button {
-  margin-top: .5rem;
+  @include flex-center;
   padding: .875rem 2rem;
   border: none;
   font-size: .875rem;
-  color: #8699ad;
   border-radius: 6px;
+  transition: 250ms;
+}
+
+.button-primary {
+  color: #fff;
+  background-color: $--theme-color;
+}
+
+.button-outline {
+  color: #8699ad;
   box-shadow: 0 0 0 1.5px darken($--section-line-color, 5%) inset;
+}
+
+.button-transparent {
+  color: #8699ad;
+
+  &:hover {
+  }
 }
 </style>

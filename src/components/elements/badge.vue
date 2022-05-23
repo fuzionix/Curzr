@@ -30,6 +30,7 @@
   color: #fff;
   background-color: #1ae287;
   border-radius: 4px;
+  transform: scale(.8);
   user-select: none;
 
   &::before {

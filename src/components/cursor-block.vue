@@ -12,7 +12,10 @@
     <footer>
       <div class="cursor-name">Normal Cursor</div>
       <div class="button-section">
-        <normal-button class="normal-btn">Edit</normal-button>
+        <normal-button class="normal-btn button-transparent">
+          <img src="../assets/icon/Customization.svg" alt="" width="30">
+          <small>Edit</small>
+        </normal-button>
         <tilted-button class="tilted-btn">View Code</tilted-button>
       </div>
     </footer>
@@ -90,9 +93,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 3;
+    z-index: 5;
     width: 100%;
     height: 100%;
+    pointer-events: none;
   }
 
   footer {
@@ -108,6 +112,20 @@
 
       button:first-child {
         margin-right: .75rem;
+      }
+
+      .normal-btn {
+        height: 44px;
+        padding: .875rem 1.5rem;
+
+        &:hover {
+          filter: contrast(0);
+        }
+
+        img {
+          width: 20px;
+          margin-right: .5rem;
+        }
       }
     }
   }
