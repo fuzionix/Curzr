@@ -29,6 +29,7 @@
   border: none;
   font-size: .875rem;
   color: #fff;
+  letter-spacing: .5px;
   border-radius: 6px;
   background-color: $--theme-color;
   background: url('../../assets/button-background.svg');

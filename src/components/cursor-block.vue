@@ -4,10 +4,15 @@
       <div class="cursor-type">
         <badge-tag>FREE</badge-tag>
       </div>
-      <div class="cursor-features">cursor-features</div>
+      <div class="cursor-features">
+        <normal-tag class="tag">Rotate</normal-tag>
+        <normal-tag class="tag">Click</normal-tag>
+        <normal-tag class="tag">Hover</normal-tag>
+        <normal-tag class="tag">Step</normal-tag>
+      </div>
     </header>
     <main>
-      body
+      
     </main>
     <footer>
       <div class="cursor-name">Normal Cursor</div>
@@ -27,6 +32,7 @@
 
 <script>
   import badge from '@/components/elements/badge.vue'
+  import tag from '@/components/elements/tag.vue'
   import normalBtn from '@/components/elements/normal-button.vue'
   import tiltedBtn from '@/components/elements/tilted-button.vue'
 
@@ -34,6 +40,7 @@
     name: 'cursor-block',
     components: {
       'badge-tag': badge,
+      'normal-tag': tag,
       'normal-button': normalBtn,
       'tilted-button': tiltedBtn,
     },
@@ -66,6 +73,10 @@
   background-size: var(--dot-space) var(--dot-space);
   background-position: center;
 
+  &:hover footer .cursor-name {
+    opacity: 1;
+  }
+
   &:hover .block-mask {
     opacity: 0;
   }
@@ -87,6 +98,17 @@
     justify-content: space-between;
     z-index: 4;
     padding: .75rem 1.5rem;
+
+    .cursor-features {
+      display: flex;
+      flex-direction: row-reverse;
+      flex-wrap: wrap;
+
+      .tag {
+        margin-left: .5rem;
+        margin-bottom: .5rem;
+      }
+    }
   }
 
   main {
@@ -105,6 +127,11 @@
     align-items: flex-end;
     z-index: 4;
     padding: .75rem 1.5rem;
+
+    .cursor-name {
+      transition: 500ms;
+      opacity: 0;
+    }
 
     .button-section {
       display: flex;

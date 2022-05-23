@@ -44,6 +44,7 @@
   display: flex;
   height: $--nav-height;
   margin-top: $--nav-height;
+  padding-top: 1px;
   background-color: #fff;
   border-bottom: 1px solid $--section-line-color;
 

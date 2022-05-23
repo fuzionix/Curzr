@@ -27,6 +27,7 @@
   height: 24px;
   padding: 0 .625rem;
   font-size: .875rem;
+  letter-spacing: 1px;
   color: #fff;
   background-color: #1ae287;
   border-radius: 4px;
