@@ -5,7 +5,7 @@
       <small class="menu-subtitle"><span class="tags-count">8</span> tags discovered</small>
     </header>
     <main class="tag-list">
-      <div v-for="tagName in tagList" :key="tagName" class="tag">{{ tagName }}</div>
+      <div v-for="tagName in tagList" :key="tagName" class="list-tag">{{ tagName }}</div>
     </main>
     <footer>
       <button>Clear All</button>
@@ -62,7 +62,7 @@
     flex-wrap: wrap;
     margin: 1rem 0;
 
-    .tag {
+    .list-tag {
       padding: .25rem .75rem;
       margin: .25rem;
       font-size: .75rem;
