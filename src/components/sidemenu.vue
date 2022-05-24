@@ -290,4 +290,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .sidemenu {
+    left: -$--sidemenu-width;
+  }
+}
 </style>

@@ -87,4 +87,15 @@
     }
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .navigation {
+    width: 100%;
+
+    .slide-btn {
+      left: 2rem;
+      transform: rotate(180deg);
+    }
+  }
+}
 </style>

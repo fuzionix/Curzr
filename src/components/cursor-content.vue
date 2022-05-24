@@ -48,4 +48,10 @@
 .cursor-content-list {
   grid-template-columns: repeat(1, 1fr);
 }
+
+@media only screen and (max-width: 768px) {
+  .cursor-content-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 </style>

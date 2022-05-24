@@ -79,18 +79,18 @@
 @import '../style/main.scss';
 .adjustment-bar {
   display: flex;
-  height: $--adjustbar-height;
   background-color: #fff;
   border-bottom: 1px solid $--section-line-color;
 
   .adjustment-container {
     display: flex;
+    flex-wrap: wrap;
 
     & > * {
       display: flex;
       align-items: center;
       padding: 1rem 1.5rem;
-      height: 100%;
+      height: $--adjustbar-height;
 
       img {
         width: 20px;
@@ -112,12 +112,15 @@
       .wrapper {
         @include flex-center;
         padding: .5rem;
-        margin-left: .25rem;
         border-radius: 6px;
         transition: 250ms;
 
         &:hover {
           box-shadow: 0 0 0 2px $--section-line-color inset;
+        }
+
+        &:not(:first-child) {
+          margin-left: .25rem;
         }
 
         img {

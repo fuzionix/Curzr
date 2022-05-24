@@ -72,4 +72,13 @@
     padding-left: $--sidemenu-width;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .mainboard {
+
+    .main-section {
+      padding-left: 0;
+    }
+  }
+}
 </style>

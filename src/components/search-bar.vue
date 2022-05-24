@@ -138,4 +138,15 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+    height: calc($--nav-height * 2);
+
+    .filter-container {
+      border-top: 1px solid $--section-line-color;
+    }
+  }
+}
 </style>
