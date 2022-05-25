@@ -98,6 +98,7 @@
       }
 
       small {
+        width: 45px;
         opacity: .4;
         margin-left: 1rem;
       }
