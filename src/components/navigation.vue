@@ -1,6 +1,6 @@
 <template>
-  <section id="navigation" class="navigation">
-    <div class="slide-btn">
+  <section id="navigation" class="navigation" ref="navigation">
+    <div class="slide-btn" @click="toggleSidemenu($event)">
       <img src="../assets/icon/btn-arrow.svg" alt="button arrow" width="100">
     </div>
     <a href="#" class="github-btn">
@@ -16,8 +16,40 @@
     components: {
       
     },
+    data() {
+      return {
+        toggleStatus: true
+      }
+    },
+    props: {
+      
+    },
     computed: {
       
+    },
+    methods: {
+      toggleSidemenu(event) {
+        if (this.toggleStatus) {
+          if (getComputedStyle(this.$refs.navigation).getPropertyValue('--sidebar-status') == 1) {
+            this.$parent.$el.childNodes[1].style.paddingLeft = '0px'
+            this.$parent.$children[0].$el.style.left = -this.$parent.$children[0].$el.offsetWidth + 'px'
+            this.$refs.navigation.style.width = '100%'
+            event.srcElement.style.left = '2rem'
+            event.srcElement.style.transform = 'rotate(180deg)'
+          } else if (getComputedStyle(this.$refs.navigation).getPropertyValue('--sidebar-status') == 0) {
+            this.$parent.$children[0].$el.style.left = '0px'
+            event.srcElement.style.transform = 'rotate(0deg)'
+          }
+          this.toggleStatus = false
+        } else {
+          this.$parent.$el.childNodes[1].style.paddingLeft = ''
+          this.$parent.$children[0].$el.style.left = ''
+          this.$refs.navigation.style.width = ''
+          event.srcElement.style.left = ''
+          event.srcElement.style.transform = ''
+          this.toggleStatus = true
+        }
+      }
     }
   }
 </script>
@@ -25,6 +57,8 @@
 <style lang="scss">
 @import '../style/main.scss';
 .navigation {
+  --sidebar-status: 1;
+
   position: fixed;
   display: flex;
   justify-content: flex-end;
@@ -34,6 +68,7 @@
   height: $--nav-height;
   background-color: #fff;
   box-shadow: 0 1px 0 $--section-line-color;
+  transition: 500ms;
 
   .slide-btn {
     @include flex-center;
@@ -55,6 +90,7 @@
       position: relative;
       right: 1px;
       width: 12px;
+      pointer-events: none;
     }
   }
 
@@ -90,6 +126,8 @@
 
 @media only screen and (max-width: 1024px) {
   .navigation {
+    --sidebar-status: 0;
+
     width: 100%;
 
     .slide-btn {

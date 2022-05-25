@@ -18,7 +18,7 @@
             <img v-if="route.path === '/builder'" src="../assets/icon/Cursor-active.svg" alt="cursor builder icon" width="20">
             <img v-else src="../assets/icon/Cursor.svg" alt="cursor builder icon" width="20">
             <h6 class="item-name">Cursor Builder</h6>
-            <div class="status-badge status-badge-hot">HOT</div>
+            <normal-tag class="status-badge status-badge-hot">HOT</normal-tag>
           </a>
         </div>
         <div class="product-list-item">
@@ -26,7 +26,7 @@
             <img v-if="route.path === '/package'" src="../assets/icon/Backpack-active.svg" alt="package icon" width="20">
             <img v-else src="../assets/icon/Backpack.svg" alt="package icon" width="20">
             <h6 class="item-name">Package</h6>
-            <div class="status-badge status-badge-new">NEW</div>
+            <normal-tag class="status-badge status-badge-new">NEW</normal-tag>
           </a>
         </div>
       </div>
@@ -59,10 +59,11 @@
 </template>
 
 <script>
+  import tag from '@/components/elements/tag.vue'
   export default {
     name: 'side-menu',
     components: {
-      
+      'normal-tag': tag,
     },
     data() {
       return {
@@ -94,7 +95,8 @@
   overflow-x: hidden;
   overflow-y: scroll;
   border-right: 1px solid $--section-line-color;
-  transition: 0, transform 250ms;
+  transition-property: left;
+  transition: 500ms;
 
   .logo {
     position: relative;
@@ -158,13 +160,7 @@
           }
 
           .status-badge {
-            display: flex;
-            align-items: center;
             margin-left: auto;
-            padding: 2px 8px;
-            border-radius: 1rem;
-            text-align: center;
-            font-size: .75rem;
             color: #fff;
           }
 
@@ -294,6 +290,7 @@
 @media only screen and (max-width: 1024px) {
   .sidemenu {
     left: -$--sidemenu-width;
+    z-index: 9;
   }
 }
 </style>

@@ -2,7 +2,8 @@
   <section id="mainboard" class="mainboard">
     <side-menu class="side-menu"></side-menu>
     <section class="main-section">
-      <navigation-bar></navigation-bar>
+      <navigation-bar>
+      </navigation-bar>
       <search-bar></search-bar>
       <adjustment-bar
         :cursorConfig="cursorConfig"
@@ -70,6 +71,7 @@
   .main-section {
     width: 100%;
     padding-left: $--sidemenu-width;
+    transition: 500ms;
   }
 }
 
