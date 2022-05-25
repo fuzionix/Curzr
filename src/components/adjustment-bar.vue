@@ -98,7 +98,7 @@
       }
 
       small {
-        width: 45px;
+        width: 2.875rem;
         opacity: .4;
         margin-left: 1rem;
       }

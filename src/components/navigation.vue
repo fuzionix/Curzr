@@ -5,8 +5,11 @@
     </div>
     <a href="#" class="github-btn">
       <img src="../assets/icon/github.png" alt="github button" width="20">
-      <h6 class="btn-name">GITHUB</h6>
+      <h6 class="btn-name"><span>GITHUB</span></h6>
     </a>
+    <div class="logo">
+      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="50">
+    </div>
   </section>
 </template>
 
@@ -133,6 +136,29 @@
     .slide-btn {
       left: 2rem;
       transform: rotate(180deg);
+    }
+
+    .github-btn {
+
+      img {
+        margin-right: 0;
+      }
+
+      span {
+        display: none;
+      }
+    }
+
+    .logo {
+      @include flex-center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      img {
+        width: 100px;
+      }
     }
   }
 }
