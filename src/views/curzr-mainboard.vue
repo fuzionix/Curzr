@@ -11,6 +11,7 @@
       >
       </adjustment-bar>
       <cursor-content></cursor-content>
+      <footer-content></footer-content>
     </section>
   </section>
 </template>
@@ -21,6 +22,7 @@
   import searchbar from '@/components/search-bar.vue'
   import adjustmentbar from '@/components/adjustment-bar.vue'
   import cursorContent from '@/components/cursor-content.vue'
+  import footer from '@/components/footer.vue'
   
   export default {
     name: 'main-board',
@@ -29,7 +31,8 @@
       'navigation-bar': navigation,
       'search-bar': searchbar,
       'adjustment-bar': adjustmentbar,
-      'cursor-content': cursorContent
+      'cursor-content': cursorContent,
+      'footer-content': footer
     },
     data() {
       return {
