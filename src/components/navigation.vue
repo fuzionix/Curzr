@@ -125,6 +125,10 @@
       letter-spacing: 2px;
     }
   }
+
+  .logo {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -157,7 +161,7 @@
       transform: translate(-50%, -50%);
 
       img {
-        width: 100px;
+        width: 120px;
       }
     }
   }

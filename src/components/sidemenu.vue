@@ -161,15 +161,15 @@
 
           .status-badge {
             margin-left: auto;
-            color: #fff;
+            background-color: #fff0;
           }
 
           .status-badge-hot {
-            background-color: #f5773c;
+            color: #f5773c;
           }
 
           .status-badge-new {
-            background-color: #0ac286;
+            color: #0ac286;
           }
         }
 
