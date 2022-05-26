@@ -30,7 +30,7 @@
   position: relative;
   display: grid;
   grid-auto-rows: 300px;
-  min-height: 100vh;
+  min-height: calc(100vh - $--nav-height - $--nav-height - $--adjustbar-height);
   
   & > * {
     border-bottom: 1px dashed darken($--section-line-color, 5%);
@@ -52,6 +52,12 @@
 @media only screen and (max-width: 768px) {
   .cursor-content-grid {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media only screen and (min-width: 2560px) {
+  .cursor-content-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>
