@@ -110,7 +110,7 @@
     background-color: #fff;
 
     &:hover {
-      background-image: url('../assets/github-background.png');
+      background-image: url('../assets/github-background.webp');
 
       & > img, > .btn-name {
         filter: invert(100%);
