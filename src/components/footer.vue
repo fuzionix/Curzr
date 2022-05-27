@@ -35,6 +35,14 @@
         </div>
       </section>
     </div>
+    <div class="copyright">
+      <div class="copyright-left">
+        <small>Website, name &#38; logo &copy; 2022-{{ thisYear }} | Curzr</small>
+      </div>
+      <div class="copyright-right">
+        <small>licensed under <a href="https://github.com/TaylonChan/Curzr/blob/master/LICENSE.md" target="_blank" rel="noopener noreferrer">Apache License 2.0</a></small>
+      </div>
+    </div>
   </footer>
 </template>
 
@@ -46,7 +54,11 @@
     },
     data() {
       return {
-
+      }
+    },
+    computed: {
+      thisYear() {
+        return new Date().getFullYear()
       }
     }
   }
@@ -118,6 +130,18 @@
       }
     }
   }
+
+  .copyright {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 1rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid darken($--section-line-color, 7.5%);
+
+    a {
+      color: blue;
+    }
+  }
 }
 
 @media only screen and (max-width: 1440px) {
@@ -147,6 +171,14 @@
             margin-right: 0;
           }
         }
+      }
+    }
+
+    .copyright {
+      flex-direction: column;
+
+      & > *:not(:first-child) {
+        margin-top: 1rem;
       }
     }
   }

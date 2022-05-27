@@ -11,6 +11,7 @@
             <img v-if="route.path === '/'" src="../assets/icon/Shopping-bag-active.svg" alt="pointer library icon" width="20">
             <img v-else src="../assets/icon/Shopping-bag.svg" alt="pointer library icon" width="20">
             <h6 class="item-name">Pointer Library</h6>
+            <normal-tag class="status-badge status-badge-hot">HOT</normal-tag>
           </a>
         </div>
         <div class="product-list-item">
@@ -18,7 +19,6 @@
             <img v-if="route.path === '/builder'" src="../assets/icon/Cursor-active.svg" alt="cursor builder icon" width="20">
             <img v-else src="../assets/icon/Cursor.svg" alt="cursor builder icon" width="20">
             <h6 class="item-name">Cursor Builder</h6>
-            <normal-tag class="status-badge status-badge-hot">HOT</normal-tag>
           </a>
         </div>
         <div class="product-list-item">
