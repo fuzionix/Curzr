@@ -27,7 +27,7 @@
           <img src="../assets/icon/Customization.svg" alt="" width="30">
           <small>Edit</small>
         </normal-button>
-        <tilted-button class="tilted-btn">View Code</tilted-button>
+        <tilted-button class="tilted-btn" @click.native="openModel()">View Code</tilted-button>
       </div>
     </footer>
     <div class="block-mask">
@@ -118,6 +118,10 @@
         this.$refs.cursor.$el.style.left = '50%'
         this.$refs.cursor.$el.style.transform = 'translate(-50%, -50%)'
       },
+      openModel() {
+        this.$emit('changeModelStatus', true)
+        console.log('open')
+      }
     }
   }
 </script>
@@ -142,6 +146,7 @@
     linear-gradient(var(--bg-color) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center, var(--dot-color);
   background-size: var(--dot-space) var(--dot-space);
   background-position: center;
+  cursor: none;
 
   &:hover {
     cursor: none;
@@ -149,6 +154,14 @@
 
   &:hover footer .cursor-name {
     opacity: 1;
+  }
+
+  &:hover footer .normal-btn {
+    cursor: none;
+  }
+
+  &:hover footer .tilted-btn {
+    cursor: none;
   }
 
   &:hover .block-mask {

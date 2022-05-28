@@ -40,5 +40,9 @@
   &:hover {
     filter: hue-rotate(20deg);
   }
+
+  &:active {
+    opacity: .8;
+  }
 }
 </style>
