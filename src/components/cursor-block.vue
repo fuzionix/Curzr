@@ -18,7 +18,10 @@
       </div>
     </header>
     <main>
-      <component :is="cursorName" ref="cursor"></component>
+      <component 
+        :is="cursorName"
+        ref="cursor">
+      </component>
     </main>
     <footer>
       <div class="cursor-name">Normal Cursor</div>
@@ -55,68 +58,18 @@
     },
     data() {
       return {
-        cursorName: 'normal-cursor',
-        pointerX: 0,
-        pointerY: 0,
-        previousPointerX: 0,
-        previousPointerY: 0,
-        angle: 0,
-        previousAngle: 0,
-        angleDisplace: 0,
-        degrees: 57.296
+        cursorName: 'normal-cursor'
       }
     },
     methods: {
       initCursor() {
-        this.$refs.cursor.$el.style.top = 0 
-        this.$refs.cursor.$el.style.left = (getComputedStyle(this.$refs.cursor.$el).getPropertyValue('--cursor-size').slice(1, -2) / -2) + 'px'
+        this.$refs.cursor.initCursor()
       },
       moveCursor(event) {
-        let distanceX, distanceY
-        this.previousPointerX = this.pointerX
-        this.previousPointerY = this.pointerY
-        this.pointerX = event.pageX - this.$refs.cursorBlock.getBoundingClientRect().x
-        this.pointerY = event.pageY - this.$refs.cursorBlock.getBoundingClientRect().y + this.$root.$el.getBoundingClientRect().y
-
-        distanceX = this.previousPointerX - this.pointerX
-        distanceY = this.previousPointerY - this.pointerY
-
-        if (distanceX <= 0 && distanceY >= 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, true, 0)
-        } else if (distanceX < 0 && distanceY < 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, false, 90)
-        } else if (distanceX >= 0 && distanceY <= 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, true, 180)
-        } else if (distanceX > 0 && distanceY > 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, false, 270)
-        }
-      },
-      setDisplacement(dx, dy, px, py, flip = false, dir = 0) {
-        this.previousAngle = this.angle
-
-        if (flip) {
-          this.angle = 90 - Math.atan(Math.abs(dy) / Math.abs(dx)) * this.degrees + dir
-        } else {
-          this.angle = Math.atan(Math.abs(dy) / Math.abs(dx)) * this.degrees + dir
-        }
-
-        if (isNaN(this.angle)) {
-          this.angle = this.previousAngle
-        } else {
-          if (this.angle - this.previousAngle <= -270) {
-            this.angleDisplace += 360 + this.angle - this.previousAngle
-          } else if (this.angle - this.previousAngle >= 270) {
-            this.angleDisplace += this.angle - this.previousAngle - 360
-          } else {
-            this.angleDisplace += this.angle - this.previousAngle
-          }
-        }
-        this.$refs.cursor.$el.style.transform = `translate3d(${px}px, ${py}px, 0) rotate(${this.angleDisplace}deg)`
+        this.$refs.cursor.moveCursor(event, this.$refs.cursorBlock)
       },
       resetCursor() {
-        this.$refs.cursor.$el.style.top = '50%'
-        this.$refs.cursor.$el.style.left = '50%'
-        this.$refs.cursor.$el.style.transform = 'translate(-50%, -50%)'
+        this.$refs.cursor.resetCursor()
       },
       openModel() {
         this.$emit('changeModelStatus', true)
