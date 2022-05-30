@@ -15,8 +15,12 @@
     },
     data() {
       return {
-        pointerX: 0,
-        pointerY: 0,
+        position: {
+          distanceX: 0, 
+          distanceY: 0,
+          pointerX: 0,
+          pointerY: 0,
+        },
         previousPointerX: 0,
         previousPointerY: 0,
         angle: 0,
@@ -31,32 +35,30 @@
         this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(1, -2) / -2) + 'px'
       },
       moveCursor(event, cursorBlock) {
-        let distanceX, distanceY
-        this.previousPointerX = this.pointerX
-        this.previousPointerY = this.pointerY
-        this.pointerX = event.pageX - cursorBlock.getBoundingClientRect().x
-        this.pointerY = event.pageY - cursorBlock.getBoundingClientRect().y + this.$root.$el.getBoundingClientRect().y
+        this.previousPointerX = this.position.pointerX
+        this.previousPointerY = this.position.pointerY
+        this.position.pointerX = event.pageX - cursorBlock.getBoundingClientRect().x
+        this.position.pointerY = event.pageY - cursorBlock.getBoundingClientRect().y + this.$root.$el.getBoundingClientRect().y
 
-        distanceX = this.previousPointerX - this.pointerX
-        distanceY = this.previousPointerY - this.pointerY
+        this.position.distanceX = this.previousPointerX - this.position.pointerX
+        this.position.distanceY = this.previousPointerY - this.position.pointerY
 
-        if (distanceX <= 0 && distanceY >= 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, true, 0)
-        } else if (distanceX < 0 && distanceY < 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, false, 90)
-        } else if (distanceX >= 0 && distanceY <= 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, true, 180)
-        } else if (distanceX > 0 && distanceY > 0) {
-          this.setDisplacement(distanceX, distanceY, this.pointerX, this.pointerY, false, 270)
-        }
+        this.$refs.cursor.style.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
+
+        this.rotateCurosr(this.position)
       },
-      setDisplacement(dx, dy, px, py, flip = false, dir = 0) {
+      rotateCurosr(position) {
+        let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
         this.previousAngle = this.angle
 
-        if (flip) {
-          this.angle = 90 - Math.atan(Math.abs(dy) / Math.abs(dx)) * this.degrees + dir
-        } else {
-          this.angle = Math.atan(Math.abs(dy) / Math.abs(dx)) * this.degrees + dir
+        if (position.distanceX <= 0 && position.distanceY >= 0) {
+          this.angle = 90 - unsortedAngle + 0
+        } else if (position.distanceX < 0 && position.distanceY < 0) {
+          this.angle = unsortedAngle + 90
+        } else if (position.distanceX >= 0 && position.distanceY <= 0) {
+          this.angle = 90 - unsortedAngle + 180
+        } else if (position.distanceX > 0 && position.distanceY > 0) {
+          this.angle = unsortedAngle + 270
         }
 
         if (isNaN(this.angle)) {
@@ -70,7 +72,7 @@
             this.angleDisplace += this.angle - this.previousAngle
           }
         }
-        this.$refs.cursor.style.transform = `translate3d(${px}px, ${py}px, 0) rotate(${this.angleDisplace}deg)`
+        this.$refs.cursor.style.transform += ` rotate(${this.angleDisplace}deg)`
       },
       resetCursor() {
         this.$refs.cursor.style.top = '50%'
