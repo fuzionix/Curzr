@@ -2,9 +2,9 @@
   <section 
     id="cursor-block" 
     class="cursor-block" 
-    @mousemove="moveCursor($event)"
-    @mouseenter="initCursor()"
-    @mouseleave="resetCursor()"
+    @mousemove="move($event)"
+    @mouseenter="init()"
+    @mouseleave="reset()"
     ref="cursorBlock">
     <header>
       <div class="cursor-type">
@@ -26,11 +26,11 @@
     <footer>
       <div class="cursor-name">Normal Cursor</div>
       <div class="button-section">
-        <normal-button class="normal-btn button-transparent">
+        <normal-button class="normal-btn button-transparent curzr-hover">
           <img src="../assets/icon/Customization.svg" alt="" width="30">
           <small>Edit</small>
         </normal-button>
-        <tilted-button class="tilted-btn" @click.native="openModel()">View Code</tilted-button>
+        <tilted-button class="tilted-btn curzr-hover" @click.native="openModel()">View Code</tilted-button>
       </div>
     </footer>
     <div class="block-mask">
@@ -46,6 +46,7 @@
   import tiltedBtn from '@/components/elements/tilted-button.vue'
 
   import normalCursor from '@/components/cursors/normal-cursor.vue'
+  import bigCircle from '@/components/cursors/big-circle.vue'
 
   export default {
     name: 'cursor-block',
@@ -54,22 +55,28 @@
       'normal-tag': tag,
       'normal-button': normalBtn,
       'tilted-button': tiltedBtn,
-      'normal-cursor': normalCursor
+      'normal-cursor': normalCursor,
+      'big-circle': bigCircle
+    },
+    props: {
+      cursorName: {
+        type: String,
+        required: true
+      }
     },
     data() {
       return {
-        cursorName: 'normal-cursor'
       }
     },
     methods: {
-      initCursor() {
-        this.$refs.cursor.initCursor()
+      init() {
+        this.$refs.cursor.init()
       },
-      moveCursor(event) {
-        this.$refs.cursor.moveCursor(event, this.$refs.cursorBlock)
+      move(event) {
+        this.$refs.cursor.move(event, this.$refs.cursorBlock)
       },
-      resetCursor() {
-        this.$refs.cursor.resetCursor()
+      reset() {
+        this.$refs.cursor.reset()
       },
       openModel() {
         this.$emit('changeModelStatus', true)
@@ -99,10 +106,10 @@
     linear-gradient(var(--bg-color) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center, var(--dot-color);
   background-size: var(--dot-space) var(--dot-space);
   background-position: center;
-  cursor: none;
+  cursor: pointer;
 
   &:hover {
-    cursor: none;
+    cursor: pointer;
   }
 
   &:hover footer .cursor-name {
@@ -110,11 +117,11 @@
   }
 
   &:hover footer .normal-btn {
-    cursor: none;
+    cursor: pointer;
   }
 
   &:hover footer .tilted-btn {
-    cursor: none;
+    cursor: pointer;
   }
 
   &:hover .block-mask {

@@ -10,9 +10,6 @@
 <script>
   export default {
     name: 'normal-cursor',
-    components: {
-      
-    },
     data() {
       return {
         position: {
@@ -30,11 +27,11 @@
       }
     },
     methods: {
-      initCursor() {
+      init() {
         this.$refs.cursor.style.top = 0 
         this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(1, -2) / -2) + 'px'
       },
-      moveCursor(event, cursorBlock) {
+      move(event, cursorBlock) {
         this.previousPointerX = this.position.pointerX
         this.previousPointerY = this.position.pointerY
         this.position.pointerX = event.pageX - cursorBlock.getBoundingClientRect().x
@@ -45,9 +42,9 @@
 
         this.$refs.cursor.style.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
 
-        this.rotateCurosr(this.position)
+        this.rotate(this.position)
       },
-      rotateCurosr(position) {
+      rotate(position) {
         let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
         this.previousAngle = this.angle
 
@@ -74,18 +71,16 @@
         }
         this.$refs.cursor.style.transform += ` rotate(${this.angleDisplace}deg)`
       },
-      resetCursor() {
-        this.$refs.cursor.style.top = '50%'
-        this.$refs.cursor.style.left = '50%'
-        this.$refs.cursor.style.transform = 'translate(-50%, -50%)'
+      reset() {
+        this.$refs.cursor.style.top = ''
+        this.$refs.cursor.style.left = ''
+        this.$refs.cursor.style.transform = ''
       }
     }
   }
 </script>
 
 <style lang="scss">
-@import '../../style/main.scss';
-
 .normal-cursor {
   --cursor-size: 20px;
 

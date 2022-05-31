@@ -1,10 +1,10 @@
 <template>
   <section id="cursor-content" class="cursor-content cursor-content-grid">
-    <cursor-block @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block @changeModelStatus="changeModelStatus"></cursor-block>
+    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
+    <cursor-block cursorName="big-circle" @changeModelStatus="changeModelStatus"></cursor-block>
+    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
+    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
+    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
 
     <main-model v-if="modelStatus" @changeModelStatus="changeModelStatus"></main-model>
   </section>
