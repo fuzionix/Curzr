@@ -10,7 +10,9 @@
         @changeRangeValue="changeRangeValue"
       >
       </adjustment-bar>
-      <cursor-content></cursor-content>
+      <cursor-content
+        :cursorsData="cursorsData">
+      </cursor-content>
       <footer-content></footer-content>
     </section>
   </section>
@@ -23,6 +25,8 @@
   import adjustmentbar from '@/components/adjustment-bar.vue'
   import cursorContent from '@/components/cursor-content.vue'
   import footer from '@/components/footer.vue'
+
+  import cursorsData from '@/json/cursors_data.json'
   
   export default {
     name: 'main-board',
@@ -39,7 +43,8 @@
         cursorConfig: {
           size: 25,
           delay: 500
-        }
+        },
+        cursorsData: cursorsData
       }
     },
     computed: {

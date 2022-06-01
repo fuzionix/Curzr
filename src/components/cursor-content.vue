@@ -1,12 +1,14 @@
 <template>
   <section id="cursor-content" class="cursor-content cursor-content-grid">
-    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block cursorName="big-circle" @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
-    <cursor-block cursorName="normal-cursor" @changeModelStatus="changeModelStatus"></cursor-block>
-
-    <main-model v-if="modelStatus" @changeModelStatus="changeModelStatus"></main-model>
+    <cursor-block 
+      v-for="(cursorData, index) in cursorsData" 
+      @changeModelStatus="changeModelStatus" 
+      :cursorData="cursorData"
+      :key="index">
+    </cursor-block>
+    <transition name="fade">
+      <main-model v-if="modelStatus" @changeModelStatus="changeModelStatus"></main-model>
+    </transition>
   </section>
 </template>
 
@@ -19,6 +21,15 @@
     components: {
       'cursor-block': cursorBlock,
       'main-model': model
+    },
+    props: {
+      cursorsData: {
+        type: Object,
+        required: true
+      }
+    },
+    mounted() {
+      console.log(this.cursorsData)
     },
     data() {
       return {
@@ -57,6 +68,13 @@
 
 .cursor-content-list {
   grid-template-columns: repeat(1, 1fr);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 @media only screen and (max-width: 768px) {

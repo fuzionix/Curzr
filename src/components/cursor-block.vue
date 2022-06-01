@@ -11,20 +11,22 @@
         <badge-tag>FREE</badge-tag>
       </div>
       <div class="cursor-features">
-        <normal-tag class="tag">Rotate</normal-tag>
-        <normal-tag class="tag">Click</normal-tag>
-        <normal-tag class="tag">Hover</normal-tag>
-        <normal-tag class="tag">Step</normal-tag>
+        <normal-tag 
+          class="tag"
+          v-for="(feature, index) in cursorData.features"
+          :key="index">
+          {{ feature }}
+        </normal-tag>
       </div>
     </header>
     <main>
       <component 
-        :is="cursorName"
+        :is="cursorData.componentName"
         ref="cursor">
       </component>
     </main>
     <footer>
-      <div class="cursor-name">Normal Cursor</div>
+      <div class="cursor-name">{{ cursorData.cursorName }}</div>
       <div class="button-section">
         <normal-button class="normal-btn button-transparent curzr-hover">
           <img src="../assets/icon/Customization.svg" alt="" width="30">
@@ -59,8 +61,8 @@
       'big-circle': bigCircle
     },
     props: {
-      cursorName: {
-        type: String,
+      cursorData: {
+        type: Object,
         required: true
       }
     },

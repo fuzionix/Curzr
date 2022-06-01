@@ -1,0 +1,43 @@
+{
+  "normalCursor": {
+    "cursorName": "Normal Cursor",
+    "componentName": "normal-cursor",
+    "features": [
+      "Rotate"
+    ]
+  },
+  "bigCircle": {
+    "cursorName": "Big Circle",
+    "componentName": "big-circle",
+    "features": [
+      "Hover",
+      "Click",
+      "Multiple"
+    ]
+  },
+  "normalCursor2": {
+    "cursorName": "Normal Cursor",
+    "componentName": "normal-cursor",
+    "features": [
+      "Hover",
+      "Click",
+      "Rotate"
+    ]
+  },
+  "normalCursor3": {
+    "cursorName": "Normal Cursor",
+    "componentName": "normal-cursor",
+    "features": [
+      "Hover",
+      "Click"
+    ]
+  },
+  "normalCursor4": {
+    "cursorName": "Normal Cursor",
+    "componentName": "normal-cursor",
+    "features": [
+      "Hover",
+      "Click"
+    ]
+  }
+}
