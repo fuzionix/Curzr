@@ -1,5 +1,5 @@
 <template>
-  <section id="main-model" class="main-model" @click="closeModelByOuterSpace($event)">
+  <section id="cursor-model" class="cursor-model" @click="closeModelByOuterSpace($event)">
     <div class="model-block">
       <div class="block-left"
         @mousemove="move($event)"
@@ -12,6 +12,13 @@
         <div class="block-content">
           <h2 class="text">Move the cursor around</h2>
         </div>
+        <footer>
+          <radio-group 
+            class="content-type" 
+            groupName="content-type"
+            :radioItems="radioItems">
+          </radio-group>
+        </footer>
         <component 
           :is="cursor"
           ref="cursor">
@@ -35,21 +42,26 @@
 </template>
 
 <script>
+  import radioGroup from '@/components/elements/radio-group.vue'
   import badge from '@/components/elements/badge.vue'
   import tag from '@/components/elements/tag.vue'
 
   import normalCursor from '@/components/cursors/normal-cursor.vue'
 
   export default {
-    name: 'main-model',
+    name: 'cursor-model',
     components: {
+      'radio-group': radioGroup,
       'badge-tag': badge,
       'normal-tag': tag,
       'normal-cursor': normalCursor
     },
     data() {
       return {
-        cursor: 'normal-cursor'
+        cursor: 'normal-cursor',
+        radioItems: [
+          'Text', 'Button', 'Input Field', 'Loading'
+        ]
       }
     },
     methods: {
@@ -77,7 +89,7 @@
 <style lang="scss">
 @import '../style/main.scss';
 
-.main-model {
+.cursor-model {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -101,6 +113,7 @@
     overflow: hidden;
 
     .block-left {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -135,6 +148,17 @@
 
         &:hover {
           opacity: .75;
+        }
+      }
+
+      footer {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 1rem 2rem;
+
+        .content-type > * {
+          cursor: none;
         }
       }
     }
@@ -176,7 +200,7 @@
 }
 
 @media only screen and (max-width: 1680px) {
-  .main-model {
+  .cursor-model {
     padding: 2rem 1.5rem;
   }
 }

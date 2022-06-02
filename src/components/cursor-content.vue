@@ -7,20 +7,20 @@
       :key="index">
     </cursor-block>
     <transition name="fade">
-      <main-model v-if="modelStatus" @changeModelStatus="changeModelStatus"></main-model>
+      <cursor-model v-if="modelStatus" @changeModelStatus="changeModelStatus"></cursor-model>
     </transition>
   </section>
 </template>
 
 <script>
   import cursorBlock from '@/components/cursor-block.vue'
-  import model from '@/components/main-model.vue'
+  import model from '@/components/cursor-model.vue'
 
   export default {
     name: 'cursor-content',
     components: {
       'cursor-block': cursorBlock,
-      'main-model': model
+      'cursor-model': model
     },
     props: {
       cursorsData: {
