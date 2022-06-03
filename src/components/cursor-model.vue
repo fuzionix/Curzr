@@ -10,13 +10,17 @@
           <img src="../assets/icon/close-btn.svg" alt="close button" width="20">
         </div>
         <div class="block-content">
-          <h2 class="text">Move the cursor around</h2>
+          <h2 v-if="contentType === radioItems[0]" class="text">Move the cursor around</h2>
+          <h2 v-else-if="contentType === radioItems[1]" class="text">Button</h2>
+          <h2 v-else-if="contentType === radioItems[2]" class="text">Input Field</h2>
+          <h2 v-else-if="contentType === radioItems[3]" class="text">Loading</h2>
         </div>
         <footer>
           <radio-group 
             class="content-type" 
             groupName="content-type"
-            :radioItems="radioItems">
+            :radioItems="radioItems"
+            @changeValue="changeContentType">
           </radio-group>
         </footer>
         <component 
@@ -61,7 +65,8 @@
         cursor: 'normal-cursor',
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
-        ]
+        ],
+        contentType: 'Text'
       }
     },
     methods: {
@@ -73,6 +78,9 @@
       },
       reset() {
         this.$refs.cursor.reset()
+      },
+      changeContentType(value) {
+        this.contentType = value
       },
       closeModelByOuterSpace(event) {
         if (event.target === this.$el) {
@@ -155,7 +163,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        padding: 1rem 2rem;
+        padding: 1.5rem 2rem;
 
         .content-type > * {
           cursor: none;
@@ -164,14 +172,27 @@
     }
 
     .block-right {
+      position: relative;
       flex: 1;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -80px;
+        width: 300px;
+        height: 100px;
+        background: url('../assets/dot-area.png');
+        background-repeat: no-repeat;
+        transform: rotate(45deg);
+      }
 
       .block-content {
         min-height: 100%;
         padding: 2rem 1rem;
         background: rgb(52,220,255);
         background: 
-          linear-gradient(30deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
+          linear-gradient(45deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
           linear-gradient(135deg, rgb(52, 220, 255) 0%, rgb(51, 255, 175) 100%);
 
         .cursor-type {
