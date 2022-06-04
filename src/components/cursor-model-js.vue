@@ -9,6 +9,7 @@
           <div class="dot"></div>
         </div>
         <pre><code class="language-html">{{ html }}</code></pre>
+        <button class="copy-btn">Copy</button>
       </div>
     </div>
     <div class="block-container">
@@ -20,6 +21,7 @@
           <div class="dot"></div>
         </div>
         <pre><code class="language-js">{{ javascript }}</code></pre>
+        <button class="copy-btn">Copy</button>
       </div>
     </div>
   </section>
@@ -113,10 +115,14 @@ resetChild(nodes) {
     .code-block {
       position: relative;
 
+      & ::-webkit-scrollbar {
+        width: 0;
+      }
+
       pre {
-        padding: 1rem 1rem 0;
-        border-radius: $--common-radius / 2;
-        background-color: #06252c;
+        padding: 1rem 1rem calc(1rem + 50px);
+        border-radius: $--common-radius;
+        background-color: #06252cee;
         font-size: .875rem;
         font-weight: 400;
         max-height: 500px;
@@ -129,6 +135,20 @@ resetChild(nodes) {
         code {
           font-family: $--fonts-style-y;
         }
+      }
+
+      .copy-btn {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 2rem);
+        height: 50px;
+        border: 2px solid #fff2;
+        border-radius: $--common-radius / 2;
+        color: #fffd;
+        background-color: #fff2;
+        backdrop-filter: blur(3px);
       }
 
       .dots-container {
