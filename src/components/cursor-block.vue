@@ -82,7 +82,6 @@
       },
       openModel() {
         this.$emit('changeModelStatus', true)
-        console.log('open')
       }
     }
   }

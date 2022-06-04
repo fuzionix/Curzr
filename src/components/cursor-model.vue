@@ -29,35 +29,23 @@
         </component>
       </div>
       <div class="block-right">
-        <div class="block-content">
-          <div class="cursor-type">
-            <badge-tag>FREE</badge-tag>
-          </div>
-          <h5 class="cursor-name">Normal Cursor</h5>
-          <div class="cursor-features">
-            <normal-tag class="tag">Mulitple</normal-tag>
-            <normal-tag class="tag">Click</normal-tag>
-            <normal-tag class="tag">Hover</normal-tag>
-          </div>
-        </div>
+        <cursor-model-viewcode class="block-content"></cursor-model-viewcode>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+  import viewcode from '@/components/cursor-model-viewcode.vue'
   import radioGroup from '@/components/elements/radio-group.vue'
-  import badge from '@/components/elements/badge.vue'
-  import tag from '@/components/elements/tag.vue'
 
   import normalCursor from '@/components/cursors/normal-cursor.vue'
 
   export default {
     name: 'cursor-model',
     components: {
+      'cursor-model-viewcode': viewcode,
       'radio-group': radioGroup,
-      'badge-tag': badge,
-      'normal-tag': tag,
       'normal-cursor': normalCursor
     },
     data() {
@@ -174,6 +162,8 @@
     .block-right {
       position: relative;
       flex: 1;
+      overflow-x: hidden;
+      overflow-y: scroll;
 
       &::after {
         content: '';
@@ -194,27 +184,6 @@
         background: 
           linear-gradient(45deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
           linear-gradient(135deg, rgb(52, 220, 255) 0%, rgb(51, 255, 175) 100%);
-
-        .cursor-type {
-          width: 3.75rem;
-          margin-left: -.25rem;
-        }
-
-        .cursor-name {
-          margin-top: 1rem;
-          letter-spacing: .5px;
-        }
-
-        .cursor-features {
-          display: flex;
-          flex-wrap: wrap;
-          margin-top: 1rem;
-
-          .tag {
-            margin-right: .5rem;
-            margin-bottom: .5rem;
-          }
-        }
       }
     }
   }
