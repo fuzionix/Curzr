@@ -14,13 +14,14 @@
       <normal-tag class="tag">Hover</normal-tag>
     </div>
     <div class="code-block-container">
-      <cursor-model-js></cursor-model-js>
+      <component :is="codeblock"></component>
     </div>
   </section>
 </template>
 
 <script>
   import viewcodeJs from '@/components/cursor-model-js.vue'
+  import viewcodeVue from '@/components/cursor-model-vue.vue'
 
   import badge from '@/components/elements/badge.vue'
   import tag from '@/components/elements/tag.vue'
@@ -30,9 +31,15 @@
     name: 'cursor-model-viewcode',
     components: {
       'cursor-model-js': viewcodeJs,
+      'cursor-model-vue': viewcodeVue,
       'badge-tag': badge,
       'normal-tag': tag,
       'normal-button': button,
+    },
+    data() {
+      return {
+        codeblock: 'cursor-model-vue'
+      }
     }
   }
 </script>

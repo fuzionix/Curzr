@@ -1,7 +1,10 @@
 <template>
   <section id="cursor-model-js" class="cursor-model-js">
     <div class="block-container">
-      <small>HTML</small>
+      <div class="subtitle">
+        <img src="../assets/icon/html5-brands.svg" alt="html5 icon" width="12">
+        <small>HTML</small>
+      </div>
       <div class="code-block">
         <div class="dots-container">
           <div class="dot"></div>
@@ -9,11 +12,14 @@
           <div class="dot"></div>
         </div>
         <pre><code class="language-html">{{ html }}</code></pre>
-        <button class="copy-btn">Copy</button>
+        <copy-button :copiedText="html"></copy-button>
       </div>
     </div>
     <div class="block-container">
-      <small>JavaScript</small>
+      <div class="subtitle">
+        <img src="../assets/icon/js-square-brands.svg" alt="javascript icon" width="12">
+        <small>JavaScript</small>
+      </div>
       <div class="code-block">
         <div class="dots-container">
           <div class="dot"></div>
@@ -21,7 +27,7 @@
           <div class="dot"></div>
         </div>
         <pre><code class="language-js">{{ javascript }}</code></pre>
-        <button class="copy-btn">Copy</button>
+        <copy-button :copiedText="javascript"></copy-button>
       </div>
     </div>
   </section>
@@ -31,14 +37,17 @@
   import Prism from "prismjs"
   import "prismjs/themes/prism-tomorrow.css"
 
+  import copyBtn from '@/components/elements/copy-button.vue'
+
   export default {
     name: 'cursor-model-js',
     components: {
+      'copy-button': copyBtn
     },
     mounted() {
       window.Prism = window.Prism || {}
-      window.Prism.manual = 
-      Prism.highlightAll();
+      window.Prism.manual = true
+      Prism.highlightAll()
     },
     data() {
       return {
@@ -112,6 +121,16 @@ resetChild(nodes) {
   .block-container {
     margin-bottom: 1.5rem;
 
+    .subtitle {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 12px;
+        margin-right: .5rem;
+      }
+    }
+
     .code-block {
       position: relative;
 
@@ -135,20 +154,6 @@ resetChild(nodes) {
         code {
           font-family: $--fonts-style-y;
         }
-      }
-
-      .copy-btn {
-        position: absolute;
-        bottom: 1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: calc(100% - 2rem);
-        height: 50px;
-        border: 2px solid #fff2;
-        border-radius: $--common-radius / 2;
-        color: #fffd;
-        background-color: #fff2;
-        backdrop-filter: blur(3px);
       }
 
       .dots-container {
