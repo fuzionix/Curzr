@@ -8,13 +8,16 @@
       <badge-tag>FREE</badge-tag>
     </div>
     <h5 class="cursor-name">Normal Cursor</h5>
-    <div class="cursor-features">
-      <normal-tag class="tag">Mulitple</normal-tag>
-      <normal-tag class="tag">Click</normal-tag>
-      <normal-tag class="tag">Hover</normal-tag>
-    </div>
+    <radio-group 
+      class="content-type" 
+      groupName="content-type"
+      :radioItems="radioItems"
+      @changeValue="changeCodeblock">
+    </radio-group>
     <div class="code-block-container">
-      <component :is="codeblock"></component>
+      <transition name="fade" mode="out-in" :duration="250">
+        <component :is="codeblock"></component>
+      </transition>
     </div>
   </section>
 </template>
@@ -24,8 +27,8 @@
   import viewcodeVue from '@/components/cursor-model-vue.vue'
 
   import badge from '@/components/elements/badge.vue'
-  import tag from '@/components/elements/tag.vue'
   import button from '@/components/elements/normal-button.vue'
+  import radioGroup from '@/components/elements/radio-group.vue'
 
   export default {
     name: 'cursor-model-viewcode',
@@ -33,12 +36,26 @@
       'cursor-model-js': viewcodeJs,
       'cursor-model-vue': viewcodeVue,
       'badge-tag': badge,
-      'normal-tag': tag,
       'normal-button': button,
+      'radio-group': radioGroup,
     },
     data() {
       return {
-        codeblock: 'cursor-model-vue'
+        codeblock: 'cursor-model-js',
+        radioItems: [
+          'JavaScript', 'VUE 2'
+        ],
+      }
+    },
+    methods: {
+      changeCodeblock(value) {
+        switch(value) {
+          case 'JavaScript':
+            this.codeblock = 'cursor-model-js'
+            break
+          case 'VUE 2':
+            this.codeblock = 'cursor-model-vue'
+        }
       }
     }
   }
@@ -77,15 +94,8 @@
     letter-spacing: .5px;
   }
 
-  .cursor-features {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-
-    .tag {
-      margin-right: .5rem;
-      margin-bottom: .5rem;
-    }
+  .content-type {
+    margin: 1.5rem 0;
   }
 
   .code-block-container {

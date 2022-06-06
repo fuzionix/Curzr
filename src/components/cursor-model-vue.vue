@@ -204,7 +204,7 @@
         background-color: #06252cee;
         font-size: .875rem;
         font-weight: 400;
-        max-height: 500px;
+        max-height: 400px;
         overflow: scroll;
 
         & ::selection {

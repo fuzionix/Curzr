@@ -79,7 +79,7 @@
       opacity: .75;
 
       &:hover {
-        opacity: .75;
+        background: transparentize($--section-line-color, 0.5);
       }
     }
   }

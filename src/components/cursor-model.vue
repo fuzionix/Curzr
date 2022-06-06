@@ -9,6 +9,11 @@
         <div class="close-btn" @click="closeModelByButton($event)">
           <img src="../assets/icon/close-btn.svg" alt="close button" width="20">
         </div>
+        <div class="cursor-features">
+          <normal-tag class="tag">Mulitple</normal-tag>
+          <normal-tag class="tag">Click</normal-tag>
+          <normal-tag class="tag">Hover</normal-tag>
+        </div>
         <div class="block-content">
           <h2 v-if="contentType === radioItems[0]" class="text">Move the cursor around</h2>
           <h2 v-else-if="contentType === radioItems[1]" class="text">Button</h2>
@@ -40,12 +45,14 @@
   import radioGroup from '@/components/elements/radio-group.vue'
 
   import normalCursor from '@/components/cursors/normal-cursor.vue'
+  import tag from '@/components/elements/tag.vue'
 
   export default {
     name: 'cursor-model',
     components: {
       'cursor-model-viewcode': viewcode,
       'radio-group': radioGroup,
+      'normal-tag': tag,
       'normal-cursor': normalCursor
     },
     data() {
@@ -144,6 +151,19 @@
 
         &:hover {
           opacity: .75;
+        }
+      }
+
+      .cursor-features {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        flex-wrap: wrap;
+
+        .tag {
+          margin-right: .5rem;
+          margin-bottom: .5rem;
         }
       }
 
