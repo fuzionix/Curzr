@@ -1,8 +1,8 @@
 <template>
   <section id="cursor-model-viewcode" class="cursor-model-viewcode">
-    <normal-button class="normal-btn">
+    <normal-button class="normal-btn" @click.native="changeToEditModel()">
       <small>Edit Cursor</small>
-      <img src="../assets/icon/arrow.svg" alt="edit cursor" width="10">
+      <img src="../assets/icon/arrow.svg" alt="edit cursor arrow" width="10">
     </normal-button>
     <div class="cursor-type">
       <badge-tag>FREE</badge-tag>
@@ -56,6 +56,9 @@
           case 'VUE 2':
             this.codeblock = 'cursor-model-vue'
         }
+      },
+      changeToEditModel() {
+        this.$emit('changeModel', 'cursor-model-edit')
       }
     }
   }

@@ -33,8 +33,16 @@
           ref="cursor">
         </component>
       </div>
-      <div class="block-right">
-        <cursor-model-viewcode class="block-content"></cursor-model-viewcode>
+      <div 
+        class="block-right" 
+        :class="[blockContent === 'cursor-model-viewcode' ? 'block-right-viewcode' : 'block-right-edit']">
+        <transition name="fade" mode="out-in" :duration="500">
+          <component 
+            :is="blockContent" 
+            class="block-content"
+            @changeModel="changeModel">
+          </component>
+        </transition>
       </div>
     </div>
   </section>
@@ -42,6 +50,7 @@
 
 <script>
   import viewcode from '@/components/cursor-model-viewcode.vue'
+  import edit from '@/components/cursor-model-edit.vue'
   import radioGroup from '@/components/elements/radio-group.vue'
 
   import normalCursor from '@/components/cursors/normal-cursor.vue'
@@ -51,6 +60,7 @@
     name: 'cursor-model',
     components: {
       'cursor-model-viewcode': viewcode,
+      'cursor-model-edit': edit,
       'radio-group': radioGroup,
       'normal-tag': tag,
       'normal-cursor': normalCursor
@@ -61,7 +71,8 @@
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
         ],
-        contentType: 'Text'
+        contentType: 'Text',
+        blockContent: 'cursor-model-viewcode'
       }
     },
     methods: {
@@ -76,6 +87,9 @@
       },
       changeContentType(value) {
         this.contentType = value
+      },
+      changeModel(model) {
+        this.blockContent = model
       },
       closeModelByOuterSpace(event) {
         if (event.target === this.$el) {
@@ -124,6 +138,7 @@
       position: relative;
       border-right: 1px solid $--section-line-color;
       background: $--background-sub-color;
+      transition: 500ms;
       cursor: none;
 
       .block-content {
@@ -181,9 +196,9 @@
 
     .block-right {
       position: relative;
-      flex: 1;
       overflow-x: hidden;
       overflow-y: scroll;
+      transition: 500ms;
 
       &::after {
         content: '';
@@ -205,6 +220,14 @@
           linear-gradient(45deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
           linear-gradient(135deg, rgb(52, 220, 255) 0%, rgb(51, 255, 175) 100%);
       }
+    }
+
+    .block-right-viewcode {
+      width: 50%;
+    }
+
+    .block-right-edit {
+      width: 300px;
     }
   }
 }
