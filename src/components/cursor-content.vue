@@ -7,7 +7,13 @@
       :key="index">
     </cursor-block>
     <transition name="fade">
-      <cursor-model v-if="modelStatus" @changeModelStatus="changeModelStatus"></cursor-model>
+      <cursor-model 
+        v-if="modelStatus" 
+        @changeModelStatus="changeModelStatus"
+        @changeModel="changeModel"
+        :model="model"
+        >
+      </cursor-model>
     </transition>
   </section>
 </template>
@@ -32,12 +38,17 @@
     },
     data() {
       return {
-        modelStatus: false
+        modelStatus: false,
+        model: 'cursor-model-viewcode'
       }
     },
     methods: {
-      changeModelStatus(status) {
-        this.modelStatus = status
+      changeModelStatus(data) {
+        this.modelStatus = data.modelStatus
+        this.model = data.model
+      },
+      changeModel(model) {
+        this.model = model
       }
     }
   }

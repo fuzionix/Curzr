@@ -28,11 +28,11 @@
     <footer>
       <div class="cursor-name">{{ cursorData.cursorName }}</div>
       <div class="button-section">
-        <normal-button class="normal-btn button-transparent curzr-hover">
+        <normal-button class="normal-btn button-transparent curzr-hover" @click.native="openModel('cursor-model-edit')">
           <img src="../assets/icon/Customization.svg" alt="" width="30">
           <small>Edit</small>
         </normal-button>
-        <tilted-button class="tilted-btn curzr-hover" @click.native="openModel()">View Code</tilted-button>
+        <tilted-button class="tilted-btn curzr-hover" @click.native="openModel('cursor-model-viewcode')">View Code</tilted-button>
       </div>
     </footer>
     <div class="block-mask">
@@ -80,8 +80,11 @@
       reset() {
         this.$refs.cursor.reset()
       },
-      openModel() {
-        this.$emit('changeModelStatus', true)
+      openModel(model) {
+        this.$emit('changeModelStatus', {
+          modelStatus: true,
+          model: model
+        })
       }
     }
   }

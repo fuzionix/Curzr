@@ -35,13 +35,15 @@
       </div>
       <div 
         class="block-right" 
-        :class="[blockContent === 'cursor-model-viewcode' ? 'block-right-viewcode' : 'block-right-edit']">
+        :class="[model === 'cursor-model-viewcode' ? 'block-right-viewcode' : 'block-right-edit']">
         <transition name="fade" mode="out-in" :duration="500">
-          <component 
-            :is="blockContent" 
-            class="block-content"
-            @changeModel="changeModel">
-          </component>
+          <keep-alive>
+            <component 
+              :is="model" 
+              class="block-content"
+              @changeModel="changeModel">
+            </component>
+          </keep-alive>
         </transition>
       </div>
     </div>
@@ -65,14 +67,19 @@
       'normal-tag': tag,
       'normal-cursor': normalCursor
     },
+    props: {
+      model: {
+        type: String,
+        required: true
+      }
+    },
     data() {
       return {
         cursor: 'normal-cursor',
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
         ],
-        contentType: 'Text',
-        blockContent: 'cursor-model-viewcode'
+        contentType: 'Text'
       }
     },
     methods: {
@@ -89,7 +96,7 @@
         this.contentType = value
       },
       changeModel(model) {
-        this.blockContent = model
+        this.$emit('changeModel', model)
       },
       closeModelByOuterSpace(event) {
         if (event.target === this.$el) {
@@ -199,6 +206,10 @@
       overflow-x: hidden;
       overflow-y: scroll;
       transition: 500ms;
+      background: rgb(52,220,255);
+      background: 
+        linear-gradient(45deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
+        linear-gradient(135deg, rgb(52, 220, 255) 0%, rgb(51, 255, 175) 100%);
 
       &::after {
         content: '';
@@ -215,10 +226,6 @@
       .block-content {
         min-height: 100%;
         padding: 2rem 1rem;
-        background: rgb(52,220,255);
-        background: 
-          linear-gradient(45deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
-          linear-gradient(135deg, rgb(52, 220, 255) 0%, rgb(51, 255, 175) 100%);
       }
     }
 
