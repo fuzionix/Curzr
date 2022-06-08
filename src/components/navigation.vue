@@ -3,7 +3,7 @@
     <div class="slide-btn" @click="toggleSidemenu($event)">
       <img src="../assets/icon/btn-arrow.svg" alt="button arrow" width="100">
     </div>
-    <a href="#" class="github-btn">
+    <a href="https://github.com/TaylonChan/Curzr" target="_blank" class="github-btn">
       <img src="../assets/icon/github.png" alt="github button" width="20">
       <h6 class="btn-name"><span>GITHUB</span></h6>
     </a>
