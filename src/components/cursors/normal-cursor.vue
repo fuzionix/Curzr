@@ -88,6 +88,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
   width: var(--cursor-size);
   height: var(--cursor-size);
   transition: 500ms, transform 100ms;

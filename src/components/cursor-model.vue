@@ -130,7 +130,6 @@
   .model-block {
     display: flex;
     width: 1400px;
-    min-width: 500px;
     height: 100%;
     background: #fff;
     border-radius: $--common-radius;
@@ -164,6 +163,7 @@
         position: absolute;
         top: 20px;
         left: 20px;
+        z-index: 1;
         opacity: .5;
         transition: 250ms;
 
@@ -181,7 +181,9 @@
         top: 20px;
         right: 20px;
         display: flex;
+        flex-direction: row-reverse;
         flex-wrap: wrap;
+        padding-left: 5rem;
 
         .tag {
           margin-right: .5rem;
@@ -211,18 +213,6 @@
         linear-gradient(45deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
         linear-gradient(135deg, rgb(52, 220, 255) 0%, rgb(51, 255, 175) 100%);
 
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: -80px;
-        width: 300px;
-        height: 100px;
-        background: url('../assets/dot-area.png');
-        background-repeat: no-repeat;
-        transform: rotate(45deg);
-      }
-
       .block-content {
         min-height: 100%;
         padding: 2rem 1rem;
@@ -242,6 +232,59 @@
 @media only screen and (max-width: 1680px) {
   .cursor-model {
     padding: 2rem 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .cursor-model {
+    
+    .model-block {
+      overflow: scroll;
+      flex-direction: column;
+
+      .block-left {
+        flex: 0;
+
+        .block-content {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 400px;
+        }
+      }
+
+      .block-right {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cursor-model {
+    .model-block {
+      .block-left {
+        .block-content {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 300px;
+        }
+
+        footer {
+          .content-type {
+            .radio-item {
+              .item-name {
+                padding: .5rem;
+                font-size: .75rem;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
