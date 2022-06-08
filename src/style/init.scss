@@ -69,12 +69,11 @@ ul {
 }
 
 button {
-  appearance: none;
   background: transparent;
 }
 
 button:focus {
-  outline: transparent;
+  outline: default;
 }
 
 button:hover {
