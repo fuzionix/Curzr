@@ -38,12 +38,12 @@
 </template>
 
 <script>
-  import rangebar from '@/components/elements/range-bar.vue'
+  import RangeBar from '@/components/elements/range-bar.vue'
 
   export default {
-    name: 'adjustment-bar',
+    name: 'AdjustmentBar',
     components: {
-      'range-bar': rangebar
+      'range-bar': RangeBar
     },
     props: {
       cursorConfig: {

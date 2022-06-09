@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    name: 'filter-menu',
+    name: 'FilterMenu',
     components: {
       
     },

@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    name: 'normal-cursor',
+    name: 'NormalCursor',
     data() {
       return {
         position: {
@@ -80,7 +80,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .normal-cursor {
   --cursor-size: 20px;
 

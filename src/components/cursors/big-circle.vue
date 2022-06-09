@@ -7,7 +7,7 @@
 
 <script>
   export default {
-    name: 'big-circle',
+    name: 'BigCircle',
     data() {
       return {
         position: {
@@ -88,7 +88,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .big-circle {
   --cursor-size: 100px;
   --cursor-transform: 100ms;

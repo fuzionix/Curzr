@@ -27,15 +27,15 @@
   import Prism from "prismjs"
   import "prismjs/themes/prism-tomorrow.css"
 
-  import copyBtn from '@/components/elements/copy-button.vue'
+  import CopyButton from '@/components/elements/copy-button.vue'
 
-  import normalCursor from '@/components/cursors_code/code-normal-cursor.vue'
+  import NormalCursor from '@/components/cursors_code/code-normal-cursor.vue'
 
   export default {
-    name: 'cursor-model-vue',
+    name: 'CursorModelVue',
     components: {
-      'copy-button': copyBtn,
-      'code-normal-cursor': normalCursor
+      'copy-button': CopyButton,
+      'code-normal-cursor': NormalCursor
     },
     mounted() {
       window.Prism = window.Prism || {}

@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'badge-tag',
+    name: 'BadgeTag',
     components: {
       
     },
@@ -18,7 +18,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/main.scss';
 
 .badge {

@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    name: 'navigation-bar',
+    name: 'NavigationBar',
     components: {
       
     },

@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'normal-tag',
+    name: 'NormalTag',
     components: {
       
     },

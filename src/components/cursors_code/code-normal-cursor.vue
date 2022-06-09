@@ -13,7 +13,7 @@
 <script>
   /* eslint-disable no-useless-escape */
   export default {
-    name: 'normal-cursor-code',
+    name: 'NormalCursorCode',
     components: {
     },
     props: {

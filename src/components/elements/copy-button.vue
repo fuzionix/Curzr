@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    name: 'copy-button',
+    name: 'CopyButton',
     components: {
     },
     props: {
@@ -64,7 +64,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/main.scss';
 
 .copy-button {

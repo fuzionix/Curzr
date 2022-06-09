@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    name: 'radio-group',
+    name: 'RadioGroup',
     components: {
       
     },
@@ -42,7 +42,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/main.scss';
 
 .radio-group {

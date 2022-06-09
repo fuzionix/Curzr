@@ -59,11 +59,11 @@
 </template>
 
 <script>
-  import tag from '@/components/elements/tag.vue'
+  import NormalTag from '@/components/elements/tag.vue'
   export default {
-    name: 'side-menu',
+    name: 'SideMenu',
     components: {
-      'normal-tag': tag,
+      'normal-tag': NormalTag,
     },
     data() {
       return {

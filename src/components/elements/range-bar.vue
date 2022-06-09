@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: 'range-bar',
+    name: 'RangeBar',
     components: {
       
     },
@@ -61,7 +61,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/main.scss';
 .range-bar {
   display: flex;

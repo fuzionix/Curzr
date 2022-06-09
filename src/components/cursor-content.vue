@@ -19,14 +19,14 @@
 </template>
 
 <script>
-  import cursorBlock from '@/components/cursor-block.vue'
-  import model from '@/components/cursor-model.vue'
+  import CursorBlock from '@/components/cursor-block.vue'
+  import CursorModel from '@/components/cursor-model.vue'
 
   export default {
-    name: 'cursor-content',
+    name: 'CursorContent',
     components: {
-      'cursor-block': cursorBlock,
-      'cursor-model': model
+      'cursor-block': CursorBlock,
+      'cursor-model': CursorModel
     },
     props: {
       cursorsData: {

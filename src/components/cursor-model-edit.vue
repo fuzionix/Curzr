@@ -9,12 +9,12 @@
 </template>
 
 <script>
-  import button from '@/components/elements/normal-button.vue'
+  import NormalButton from '@/components/elements/normal-button.vue'
 
   export default {
-    name: 'cursor-model-viewcode',
+    name: 'CursorModelEdit',
     components: {
-      'normal-button': button,
+      'normal-button': NormalButton,
     },
     data() {
       return {
@@ -29,7 +29,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../style/main.scss';
 
 .cursor-model-edit {

@@ -42,23 +42,23 @@
 </template>
 
 <script>
-  import badge from '@/components/elements/badge.vue'
-  import tag from '@/components/elements/tag.vue'
-  import normalBtn from '@/components/elements/normal-button.vue'
-  import tiltedBtn from '@/components/elements/tilted-button.vue'
+  import BadgeTag from '@/components/elements/badge.vue'
+  import NormalTag from '@/components/elements/tag.vue'
+  import NormalButton from '@/components/elements/normal-button.vue'
+  import TiltedButton from '@/components/elements/tilted-button.vue'
 
-  import normalCursor from '@/components/cursors/normal-cursor.vue'
-  import bigCircle from '@/components/cursors/big-circle.vue'
+  import NormalCursor from '@/components/cursors/normal-cursor.vue'
+  import BigCircle from '@/components/cursors/big-circle.vue'
 
   export default {
-    name: 'cursor-block',
+    name: 'CursorBlock',
     components: {
-      'badge-tag': badge,
-      'normal-tag': tag,
-      'normal-button': normalBtn,
-      'tilted-button': tiltedBtn,
-      'normal-cursor': normalCursor,
-      'big-circle': bigCircle
+      'badge-tag': BadgeTag,
+      'normal-tag': NormalTag,
+      'normal-button': NormalButton,
+      'tilted-button': TiltedButton,
+      'normal-cursor': NormalCursor,
+      'big-circle': BigCircle
     },
     props: {
       cursorData: {

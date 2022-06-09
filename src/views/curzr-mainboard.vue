@@ -19,24 +19,24 @@
 </template>
 
 <script>
-  import sidemenu from '@/components/sidemenu.vue'
-  import navigation from '@/components/navigation.vue'
-  import searchbar from '@/components/search-bar.vue'
-  import adjustmentbar from '@/components/adjustment-bar.vue'
-  import cursorContent from '@/components/cursor-content.vue'
-  import footer from '@/components/footer.vue'
+  import SideMenu from '@/components/sidemenu.vue'
+  import NavigationBar from '@/components/navigation.vue'
+  import SearchBar from '@/components/search-bar.vue'
+  import AdjustmentBar from '@/components/adjustment-bar.vue'
+  import CursorContent from '@/components/cursor-content.vue'
+  import FooterContent from '@/components/footer.vue'
 
-  import cursorsData from '@/json/cursors_data.json'
+  import CursorsData from '@/json/cursors_data.json'
   
   export default {
-    name: 'main-board',
+    name: 'MainBoardPage',
     components: {
-      'side-menu': sidemenu,
-      'navigation-bar': navigation,
-      'search-bar': searchbar,
-      'adjustment-bar': adjustmentbar,
-      'cursor-content': cursorContent,
-      'footer-content': footer
+      'side-menu': SideMenu,
+      'navigation-bar': NavigationBar,
+      'search-bar': SearchBar,
+      'adjustment-bar': AdjustmentBar,
+      'cursor-content': CursorContent,
+      'footer-content': FooterContent
     },
     data() {
       return {
@@ -44,11 +44,14 @@
           size: 25,
           delay: 500
         },
-        cursorsData: cursorsData
+        cursorsData: CursorsData
       }
     },
     computed: {
       
+    },
+    mounted() {
+
     },
     methods: {
       changeRangeValue(event) {

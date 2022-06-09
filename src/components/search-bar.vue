@@ -17,12 +17,12 @@
 </template>
 
 <script>
-  import filtermenu from '@/components/filter-menu.vue'
+  import FilterMenu from '@/components/filter-menu.vue'
 
   export default {
-    name: 'search-bar',
+    name: 'SearchBar',
     components: {
-      'filter-menu': filtermenu
+      'filter-menu': FilterMenu
     },
     data() {
       return {

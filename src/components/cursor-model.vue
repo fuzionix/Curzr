@@ -51,21 +51,21 @@
 </template>
 
 <script>
-  import viewcode from '@/components/cursor-model-viewcode.vue'
-  import edit from '@/components/cursor-model-edit.vue'
-  import radioGroup from '@/components/elements/radio-group.vue'
+  import CursorModelViewcode from '@/components/cursor-model-viewcode.vue'
+  import CursorModelEdit from '@/components/cursor-model-edit.vue'
+  import RadioGroup from '@/components/elements/radio-group.vue'
 
-  import normalCursor from '@/components/cursors/normal-cursor.vue'
-  import tag from '@/components/elements/tag.vue'
+  import NormalCursor from '@/components/cursors/normal-cursor.vue'
+  import NormalTag from '@/components/elements/tag.vue'
 
   export default {
-    name: 'cursor-model',
+    name: 'CursorModel',
     components: {
-      'cursor-model-viewcode': viewcode,
-      'cursor-model-edit': edit,
-      'radio-group': radioGroup,
-      'normal-tag': tag,
-      'normal-cursor': normalCursor
+      'cursor-model-viewcode': CursorModelViewcode,
+      'cursor-model-edit': CursorModelEdit,
+      'radio-group': RadioGroup,
+      'normal-tag': NormalTag,
+      'normal-cursor': NormalCursor
     },
     props: {
       model: {

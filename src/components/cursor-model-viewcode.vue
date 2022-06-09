@@ -23,21 +23,21 @@
 </template>
 
 <script>
-  import viewcodeJs from '@/components/cursor-model-js.vue'
-  import viewcodeVue from '@/components/cursor-model-vue.vue'
+  import CursorModelJs from '@/components/cursor-model-js.vue'
+  import CursorModelVue from '@/components/cursor-model-vue.vue'
 
-  import badge from '@/components/elements/badge.vue'
-  import button from '@/components/elements/normal-button.vue'
-  import radioGroup from '@/components/elements/radio-group.vue'
+  import BadgeTag from '@/components/elements/badge.vue'
+  import NormalButton from '@/components/elements/normal-button.vue'
+  import RadioGroup from '@/components/elements/radio-group.vue'
 
   export default {
-    name: 'cursor-model-viewcode',
+    name: 'CursorModelViewcode',
     components: {
-      'cursor-model-js': viewcodeJs,
-      'cursor-model-vue': viewcodeVue,
-      'badge-tag': badge,
-      'normal-button': button,
-      'radio-group': radioGroup,
+      'cursor-model-js': CursorModelJs,
+      'cursor-model-vue': CursorModelVue,
+      'badge-tag': BadgeTag,
+      'normal-button': NormalButton,
+      'radio-group': RadioGroup,
     },
     data() {
       return {
@@ -64,7 +64,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../style/main.scss';
 
 .cursor-model-viewcode {
