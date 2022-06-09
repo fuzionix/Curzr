@@ -3,7 +3,7 @@
     <cursor-block 
       v-for="(cursorData, index) in cursorsData" 
       @changeModelStatus="changeModelStatus" 
-      :cursorData="cursorData"
+      :cursor-data="cursorData"
       :key="index">
     </cursor-block>
     <transition name="fade">

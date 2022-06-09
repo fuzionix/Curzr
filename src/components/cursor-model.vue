@@ -24,7 +24,7 @@
           <radio-group 
             class="content-type" 
             groupName="content-type"
-            :radioItems="radioItems"
+            :radio-items="radioItems"
             @changeValue="changeContentType">
           </radio-group>
         </footer>

@@ -6,7 +6,7 @@
       </navigation-bar>
       <search-bar></search-bar>
       <adjustment-bar
-        :cursorConfig="cursorConfig"
+        :cursor-config="cursorConfig"
         @changeRangeValue="changeRangeValue"
       >
       </adjustment-bar>

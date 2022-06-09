@@ -7,7 +7,7 @@
         <range-bar 
           class="range-bar"
           id="range-size"
-          :rangeValue="cursorConfig.size"
+          :range-value="cursorConfig.size"
           :minmax="[0, 50]"
           @changeRangeValue="changeRangeValue"
         >
@@ -19,7 +19,7 @@
         <range-bar 
           class="range-bar"
           id="range-delay"
-          :rangeValue="cursorConfig.delay"
+          :range-value="cursorConfig.delay"
           :minmax="[0, 1000]"
           @changeRangeValue="changeRangeValue"
         >

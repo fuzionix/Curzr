@@ -11,7 +11,7 @@
     <radio-group 
       class="content-type" 
       groupName="content-type"
-      :radioItems="radioItems"
+      :radio-items="radioItems"
       @changeValue="changeCodeblock">
     </radio-group>
     <div class="code-block-container">

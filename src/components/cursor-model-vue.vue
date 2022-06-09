@@ -17,7 +17,7 @@
           language="vue"
           ref="vueBlock">
         </component></pre>
-        <copy-button :copiedText="vue"></copy-button>
+        <copy-button :copied-text="vue"></copy-button>
       </div>
     </div>
   </section>
