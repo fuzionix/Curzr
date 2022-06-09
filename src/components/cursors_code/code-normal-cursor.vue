@@ -56,6 +56,7 @@ class NormalPointer {
 
     this.cursorStyle = {
       position: 'fixed',
+      top: '0px',
       left: \`\${ -this.cursorSize / 2 }px\`,
       zIndex: '2147483647',
       width: \`\${ this.cursorSize }px\`,
@@ -115,10 +116,12 @@ class NormalPointer {
 }
 
 (() => {
-  const cursor = new NormalPointer()
-
-  document.onmousemove = function (event) {
-    cursor.move(event)
+  if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    const cursor = new NormalPointer()
+    
+    document.onmousemove = function (event) {
+      cursor.move(event)
+    }
   }
 })()
         `,
