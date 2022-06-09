@@ -287,4 +287,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 425px) {
+  .cursor-model {
+    padding: 1rem;
+  }
+}
 </style>
