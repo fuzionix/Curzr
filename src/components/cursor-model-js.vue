@@ -11,7 +11,12 @@
           <div class="dot"></div>
           <div class="dot"></div>
         </div>
-        <pre><component :is="codeBlock" class="language-html" language="html"></component></pre>
+        <pre><component 
+          :is="codeBlock" 
+          class="language-html" 
+          language="html"
+          ref="htmlBlock">
+        </component></pre>
         <copy-button :copiedText="html"></copy-button>
       </div>
     </div>
@@ -26,7 +31,12 @@
           <div class="dot"></div>
           <div class="dot"></div>
         </div>
-        <pre><component :is="codeBlock" class="language-js" language="javascript"></component></pre>
+        <pre><component 
+          :is="codeBlock" 
+          class="language-js" 
+          language="javascript"
+          ref="javascriptBlock">
+        </component></pre>
         <copy-button :copiedText="javascript"></copy-button>
       </div>
     </div>
@@ -34,6 +44,8 @@
 </template>
 
 <script>
+  import Prism from "prismjs"
+  import "prismjs/themes/prism-tomorrow.css"
   import copyBtn from '@/components/elements/copy-button.vue'
 
   import normalCursor from '@/components/cursors_code/code-normal-cursor.vue'
@@ -44,9 +56,19 @@
       'copy-button': copyBtn,
       'code-normal-cursor': normalCursor
     },
+    mounted() {
+      window.Prism = window.Prism || {}
+      window.Prism.manual = true
+      Prism.highlightAll()
+
+      this.html = this.$refs.htmlBlock.html
+      this.javascript = this.$refs.htmlBlock.javascript
+    },
     data() {
       return {
-        codeBlock: 'code-normal-cursor'
+        codeBlock: 'code-normal-cursor',
+        html: '',
+        javascript: ''
       }
     }
   }

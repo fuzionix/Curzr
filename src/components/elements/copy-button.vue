@@ -1,7 +1,9 @@
 <template>
   <button id="copy-button" class="copy-button" @click="copyText()">
-    <img src="../../assets/icon/copy-icon.svg" alt="copy icon" width="16">
-    <span>Copy to clipboard</span>
+    <img v-if="!isCopied" src="../../assets/icon/copy-icon.svg" alt="copy icon" width="16">
+    <img v-else src="../../assets/icon/complete-icon.svg" alt="complete icon" width="16">
+    <span v-if="!isCopied">Copy to clipboard</span>
+    <span v-else>Copied</span>
   </button>
 </template>
 
@@ -17,7 +19,9 @@
       }
     },
     data() {
-      return {}
+      return {
+        isCopied: false
+      }
     },
     methods: {
       // Return Promise
@@ -45,8 +49,16 @@
       copyText() {
         this.copyToClipboard(this.copiedText).then(() => {
         }).catch(() => {
+          alert('Failed to copy to clipboard!')
           console.error('Failed to copy to clipboard!')
         })
+        this.setCopyStatus()
+      },
+      setCopyStatus() {
+        this.isCopied = true
+        setTimeout(() => {
+          this.isCopied = false
+        }, 5000)
       }
     }
   }
