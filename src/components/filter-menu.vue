@@ -5,7 +5,13 @@
       <small class="menu-subtitle"><span class="tags-count">8</span> tags discovered</small>
     </header>
     <main class="tag-list">
-      <div v-for="tagName in tagList" :key="tagName" class="list-tag">{{ tagName }}</div>
+      <div 
+        v-for="tagName in tagList" 
+        :key="tagName" 
+        class="list-tag"
+      >
+        {{ tagName }}
+      </div>
     </main>
     <footer>
       <button>Clear All</button>

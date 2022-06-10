@@ -2,17 +2,17 @@
   <section id="cursor-content" class="cursor-content cursor-content-grid">
     <cursor-block 
       v-for="(cursorData, index) in cursorsData" 
-      @changeModelStatus="changeModelStatus" 
+      :key="index"
       :cursor-data="cursorData"
-      :key="index">
+      @changeModelStatus="changeModelStatus" >
     </cursor-block>
     <transition name="fade">
       <keep-alive>
         <cursor-model 
           v-if="modelStatus" 
+          :model="model"
           @changeModelStatus="changeModelStatus"
           @changeModel="changeModel"
-          :model="model"
           >
         </cursor-model>
       </keep-alive>

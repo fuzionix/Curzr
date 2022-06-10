@@ -1,6 +1,9 @@
 <template>
   <section id="cursor-model-edit" class="cursor-model-edit">
-    <normal-button class="normal-btn" @click.native="changeToViewcodeModel()">
+    <normal-button 
+      class="normal-btn" 
+      @click.native="changeToViewcodeModel()"
+    >
       <small>View Code</small>
       <img src="../assets/icon/arrow.svg" alt="view code arrow" width="10">
     </normal-button>

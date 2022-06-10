@@ -2,18 +2,18 @@
   <section 
     id="cursor-block" 
     class="cursor-block" 
+    ref="cursorBlock"
     @mousemove="move($event)"
     @mouseenter="init()"
-    @mouseleave="reset()"
-    ref="cursorBlock">
+    @mouseleave="reset()">
     <header>
       <div class="cursor-type">
         <badge-tag>FREE</badge-tag>
       </div>
       <div class="cursor-features">
         <normal-tag 
-          class="tag"
           v-for="(feature, index) in cursorData.features"
+          class="tag"
           :key="index">
           {{ feature }}
         </normal-tag>
@@ -28,16 +28,22 @@
     <footer>
       <div class="cursor-name">{{ cursorData.cursorName }}</div>
       <div class="button-section">
-        <normal-button class="normal-btn button-transparent curzr-hover" @click.native="openModel('cursor-model-edit')">
+        <normal-button 
+          class="normal-btn button-transparent curzr-hover" 
+          @click.native="openModel('cursor-model-edit')"
+        >
           <img src="../assets/icon/Customization.svg" alt="" width="30">
           <small>Edit</small>
         </normal-button>
-        <tilted-button class="tilted-btn curzr-hover" @click.native="openModel('cursor-model-viewcode')">View Code</tilted-button>
+        <tilted-button 
+          class="tilted-btn curzr-hover" 
+          @click.native="openModel('cursor-model-viewcode')"
+        >
+          View Code
+        </tilted-button>
       </div>
     </footer>
-    <div class="block-mask">
-
-    </div>
+    <div class="block-mask"></div>
   </section>
 </template>
 

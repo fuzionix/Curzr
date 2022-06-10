@@ -7,24 +7,66 @@
       <small class="subtitle">Product</small>
       <div class="product-list-container">
         <div class="product-list-item">
-          <a href="#" class="item-btn" :class="{ 'item-btn-active': route.path === '/' }">
-            <img v-if="route.path === '/'" src="../assets/icon/Shopping-bag-active.svg" alt="pointer library icon" width="20">
-            <img v-else src="../assets/icon/Shopping-bag.svg" alt="pointer library icon" width="20">
+          <a 
+            href="#" 
+            class="item-btn" 
+            :class="{ 'item-btn-active': route.path === '/' }"
+          >
+            <img 
+              v-if="route.path === '/'" 
+              src="../assets/icon/Shopping-bag-active.svg" 
+              alt="pointer library icon" 
+              width="20"
+            >
+            <img 
+              v-else 
+              src="../assets/icon/Shopping-bag.svg" 
+              alt="pointer library icon" 
+              width="20"
+            >
             <h6 class="item-name">Pointer Library</h6>
             <normal-tag class="status-badge status-badge-hot">HOT</normal-tag>
           </a>
         </div>
         <div class="product-list-item">
-          <a href="#" class="item-btn" :class="{ 'item-btn-active': route.path === '/builder' }">
-            <img v-if="route.path === '/builder'" src="../assets/icon/Cursor-active.svg" alt="cursor builder icon" width="20">
-            <img v-else src="../assets/icon/Cursor.svg" alt="cursor builder icon" width="20">
+          <a 
+            href="#" 
+            class="item-btn" 
+            :class="{ 'item-btn-active': route.path === '/builder' }"
+          >
+            <img 
+              v-if="route.path === '/builder'" 
+              src="../assets/icon/Cursor-active.svg" 
+              alt="cursor builder icon" 
+              width="20"
+            >
+            <img 
+              v-else 
+              src="../assets/icon/Cursor.svg" 
+              alt="cursor builder icon" 
+              width="20"
+            >
             <h6 class="item-name">Cursor Builder</h6>
           </a>
         </div>
         <div class="product-list-item">
-          <a href="#" class="item-btn" :class="{ 'item-btn-active': route.path === '/package' }">
-            <img v-if="route.path === '/package'" src="../assets/icon/Backpack-active.svg" alt="package icon" width="20">
-            <img v-else src="../assets/icon/Backpack.svg" alt="package icon" width="20">
+          <a 
+            href="#" 
+            class="item-btn" 
+            :class="{ 'item-btn-active': route.path === '/package' }"
+          >
+            <img 
+              v-if="route.path === '/package'" 
+              src="../assets/icon/Backpack-active.svg" 
+              alt="package icon" 
+              width="20"
+            >
+            <img 
+              v-else 
+              src="../assets/icon/Backpack.svg" 
+              alt="package icon" 
+              width="20"
+            >
             <h6 class="item-name">Package</h6>
             <normal-tag class="status-badge status-badge-new">NEW</normal-tag>
           </a>

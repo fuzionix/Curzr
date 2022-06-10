@@ -3,10 +3,10 @@
     <label v-for="(radioItem, index) in radioItems" class="radio-item" :key="index">
       <input 
         type="radio" 
+        v-model="value"
         :name="groupName" 
         :value="radioItem"
         :checked="index === 0"
-        v-model="value"
         @change="changeValue">
       <span class="item-name">{{ radioItem }}</span>
     </label>

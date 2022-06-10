@@ -3,10 +3,10 @@
     <input 
       :id="id"
       type="range" 
+      ref="slider"
+      v-model="sliderValue"
       :min="minmax[0]" 
       :max="minmax[1]" 
-      v-model="sliderValue"
-      ref="slider"
       @input="changeWidth(); emitValue($event)"
     >
   </div>

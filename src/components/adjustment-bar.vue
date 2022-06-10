@@ -5,8 +5,8 @@
         <img src="../assets/icon/Scale.svg" alt="size adjustment icon" width="20">
         <small>Resize</small>
         <range-bar 
-          class="range-bar"
           id="range-size"
+          class="range-bar"
           :range-value="cursorConfig.size"
           :minmax="[0, 50]"
           @changeRangeValue="changeRangeValue"
@@ -17,8 +17,8 @@
         <img src="../assets/icon/Pathfinder.svg" alt="delay adjustment icon" width="20">
         <small>Delay</small>
         <range-bar 
-          class="range-bar"
           id="range-delay"
+          class="range-bar"
           :range-value="cursorConfig.delay"
           :minmax="[0, 1000]"
           @changeRangeValue="changeRangeValue"
