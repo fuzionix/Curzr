@@ -38,12 +38,12 @@
         filledWidth: 0
       }
     },
-    mounted() {
-      this.changeWidth()
-    },
     computed: {
     },
     watch: {
+    },
+    mounted() {
+      this.changeWidth()
     },
     methods: {
       changeWidth() {

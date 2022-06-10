@@ -36,8 +36,6 @@
         required: true
       }
     },
-    mounted() {
-    },
     data() {
       return {
         modelStatus: false,

@@ -37,18 +37,18 @@
       'copy-button': CopyButton,
       'code-normal-cursor': NormalCursor
     },
+    data() {
+      return {
+        codeBlock: 'code-normal-cursor',
+        vue: '',
+      }
+    },
     mounted() {
       window.Prism = window.Prism || {}
       window.Prism.manual = true
       Prism.highlightAll()
 
       this.vue = this.$refs.vueBlock.vue
-    },
-    data() {
-      return {
-        codeBlock: 'code-normal-cursor',
-        vue: '',
-      }
     }
   }
 </script>

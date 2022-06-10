@@ -56,6 +56,13 @@
       'copy-button': CopyButton,
       'code-normal-cursor': NormalCursor
     },
+    data() {
+      return {
+        codeBlock: 'code-normal-cursor',
+        html: '',
+        javascript: ''
+      }
+    },
     mounted() {
       window.Prism = window.Prism || {}
       window.Prism.manual = true
@@ -63,13 +70,6 @@
 
       this.html = this.$refs.htmlBlock.html
       this.javascript = this.$refs.htmlBlock.javascript
-    },
-    data() {
-      return {
-        codeBlock: 'code-normal-cursor',
-        html: '',
-        javascript: ''
-      }
     }
   }
 </script>

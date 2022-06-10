@@ -69,13 +69,6 @@
       return {
         route: this.$router.currentRoute
       }
-    },
-    created() {
-    },
-    mounted() {
-    },
-    computed: {
-      
     }
   }
 </script>
