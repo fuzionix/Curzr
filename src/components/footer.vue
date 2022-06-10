@@ -8,7 +8,7 @@
       </section>
       <section class="route">
         <div class="product-page">
-          <h6 class="link-title">Product</h6>
+          <h6 class="link-title">Resource</h6>
           <div class="link-container">
             <a href="#">Pointer Library</a>
             <a href="#">Cursor Builder</a>
@@ -19,14 +19,14 @@
           <h6 class="link-title">Website</h6>
           <div class="link-container">
             <a href="#/about">About</a>
-            <a href="#">Terms sOf Service</a>
+            <a href="#">Terms Of Service</a>
             <a href="#">Contribute</a>
             <a href="#">Contact Me</a>
             <a href="#">Privacy Policy</a>
           </div>
         </div>
         <div class="relavant-link">
-          <h6 class="link-title">Relavant Link</h6>
+          <h6 class="link-title">Follow Me</h6>
           <div class="link-container">
             <a href="#">Github</a>
             <a href="#">Instagram</a>

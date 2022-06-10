@@ -5,13 +5,12 @@
       <section class="section-about-us">
         <div class="about-us-left">
           <div class="left-content">
-            <h6 class="small-title">ABOUT US</h6>
+            <h6 class="small-title">ABOUT THIS WEBSITE</h6>
             <h2 class="large-title">Curzr is a website which provides tools and resources that help you to create a fascinating, interesting, and animated cursor by just a ‘copy and paste’.</h2>
             <p class="paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos necessitatibus a ullam fugit recusandae similique nemo sapiente! Soluta possimus quasi atque, maiores ipsam veniam ea magni delectus blanditiis, exercitationem iste.</p>
           </div>
         </div>
         <div class="about-us-right">
-          
         </div>
       </section>
     </section>
@@ -83,6 +82,9 @@
 
       .about-us-right {
         flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         min-height: 800px;
         border-radius: $--common-radius;
         background-color: #e5e5f7;

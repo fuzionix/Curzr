@@ -4,7 +4,7 @@
       <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="135">
     </section>
     <section class="product-list">
-      <small class="subtitle">Product</small>
+      <small class="subtitle">Resource</small>
       <div class="product-list-container">
         <div class="product-list-item">
           <a 
