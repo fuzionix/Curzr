@@ -7,13 +7,15 @@
       :key="index">
     </cursor-block>
     <transition name="fade">
-      <cursor-model 
-        v-if="modelStatus" 
-        @changeModelStatus="changeModelStatus"
-        @changeModel="changeModel"
-        :model="model"
-        >
-      </cursor-model>
+      <keep-alive>
+        <cursor-model 
+          v-if="modelStatus" 
+          @changeModelStatus="changeModelStatus"
+          @changeModel="changeModel"
+          :model="model"
+          >
+        </cursor-model>
+      </keep-alive>
     </transition>
   </section>
 </template>

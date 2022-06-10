@@ -70,7 +70,13 @@
     props: {
       model: {
         type: String,
-        required: true
+        required: true,
+        validator: function (value) {
+          return [
+            'cursor-model-viewcode',
+            'cursor-model-edit'
+          ].indexOf(value) !== -1
+        }
       }
     },
     data() {

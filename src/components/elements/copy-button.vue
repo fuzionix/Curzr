@@ -20,7 +20,8 @@
     },
     data() {
       return {
-        isCopied: false
+        isCopied: false,
+        delay: 3000
       }
     },
     methods: {
@@ -58,7 +59,7 @@
         this.isCopied = true
         setTimeout(() => {
           this.isCopied = false
-        }, 5000)
+        }, this.delay)
       }
     }
   }

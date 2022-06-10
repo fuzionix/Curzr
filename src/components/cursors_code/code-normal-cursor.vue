@@ -19,7 +19,14 @@
     props: {
       language: {
         type: String,
-        required: true
+        required: true,
+        validator: function (value) {
+          return [
+            'html',
+            'javascript',
+            'vue'
+          ].indexOf(value) !== -1
+        }
       }
     },
     data() {
