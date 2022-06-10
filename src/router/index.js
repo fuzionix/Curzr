@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import mainboard from '../views/curzr-mainboard.vue'
-import error404 from '../views/error-404.vue'
+import MainBoardPage from '../views/curzr-mainboard.vue'
+import Error404Page from '../views/error-404.vue'
+import AboutPage from '../views/about-page.vue'
 
 Vue.use(VueRouter)
 
@@ -9,12 +10,17 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: mainboard
+    component: MainBoardPage
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: AboutPage
   },
   {
     path: '/404',
     name: '404',
-    component: error404,
+    component: Error404Page,
     hidden: true
   },
   {

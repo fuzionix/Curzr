@@ -1,7 +1,7 @@
 <template>
   <aside id="sidemenu" class="sidemenu">
     <section class="logo">
-      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="100">
+      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="135">
     </section>
     <section class="product-list">
       <small class="subtitle">Product</small>

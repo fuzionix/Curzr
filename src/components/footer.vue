@@ -18,8 +18,8 @@
         <div class="website">
           <h6 class="link-title">Website</h6>
           <div class="link-container">
-            <a href="#">About</a>
-            <a href="#">Terms Of Service</a>
+            <a href="#/about">About</a>
+            <a href="#">Terms sOf Service</a>
             <a href="#">Contribute</a>
             <a href="#">Contact Me</a>
             <a href="#">Privacy Policy</a>

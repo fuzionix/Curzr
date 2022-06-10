@@ -1,5 +1,5 @@
 <template>
-  <section id="navigation" class="navigation" ref="navigation">
+  <nav id="navigation" class="navigation" ref="navigation">
     <div class="slide-btn" @click="toggleSidemenu($event)">
       <img src="../assets/icon/btn-arrow.svg" alt="button arrow" width="100">
     </div>
@@ -10,7 +10,7 @@
     <div class="logo">
       <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="50">
     </div>
-  </section>
+  </nav>
 </template>
 
 <script>
@@ -110,7 +110,7 @@
     background-color: #fff;
 
     &:hover {
-      background-image: url('../assets/github-background.webp');
+      background-image: url('../assets/github-background.png');
 
       & > img, > .btn-name {
         filter: invert(100%);
