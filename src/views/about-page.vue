@@ -11,6 +11,7 @@
           </div>
         </div>
         <div class="about-us-right">
+          <img src="../assets/about-illustration.svg" alt="about this website illustration" width="500">
         </div>
       </section>
     </section>
@@ -93,6 +94,12 @@
         background-position: center;
         background-image:  linear-gradient(#83d5e1 1px, transparent 1px), linear-gradient(to right, #83d5e1 1px, #fff 1px);
         background-size: 20px 20px;
+
+        img {
+          width: 100%;
+          max-width: 500px;
+          filter: saturate(120%);
+        }
       }
     }
   }
