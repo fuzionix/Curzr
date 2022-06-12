@@ -1,14 +1,26 @@
 <template>
   <section id="error-404" class="error-404">
-    Page not found
+    <navigation-bar-plain />
+    <section class="main-section">
+      <div class="section-container">
+        <div class="section-content">
+          <h6 class="title">PAGE NOT FOUND</h6>
+          <img src="../assets/error-404-illustration.webp" alt="" width="500">
+        </div>
+      </div>
+    </section>
+    <footer-content />
   </section>
 </template>
 
 <script>
+  import NavigationBarPlain from '@/components/navigation-plain.vue'
+  import FooterContent from '@/components/footer.vue'
   export default {
     name: 'Error404Page',
     components: {
-      
+      'navigation-bar-plain': NavigationBarPlain,
+      'footer-content': FooterContent
     },
     computed: {
       
@@ -23,6 +35,38 @@
 <style lang="scss">
 @import '../style/main.scss';
 .error-404 {
-  
+  width: 100%;
+  min-height: 100vh;
+
+  .main-section {
+    .section-container {
+      display: flex;
+      align-items: center;
+      height: min(100vh, 800px);
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: calc(3rem + $--nav-height) 3rem 3rem;
+
+      .section-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 500px;
+          margin: 4rem 0;
+          filter: drop-shadow(30px 30px 0 #f8f8f8);
+        }
+
+        .title {
+          font-size: 1rem;
+          letter-spacing: 2px;
+          color: $--theme-color;
+        }
+      }
+    }
+  }
 }
 </style>
