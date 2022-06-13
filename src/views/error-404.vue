@@ -50,7 +50,7 @@
     .section-container {
       display: flex;
       align-items: center;
-      height: min(100vh, 800px);
+      height: max(100vh, 600px);
       max-width: 1440px;
       margin: 0 auto;
       padding: calc(3rem + $--nav-height) 3rem 3rem;

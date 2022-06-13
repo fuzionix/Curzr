@@ -1,5 +1,9 @@
 <template>
-  <section id="cursor-content" class="cursor-content cursor-content-grid">
+  <section 
+    v-if="cursorsData !== null && cursorsData !== undefined && Object.keys(this.cursorsData).length > 0"
+    id="cursor-content" 
+    class="cursor-content cursor-content-grid"
+  >
     <cursor-block 
       v-for="(cursorData, index) in cursorsData" 
       :key="index"
@@ -18,6 +22,16 @@
       </keep-alive>
     </transition>
   </section>
+  <section 
+    v-else
+    id="cursor-content" 
+    class="cursor-content-empty"
+  >
+    <div class="empty-content-container">
+      <img src="../assets/empty-illustration.svg" alt="" width="200">
+      <h6 class="title">Can't Find Any Cursor</h6>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -35,6 +49,9 @@
         type: Object,
         required: true
       }
+    },
+    mounted() {
+      console.log(Object.keys(this.cursorsData).length)
     },
     data() {
       return {
@@ -78,6 +95,31 @@
 
 .cursor-content-list {
   grid-template-columns: repeat(1, 1fr);
+}
+
+.cursor-content-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: min(100vh, 600px);
+
+  .empty-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 200px;
+    }
+
+    .title {
+      margin: 2rem 0;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: .5px;
+      color: #0006;
+    }
+  }
 }
 
 .fade-enter-active, .fade-leave-active {
