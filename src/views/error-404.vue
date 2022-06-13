@@ -5,7 +5,8 @@
       <div class="section-container">
         <div class="section-content">
           <h6 class="title">PAGE NOT FOUND</h6>
-          <img src="../assets/error-404-illustration.webp" alt="" width="500">
+          <img src="../assets/error-404-illustration.webp" alt="error 404 illustration" width="500">
+          <tilted-button class="back-btn" @click.native="goBack()">Go Back</tilted-button>
         </div>
       </div>
     </section>
@@ -16,14 +17,21 @@
 <script>
   import NavigationBarPlain from '@/components/navigation-plain.vue'
   import FooterContent from '@/components/footer.vue'
+  import TiltedButton from '@/components/elements/tilted-button.vue'
   export default {
     name: 'Error404Page',
     components: {
       'navigation-bar-plain': NavigationBarPlain,
-      'footer-content': FooterContent
+      'footer-content': FooterContent,
+      'tilted-button': TiltedButton
     },
     computed: {
       
+    },
+    methods: {
+      goBack() {
+        window.location.replace("./#/")
+      }
     },
     metaInfo: {
       title: 'Page Not Found',
@@ -49,13 +57,14 @@
 
       .section-content {
         width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
         img {
-          width: 500px;
+          width: min(500px, 100%);
           margin: 4rem 0;
           filter: drop-shadow(30px 30px 0 #f8f8f8);
         }
@@ -64,6 +73,10 @@
           font-size: 1rem;
           letter-spacing: 2px;
           color: $--theme-color;
+        }
+
+        .back-btn {
+          margin: 2rem 0;
         }
       }
     }
