@@ -48,17 +48,17 @@
   import "prismjs/themes/prism-tomorrow.css"
   import CopyButton from '@/components/elements/copy-button.vue'
 
-  import NormalCursor from '@/components/cursors_code/code-normal-cursor.vue'
+  import CodeArrowPointer from '@/components/cursors_code/code-arrow-pointer.vue'
 
   export default {
     name: 'CursorModelJs',
     components: {
       'copy-button': CopyButton,
-      'code-normal-cursor': NormalCursor
+      'code-arrow-pointer': CodeArrowPointer
     },
     data() {
       return {
-        codeBlock: 'code-normal-cursor',
+        codeBlock: 'code-arrow-pointer',
         html: '',
         javascript: ''
       }

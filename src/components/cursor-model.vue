@@ -55,7 +55,7 @@
   import CursorModelEdit from '@/components/cursor-model-edit.vue'
   import RadioGroup from '@/components/elements/radio-group.vue'
 
-  import NormalCursor from '@/components/cursors/normal-cursor.vue'
+  import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
   import NormalTag from '@/components/elements/tag.vue'
 
   export default {
@@ -65,7 +65,7 @@
       'cursor-model-edit': CursorModelEdit,
       'radio-group': RadioGroup,
       'normal-tag': NormalTag,
-      'normal-cursor': NormalCursor
+      'arrow-pointer': ArrowPointer
     },
     props: {
       model: {
@@ -81,7 +81,7 @@
     },
     data() {
       return {
-        cursor: 'normal-cursor',
+        cursor: 'arrow-pointer',
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
         ],

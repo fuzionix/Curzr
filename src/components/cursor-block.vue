@@ -53,7 +53,7 @@
   import NormalButton from '@/components/elements/normal-button.vue'
   import TiltedButton from '@/components/elements/tilted-button.vue'
 
-  import NormalCursor from '@/components/cursors/normal-cursor.vue'
+  import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
   import BigCircle from '@/components/cursors/big-circle.vue'
 
   export default {
@@ -63,7 +63,7 @@
       'normal-tag': NormalTag,
       'normal-button': NormalButton,
       'tilted-button': TiltedButton,
-      'normal-cursor': NormalCursor,
+      'arrow-pointer': ArrowPointer,
       'big-circle': BigCircle
     },
     props: {

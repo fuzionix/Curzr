@@ -32,21 +32,22 @@
           <a 
             href="#" 
             class="item-btn" 
-            :class="{ 'item-btn-active': route.path === '/builder' }"
+            :class="{ 'item-btn-active': route.path === '/extension' }"
           >
             <img 
-              v-if="route.path === '/builder'" 
+              v-if="route.path === '/extension'" 
               src="../assets/icon/Cursor-active.svg" 
-              alt="cursor builder icon" 
+              alt="chrome extension icon" 
               width="20"
             >
             <img 
               v-else 
               src="../assets/icon/Cursor.svg" 
-              alt="cursor builder icon" 
+              alt="chrome extension icon" 
               width="20"
             >
-            <h6 class="item-name">Cursor Builder</h6>
+            <h6 class="item-name">Chrome Extension</h6>
+            <normal-tag class="status-badge status-badge-soon">SOON</normal-tag>
           </a>
         </div>
         <div class="product-list-item">
@@ -68,7 +69,7 @@
               width="20"
             >
             <h6 class="item-name">Package</h6>
-            <normal-tag class="status-badge status-badge-new">NEW</normal-tag>
+            <normal-tag class="status-badge status-badge-soon">SOON</normal-tag>
           </a>
         </div>
       </div>
@@ -205,6 +206,10 @@
 
           .status-badge-new {
             color: #0ac286;
+          }
+
+          .status-badge-soon {
+            color: #c7c9d2;
           }
         }
 

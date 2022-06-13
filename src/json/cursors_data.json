@@ -1,7 +1,7 @@
 {
-  "normalCursor": {
-    "cursorName": "Normal Cursor",
-    "componentName": "normal-cursor",
+  "arrowPointer": {
+    "cursorName": "Arrow Pointer",
+    "componentName": "arrow-pointer",
     "features": [
       "Rotate"
     ]
@@ -17,7 +17,7 @@
   },
   "normalCursor2": {
     "cursorName": "Normal Cursor",
-    "componentName": "normal-cursor",
+    "componentName": "arrow-pointer",
     "features": [
       "Hover",
       "Click",
@@ -26,7 +26,7 @@
   },
   "normalCursor3": {
     "cursorName": "Normal Cursor",
-    "componentName": "normal-cursor",
+    "componentName": "arrow-pointer",
     "features": [
       "Hover",
       "Click"
@@ -34,7 +34,7 @@
   },
   "normalCursor4": {
     "cursorName": "Normal Cursor",
-    "componentName": "normal-cursor",
+    "componentName": "arrow-pointer",
     "features": [
       "Hover",
       "Click"
