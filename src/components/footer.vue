@@ -10,27 +10,27 @@
         <div class="product-page">
           <h6 class="link-title">Resource</h6>
           <div class="link-container">
-            <a href="#">Pointer Library</a>
-            <a href="#">Cursor Builder</a>
-            <a href="#">Package</a>
+            <router-link to="/">Pointer Library</router-link>
+            <router-link to="/">Cursor Builder</router-link>
+            <router-link to="/">Package</router-link>
           </div>
         </div>
         <div class="website">
           <h6 class="link-title">Website</h6>
           <div class="link-container">
-            <a href="#/about">About</a>
-            <a href="#">Terms Of Service</a>
-            <a href="#">Contribute</a>
-            <a href="#">Contact Me</a>
-            <a href="#">Privacy Policy</a>
+            <router-link to="/about">About</router-link>
+            <router-link to="/">Terms Of Service</router-link>
+            <router-link to="/">Privacy Policy</router-link>
+            <router-link to="/">Contribute</router-link>
+            <router-link to="/">Contact Me</router-link>
           </div>
         </div>
         <div class="relavant-link">
           <h6 class="link-title">Follow Me</h6>
           <div class="link-container">
-            <a href="#">Github</a>
-            <a href="#">Instagram</a>
-            <a href="#">Codepen</a>
+            <a href="https://github.com/TaylonChan/Curzr" target="_blank">Github</a>
+            <a href="https://www.instagram.com/project.fung/" target="_blank">Instagram</a>
+            <a href="https://codepen.io/tag/curzr" target="_blank">Codepen</a>
           </div>
         </div>
       </section>

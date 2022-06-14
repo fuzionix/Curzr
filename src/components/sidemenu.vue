@@ -7,8 +7,8 @@
       <small class="subtitle">Resource</small>
       <div class="product-list-container">
         <div class="product-list-item">
-          <a 
-            href="#" 
+          <router-link 
+            to="/"
             class="item-btn" 
             :class="{ 'item-btn-active': route.path === '/' }"
           >
@@ -26,11 +26,11 @@
             >
             <h6 class="item-name">Pointer Library</h6>
             <normal-tag class="status-badge status-badge-hot">HOT</normal-tag>
-          </a>
+          </router-link>
         </div>
         <div class="product-list-item">
-          <a 
-            href="#" 
+          <router-link 
+            to="/"
             class="item-btn" 
             :class="{ 'item-btn-active': route.path === '/extension' }"
           >
@@ -48,11 +48,11 @@
             >
             <h6 class="item-name">Chrome Extension</h6>
             <normal-tag class="status-badge status-badge-soon">SOON</normal-tag>
-          </a>
+          </router-link>
         </div>
         <div class="product-list-item">
-          <a 
-            href="#" 
+          <router-link 
+            to="/"
             class="item-btn" 
             :class="{ 'item-btn-active': route.path === '/package' }"
           >
@@ -70,7 +70,7 @@
             >
             <h6 class="item-name">Package</h6>
             <normal-tag class="status-badge status-badge-soon">SOON</normal-tag>
-          </a>
+          </router-link>
         </div>
       </div>
     </section>
