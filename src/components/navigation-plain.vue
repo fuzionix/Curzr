@@ -1,8 +1,8 @@
 <template>
   <section id="navigation-plain" class="navigation-plain">
-    <a href="../" class="logo-btn">
+    <router-link :to="{ name: 'home' }" class="logo-btn">
       <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="135">
-    </a>
+    </router-link>
     <a href="https://github.com/TaylonChan/Curzr" target="_blank" class="github-btn">
       <img src="../assets/icon/github.png" alt="github button" width="20">
       <h6 class="btn-name"><span>GITHUB</span></h6>

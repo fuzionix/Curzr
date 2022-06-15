@@ -8,7 +8,7 @@
       <div class="product-list-container">
         <div class="product-list-item">
           <router-link 
-            to="/"
+            :to="{ name: 'home' }"
             class="item-btn" 
             :class="{ 'item-btn-active': route.path === '/' }"
           >
@@ -30,7 +30,7 @@
         </div>
         <div class="product-list-item">
           <router-link 
-            to="/"
+            :to="{ name: 'home' }"
             class="item-btn" 
             :class="{ 'item-btn-active': route.path === '/extension' }"
           >
@@ -52,7 +52,7 @@
         </div>
         <div class="product-list-item">
           <router-link 
-            to="/"
+            :to="{ name: 'home' }"
             class="item-btn" 
             :class="{ 'item-btn-active': route.path === '/package' }"
           >

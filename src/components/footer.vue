@@ -10,17 +10,17 @@
         <div class="product-page">
           <h6 class="link-title">Resource</h6>
           <div class="link-container">
-            <router-link to="/">Pointer Library</router-link>
-            <router-link to="/">Cursor Builder</router-link>
-            <router-link to="/">Package</router-link>
+            <router-link :to="{ name: 'home' }">Pointer Library</router-link>
+            <router-link :to="{ name: 'home' }">Cursor Builder</router-link>
+            <router-link :to="{ name: 'home' }">Package</router-link>
           </div>
         </div>
         <div class="website">
           <h6 class="link-title">Website</h6>
           <div class="link-container">
-            <router-link to="/about">About</router-link>
-            <router-link to="/code-of-conduct">Code Of Conduct</router-link>
-            <router-link to="/privacy-policy">Privacy Policy</router-link>
+            <router-link :to="{ name: 'about' }">About</router-link>
+            <router-link :to="{ name: 'code-of-conduct' }">Code Of Conduct</router-link>
+            <router-link :to="{ name: 'privacy-policy' }">Privacy Policy</router-link>
             <router-link to="/">Contribute</router-link>
             <router-link to="/">Contact Us</router-link>
           </div>

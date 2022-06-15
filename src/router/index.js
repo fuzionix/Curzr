@@ -12,7 +12,8 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: MainBoardPage
+    component: MainBoardPage,
+    alias: '/home'
   },
   {
     path: '/about',
@@ -21,12 +22,12 @@ const routes = [
   },
   {
     path: '/code-of-conduct',
-    name: 'codeofconduct',
+    name: 'code-of-conduct',
     component: CodeOfConduct
   },
   {
     path: '/privacy-policy',
-    name: 'privacypolicy',
+    name: 'privacy-policy',
     component: PrivacyPolicy
   },
   {
