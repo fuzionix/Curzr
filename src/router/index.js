@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MainBoardPage from '../views/curzr-mainboard.vue'
-import Error404Page from '../views/error-404.vue'
-import AboutPage from '../views/about-page.vue'
-import CodeOfConduct from '../views/code-of-conduct.vue'
-import PrivacyPolicy from '../views/privacy-policy.vue'
 
 Vue.use(VueRouter)
 
@@ -18,22 +14,22 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: AboutPage
+    component: () => import('../views/about-page.vue')
   },
   {
     path: '/code-of-conduct',
     name: 'code-of-conduct',
-    component: CodeOfConduct
+    component: () => import('../views/code-of-conduct.vue')
   },
   {
     path: '/privacy-policy',
     name: 'privacy-policy',
-    component: PrivacyPolicy
+    component: () => import('../views/privacy-policy.vue')
   },
   {
     path: '/404',
     name: '404',
-    component: Error404Page,
+    component: () => import('../views/error-404.vue'),
     hidden: true
   },
   {
