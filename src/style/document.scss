@@ -1,0 +1,91 @@
+.document {
+  .document-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: calc($--nav-height + 3rem) 3rem 3rem;
+    max-width: 1024px;
+    color: #282c3c;
+
+    & > * {
+      margin: 1rem 0;
+    }
+
+    h1 {
+      font-size: 4.5rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-variation-settings: "wght" $--bold;
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+
+    h4 {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.75;
+      opacity: 0.8;
+    }
+
+    ul {
+      list-style-type: circle;
+      opacity: 0.8;
+
+      li {
+        list-style-position: outside;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        line-height: 2;
+      }
+    }
+
+    a {
+      color: blue;
+    }
+
+    hr {
+      margin: 3rem 0;
+      border: 1px solid $--section-line-color;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .document {
+    .document-container {
+      h1 {
+        font-size: 3rem;
+        line-height: 1.25;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .document {
+    .document-container {
+      padding: calc($--nav-height + 2rem) 2rem 2rem;
+
+      h1 {
+        font-size: 2rem;
+        line-height: 1.5;
+      }
+
+      hr {
+        margin: 2rem 0;
+        border: 1px solid $--section-line-color;
+      }
+    }
+  }
+}

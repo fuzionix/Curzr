@@ -19,14 +19,14 @@
           <h6 class="link-title">Website</h6>
           <div class="link-container">
             <router-link to="/about">About</router-link>
-            <router-link to="/">Terms Of Service</router-link>
-            <router-link to="/">Privacy Policy</router-link>
+            <router-link to="/code-of-conduct">Code Of Conduct</router-link>
+            <router-link to="/privacy-policy">Privacy Policy</router-link>
             <router-link to="/">Contribute</router-link>
-            <router-link to="/">Contact Me</router-link>
+            <router-link to="/">Contact Us</router-link>
           </div>
         </div>
         <div class="relavant-link">
-          <h6 class="link-title">Follow Me</h6>
+          <h6 class="link-title">Follow Us</h6>
           <div class="link-container">
             <a href="https://github.com/TaylonChan/Curzr" target="_blank">Github</a>
             <a href="https://www.instagram.com/project.fung/" target="_blank">Instagram</a>
