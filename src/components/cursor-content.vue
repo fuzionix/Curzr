@@ -50,9 +50,6 @@
         required: true
       }
     },
-    mounted() {
-      console.log(Object.keys(this.cursorsData).length)
-    },
     data() {
       return {
         modelStatus: false,

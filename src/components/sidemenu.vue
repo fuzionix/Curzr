@@ -80,24 +80,26 @@
         This is ad content
       </div>
     </section>
-    <section class="notification">
-      <div class="message-container">
-        <div class="message-block">
-          <div class="close-btn">
-            <img src="../assets/icon/close-btn.svg" alt="close button" width="20">
-          </div>
-          <div class="header">
-            <img src="../assets/icon/noti-icon.svg" alt="notification icon" width="20">
-            <h6 class="title">What's New</h6>
-          </div>
-          <div class="main-content">
-            <p>
-              The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine.
-            </p>
+    <transition name="fade">
+      <section v-if="blockStatus" class="notification">
+        <div class="message-container">
+          <div class="message-block">
+            <div class="close-btn" @click="closeBlock">
+              <img src="../assets/icon/close-btn.svg" alt="close button" width="20">
+            </div>
+            <div class="header">
+              <img src="../assets/icon/noti-icon.svg" alt="notification icon" width="20">
+              <h6 class="title">What's New</h6>
+            </div>
+            <div class="main-content">
+              <p>
+                The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </transition>
   </aside>
 </template>
 
@@ -110,7 +112,13 @@
     },
     data() {
       return {
-        route: this.$router.currentRoute
+        route: this.$router.currentRoute,
+        blockStatus: true
+      }
+    },
+    methods: {
+      closeBlock() {
+        this.blockStatus = false
       }
     }
   }
