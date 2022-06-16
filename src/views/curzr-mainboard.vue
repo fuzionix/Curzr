@@ -6,12 +6,14 @@
       </navigation-bar>
       <search-bar></search-bar>
       <adjustment-bar
-        :cursor-config="cursorConfig"
+        :cursors-config="cursorsConfig"
         @changeRangeValue="changeRangeValue"
       >
       </adjustment-bar>
       <cursor-content
-        :cursorsData="cursorsData">
+        :cursorsData="cursorsData"
+        :cursors-config="cursorsConfig"
+      >
       </cursor-content>
       <footer-content></footer-content>
     </section>
@@ -40,26 +42,23 @@
     },
     data() {
       return {
-        cursorConfig: {
-          size: 25,
-          delay: 500
+        cursorsConfig: {
+          size: 0,
+          delay: 100
         },
         cursorsData: CursorsData
       }
     },
     computed: {
     },
-    mounted() {
-
-    },
     methods: {
       changeRangeValue(event) {
         switch (event.id) {
           case 'range-size':
-            this.cursorConfig.size = parseInt(event.value)
+            this.cursorsConfig.size = parseInt(event.value)
             break
           case 'range-delay':
-            this.cursorConfig.delay = parseInt(event.value)
+            this.cursorsConfig.delay = parseInt(event.value)
             break
         }
       }

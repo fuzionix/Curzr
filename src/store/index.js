@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    viewMode: 'Grid-view'
+    viewMode: 'cursor-content-grid'
   },
   getters: {
   },

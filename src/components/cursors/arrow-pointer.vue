@@ -10,6 +10,12 @@
 <script>
   export default {
     name: 'ArrowPointer',
+    props: {
+      cursorsConfig: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         position: {
@@ -26,10 +32,25 @@
         degrees: 57.296
       }
     },
+    computed: {
+      cursorSize() {
+        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+      }
+    },
+    watch: {
+      cursorsConfig: {
+        handler(configValue) {
+          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
+        },
+        deep: true,
+        immeditate: true
+      }
+    },
     methods: {
       init() {
         this.$refs.cursor.style.top = 0 
-        this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(1, -2) / -2) + 'px'
+        this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
       },
       move(event, cursorBlock) {
         this.previousPointerX = this.position.pointerX
@@ -82,7 +103,8 @@
 
 <style lang="scss" scoped>
 .arrow-pointer {
-  --cursor-size: 20px;
+  --cursor-size:  20px;
+  --cursor-delay: 100ms;
 
   position: absolute;
   top: 50%;
@@ -91,7 +113,7 @@
   z-index: 1;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  transition: 500ms, transform 100ms;
+  transition: 500ms, transform var(--cursor-delay);
   user-select: none;
   pointer-events: none;
 

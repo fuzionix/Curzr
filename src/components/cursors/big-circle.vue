@@ -8,6 +8,12 @@
 <script>
   export default {
     name: 'BigCircle',
+    props: {
+      cursorsConfig: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         position: {
@@ -23,6 +29,21 @@
         angleDisplace: 0,
         degrees: 57.296,
         trigger: false
+      }
+    },
+    computed: {
+      cursorSize() {
+        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+      }
+    },
+    watch: {
+      cursorsConfig: {
+        handler(configValue) {
+          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
+        },
+        deep: true,
+        immeditate: true
       }
     },
     mounted() {
@@ -91,7 +112,7 @@
 <style lang="scss" scoped>
 .big-circle {
   --cursor-size: 100px;
-  --cursor-transform: 100ms;
+  --cursor-delay: 100ms;
 
   .circle {
     position: absolute;
@@ -105,7 +126,7 @@
     height: var(--cursor-size);
     background-color: #fff0;
     border-radius: 50%;
-    transition: 500ms, transform var(--cursor-transform);
+    transition: 500ms, transform var(--cursor-delay);
     user-select: none;
     pointer-events: none;
     backdrop-filter: invert(1) grayscale(1);
@@ -122,7 +143,7 @@
     text-indent: 0.25em;
     user-select: none;
     pointer-events: none;
-    transition: 250ms, transform calc(var(--cursor-transform) * 0.75);
+    transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
   }
 }
 </style>

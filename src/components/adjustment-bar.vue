@@ -7,8 +7,8 @@
         <range-bar 
           id="range-size"
           class="range-bar"
-          :range-value="cursorConfig.size"
-          :minmax="[0, 50]"
+          :range-value="cursorsConfig.size"
+          :minmax="[-25, 25]"
           @changeRangeValue="changeRangeValue"
         >
         </range-bar>
@@ -19,17 +19,17 @@
         <range-bar 
           id="range-delay"
           class="range-bar"
-          :range-value="cursorConfig.delay"
-          :minmax="[0, 1000]"
+          :range-value="cursorsConfig.delay"
+          :minmax="[0, 200]"
           @changeRangeValue="changeRangeValue"
         >
         </range-bar>
       </div>
       <div class="grid-view-adjustment">
-        <div class="wrapper wrapper-active" @click="changeState('Grid-view')" ref="gridBtn">
+        <div class="wrapper wrapper-active" @click="changeState('cursor-content-grid')" ref="gridBtn">
           <img src="../assets/icon/Grid.svg" alt="size adjustment icon" width="20">
         </div>
-        <div class="wrapper" @click="changeState('List-view')" ref="listBtn">
+        <div class="wrapper" @click="changeState('cursor-content-list')" ref="listBtn">
           <img src="../assets/icon/List.svg" alt="size adjustment icon" width="20">
         </div>
       </div>
@@ -46,7 +46,7 @@
       'range-bar': RangeBar
     },
     props: {
-      cursorConfig: {
+      cursorsConfig: {
         type: Object,
         required: true
       }
@@ -59,7 +59,7 @@
         this.$emit('changeRangeValue', event)
       },
       changeState(mode) {
-        if (mode === 'Grid-view') {
+        if (mode === 'cursor-content-grid') {
           this.$refs.gridBtn.classList.add('wrapper-active')
           this.$refs.listBtn.classList.remove('wrapper-active')
         } else {

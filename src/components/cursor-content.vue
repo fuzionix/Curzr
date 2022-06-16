@@ -2,12 +2,14 @@
   <section 
     v-if="cursorsData !== null && cursorsData !== undefined && Object.keys(this.cursorsData).length > 0"
     id="cursor-content" 
-    class="cursor-content cursor-content-grid"
+    class="cursor-content"
+    :class="viewMode"
   >
     <cursor-block 
       v-for="(cursorData, index) in cursorsData" 
       :key="index"
       :cursor-data="cursorData"
+      :cursors-config="cursorsConfig"
       @changeModelStatus="changeModelStatus" >
     </cursor-block>
     <transition name="fade">
@@ -48,12 +50,21 @@
       cursorsData: {
         type: Object,
         required: true
+      },
+      cursorsConfig: {
+        type: Object,
+        required: true
       }
     },
     data() {
       return {
         modelStatus: false,
         model: 'cursor-model-viewcode'
+      }
+    },
+    computed: {
+      viewMode() {
+        return this.$store.state.viewMode
       }
     },
     methods: {

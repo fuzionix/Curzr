@@ -22,6 +22,7 @@
     <main>
       <component 
         :is="cursorData.componentName"
+        :cursors-config="cursorsConfig"
         ref="cursor">
       </component>
     </main>
@@ -68,6 +69,10 @@
     },
     props: {
       cursorData: {
+        type: Object,
+        required: true
+      },
+      cursorsConfig: {
         type: Object,
         required: true
       }

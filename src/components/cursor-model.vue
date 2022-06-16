@@ -40,6 +40,7 @@
           <keep-alive>
             <component 
               :is="model" 
+              :cursors-config="cursorsConfig"
               class="block-content"
               @changeModel="changeModel">
             </component>
