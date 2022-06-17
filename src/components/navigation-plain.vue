@@ -1,10 +1,10 @@
 <template>
   <section id="navigation-plain" class="navigation-plain">
     <router-link :to="{ name: 'home' }" class="logo-btn">
-      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="135">
+      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="135" height="50">
     </router-link>
     <a href="https://github.com/TaylonChan/Curzr" target="_blank" class="github-btn">
-      <img src="../assets/icon/github.png" alt="github button" width="20">
+      <img src="../assets/icon/github.png" alt="github button" width="20" height="20">
       <h6 class="btn-name"><span>GITHUB</span></h6>
     </a>
   </section>
@@ -41,6 +41,11 @@
     width: 100px;
     height: 100%;
     padding: 2rem;
+
+    img {
+      width: 135px;
+      height: auto;
+    }
   }
 
   .github-btn {
@@ -64,6 +69,8 @@
     }
 
     img {
+      width: 20px;
+      height: auto;
       margin-right: 1rem;
     }
 

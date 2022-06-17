@@ -7,7 +7,7 @@
         @mouseleave="reset()"
         ref="cursorBlock">
         <div class="close-btn" @click="closeModelByButton($event)">
-          <img src="../assets/icon/close-btn.svg" alt="close button" width="20">
+          <img src="../assets/icon/close-btn.svg" alt="close button" width="20" height="20">
         </div>
         <div class="cursor-features">
           <normal-tag class="tag">Mulitple</normal-tag>
@@ -176,6 +176,7 @@
 
         img {
           width: 20px;
+          height: auto;
         }
 
         &:hover {

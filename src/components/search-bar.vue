@@ -1,12 +1,12 @@
 <template>
   <section id="search-bar" class="search-bar">
     <div class="search-container">
-      <img src="../assets/icon/search-icon.svg" alt="search icon" width="24">
+      <img src="../assets/icon/search-icon.svg" alt="search icon" width="24" height="24">
       <input type="text" placeholder="Search Pointer e.g. Arrow Pointer">
     </div>
     <div class="filter-container">
       <div class="filter-btn">
-        <img src="../assets/icon/Filter.svg" alt="filter button" width="24">
+        <img src="../assets/icon/Filter.svg" alt="filter button" width="24" height="24">
         <filter-menu class="filter-menu"></filter-menu>
       </div>
       <div class="filtered-list">
@@ -118,6 +118,8 @@
         }
 
         img {
+          width: 24px;
+          height: auto;
           opacity: 1;
         }
       }
@@ -127,6 +129,8 @@
       }
 
       img {
+        width: 24px;
+        height: auto;
         opacity: .5;
         transition: 250ms;
       }

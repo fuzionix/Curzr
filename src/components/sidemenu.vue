@@ -1,7 +1,7 @@
 <template>
   <aside id="sidemenu" class="sidemenu">
     <section class="logo">
-      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="135">
+      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="135" height="50">
     </section>
     <section class="product-list">
       <small class="subtitle">Resource</small>
@@ -17,12 +17,14 @@
               src="../assets/icon/Shopping-bag-active.svg" 
               alt="pointer library icon" 
               width="20"
+              height="20"
             >
             <img 
               v-else 
               src="../assets/icon/Shopping-bag.svg" 
               alt="pointer library icon" 
               width="20"
+              height="20"
             >
             <h6 class="item-name">Pointer Library</h6>
             <normal-tag class="status-badge status-badge-hot">HOT</normal-tag>
@@ -39,12 +41,14 @@
               src="../assets/icon/Cursor-active.svg" 
               alt="chrome extension icon" 
               width="20"
+              height="20"
             >
             <img 
               v-else 
               src="../assets/icon/Cursor.svg" 
               alt="chrome extension icon" 
               width="20"
+              height="20"
             >
             <h6 class="item-name">Chrome Extension</h6>
             <normal-tag class="status-badge status-badge-soon">SOON</normal-tag>
@@ -61,12 +65,14 @@
               src="../assets/icon/Backpack-active.svg" 
               alt="package icon" 
               width="20"
+              height="20"
             >
             <img 
               v-else 
               src="../assets/icon/Backpack.svg" 
               alt="package icon" 
               width="20"
+              height="20"
             >
             <h6 class="item-name">Package</h6>
             <normal-tag class="status-badge status-badge-soon">SOON</normal-tag>
@@ -85,10 +91,10 @@
         <div class="message-container">
           <div class="message-block">
             <div class="close-btn" @click="closeBlock">
-              <img src="../assets/icon/close-btn.svg" alt="close button" width="20">
+              <img src="../assets/icon/close-btn.svg" alt="close button" width="20" height="20">
             </div>
             <div class="header">
-              <img src="../assets/icon/noti-icon.svg" alt="notification icon" width="20">
+              <img src="../assets/icon/noti-icon.svg" alt="notification icon" width="20" height="20">
               <h6 class="title">What's New</h6>
             </div>
             <div class="main-content">
@@ -153,6 +159,7 @@
 
     img {
       width: 135px;
+      height: auto;
     }
   }
 
@@ -190,6 +197,7 @@
 
           img {
             width: 20px;
+            height: auto;
             margin-right: 1rem;
             opacity: .6;
             transition: 250ms, transform 500ms;
@@ -307,6 +315,7 @@
           
           img {
             width: 20px;
+            height: auto;
           }
         }
 
@@ -318,6 +327,7 @@
 
           img {
             width: 24px;
+            height: auto;
             margin-right: 1rem;
           }
 

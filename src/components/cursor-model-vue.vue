@@ -2,7 +2,7 @@
   <section id="cursor-model-vue" class="cursor-model-vue">
     <div class="block-container">
       <div class="subtitle">
-        <img src="../assets/icon/vuejs-brands.svg" alt="html5 icon" width="12">
+        <img src="../assets/icon/vuejs-brands.svg" alt="html5 icon" width="12" height="12">
         <small>VUE 2</small>
       </div>
       <div class="code-block">
@@ -67,6 +67,7 @@
 
       img {
         width: 12px;
+        height: auto;
         margin-right: .5rem;
       }
     }

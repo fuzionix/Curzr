@@ -5,7 +5,7 @@
       @click.native="changeToEditModel()"
     >
       <small>Edit Cursor</small>
-      <img src="../assets/icon/arrow.svg" alt="edit cursor arrow" width="10">
+      <img src="../assets/icon/arrow.svg" alt="edit cursor arrow" width="10" height="10">
     </normal-button>
     <div class="cursor-type">
       <badge-tag>FREE</badge-tag>
@@ -85,6 +85,7 @@
 
     img {
       width: 10px;
+      height: auto;
       margin-left: .5rem;
       transition: 100ms;
     }

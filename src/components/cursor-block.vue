@@ -33,7 +33,7 @@
           class="normal-btn button-transparent curzr-hover" 
           @click.native="openModel('cursor-model-edit')"
         >
-          <img src="../assets/icon/Customization.svg" alt="" width="30">
+          <img src="../assets/icon/Customization.svg" alt="" width="20" height="20">
           <small>Edit</small>
         </normal-button>
         <tilted-button 
@@ -213,6 +213,7 @@
 
         img {
           width: 20px;
+          height: auto;
           margin-right: .5rem;
         }
       }

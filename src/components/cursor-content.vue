@@ -30,7 +30,7 @@
     class="cursor-content-empty"
   >
     <div class="empty-content-container">
-      <img src="../assets/empty-illustration.svg" alt="" width="200">
+      <img src="../assets/empty-illustration.svg" alt="empty illustration" width="200" height="200">
       <h6 class="title">Can't Find Any Cursor</h6>
     </div>
   </section>
@@ -118,6 +118,7 @@
 
     img {
       width: 200px;
+      height: auto;
     }
 
     .title {

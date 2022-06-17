@@ -5,7 +5,7 @@
       <div class="section-container">
         <div class="section-content">
           <h6 class="title">PAGE NOT FOUND</h6>
-          <img src="../assets/error-404-illustration.webp" alt="error 404 illustration" width="500">
+          <img src="../assets/error-404-illustration.webp" alt="error 404 illustration" width="500" height="160">
           <tilted-button class="back-btn" @click.native="goBack()">Go Back</tilted-button>
         </div>
       </div>
@@ -65,6 +65,7 @@
 
         img {
           width: min(500px, 100%);
+          height: auto;
           margin: 4rem 0;
           filter: drop-shadow(30px 30px 0 #f8f8f8);
         }

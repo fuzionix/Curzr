@@ -2,8 +2,8 @@
   <footer id="footer" class="footer">
     <div class="footer-content">
       <section class="logo">
-        <img class="img" src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="150">
-        <img class="img-shadow" src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="150">
+        <img class="img" src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="150" height="56">
+        <img class="img-shadow" src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="150" height="56">
         <small>Curzr | Custom Cursor Library</small>
       </section>
       <section class="route">
@@ -84,6 +84,7 @@
 
       .img {
         width: 150px;
+        height: auto;
         z-index: 1;
       }
 

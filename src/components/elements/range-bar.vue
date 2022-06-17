@@ -1,5 +1,6 @@
 <template>
   <div id="range-bar" class="range-bar">
+    <label :for="id"></label>
     <input 
       :id="id"
       type="range" 

@@ -2,7 +2,7 @@
   <section id="cursor-model-js" class="cursor-model-js">
     <div class="block-container">
       <div class="subtitle">
-        <img src="../assets/icon/html5-brands.svg" alt="html5 icon" width="12">
+        <img src="../assets/icon/html5-brands.svg" alt="html5 icon" width="12" height="12">
         <small>HTML</small>
       </div>
       <div class="code-block">
@@ -22,7 +22,7 @@
     </div>
     <div class="block-container">
       <div class="subtitle">
-        <img src="../assets/icon/js-square-brands.svg" alt="javascript icon" width="12">
+        <img src="../assets/icon/js-square-brands.svg" alt="javascript icon" width="12" height="12">
         <small>JavaScript</small>
       </div>
       <div class="code-block">
@@ -88,6 +88,7 @@
 
       img {
         width: 12px;
+        height: auto;
         margin-right: .5rem;
       }
     }

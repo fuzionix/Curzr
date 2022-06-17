@@ -1,14 +1,14 @@
 <template>
   <nav id="navigation" class="navigation" ref="navigation">
     <div class="slide-btn" @click="toggleSidemenu($event)">
-      <img src="../assets/icon/btn-arrow.svg" alt="button arrow" width="100">
+      <img src="../assets/icon/btn-arrow.svg" alt="button arrow" width="100" height="100">
     </div>
     <a href="https://github.com/TaylonChan/Curzr" target="_blank" class="github-btn">
-      <img src="../assets/icon/github.png" alt="github button" width="20">
+      <img src="../assets/icon/github.png" alt="github button" width="20" height="20">
       <h6 class="btn-name"><span>GITHUB</span></h6>
     </a>
     <div class="logo">
-      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="50">
+      <img src="../assets/logo/curzr_logo-long.png" alt="curzr logo" width="120" height="45">
     </div>
   </nav>
 </template>
@@ -93,6 +93,7 @@
       position: relative;
       right: 1px;
       width: 12px;
+      height: auto;
       pointer-events: none;
     }
   }
@@ -118,6 +119,8 @@
     }
 
     img {
+      width: 20px;
+      height: auto;
       margin-right: 1rem;
     }
 
@@ -162,6 +165,7 @@
 
       img {
         width: 120px;
+        height: auto;
       }
     }
   }

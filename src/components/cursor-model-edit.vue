@@ -5,7 +5,7 @@
       @click.native="changeToViewcodeModel()"
     >
       <small>View Code</small>
-      <img src="../assets/icon/arrow.svg" alt="view code arrow" width="10">
+      <img src="../assets/icon/arrow.svg" alt="view code arrow" width="10" height="10">
     </normal-button>
     <h5 class="title">Edit Cursor</h5>
   </section>
@@ -52,6 +52,7 @@
 
     img {
       width: 10px;
+      height: auto;
       margin-left: .5rem;
       transition: 100ms;
     }

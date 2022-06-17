@@ -12,7 +12,7 @@
             </div>
           </div>
           <div class="section-right">
-            <img src="../assets/about-illustration.svg" alt="about this website illustration" width="500">
+            <img src="../assets/about-illustration.svg" alt="about this website illustration" width="500" height="500">
           </div>
         </div>
       </section>
@@ -117,6 +117,7 @@
 
         img {
           width: 100%;
+          height: auto;
           max-width: 500px;
           filter: saturate(120%);
         }

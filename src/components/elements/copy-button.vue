@@ -1,7 +1,7 @@
 <template>
   <button id="copy-button" class="copy-button" @click="copyText()">
-    <img v-if="!isCopied" src="../../assets/icon/copy-icon.svg" alt="copy icon" width="16">
-    <img v-else src="../../assets/icon/complete-icon.svg" alt="complete icon" width="16">
+    <img v-if="!isCopied" src="../../assets/icon/copy-icon.svg" alt="copy icon" width="16" height="16">
+    <img v-else src="../../assets/icon/complete-icon.svg" alt="complete icon" width="16" height="16">
     <span v-if="!isCopied">Copy to clipboard</span>
     <span v-else>Copied</span>
   </button>
@@ -91,6 +91,7 @@
 
   img {
     width: 16px;
+    height: auto;
     margin-right: 1rem;
     margin-top: 2px;
   }
