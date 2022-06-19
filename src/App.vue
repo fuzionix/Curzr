@@ -37,7 +37,7 @@ export default {
       },
       {
         ['http-equiv']: 'Content-Security-Policy',
-        content: "default-src 'self'; img-src * 'self' data: https:; child-src 'none'; font-src *; script-src * 'unsafe-eval'; style-src 'unsafe-inline'"
+        content: "default-src 'self'; img-src * 'self' data: https:; child-src 'none'; font-src *; script-src * 'unsafe-eval'; style-src 'unsafe-inline'; style-src-elem *; connect-src *"
       }
     ]
   }

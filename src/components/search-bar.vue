@@ -2,7 +2,13 @@
   <section id="search-bar" class="search-bar">
     <div class="search-container">
       <img src="../assets/icon/search-icon.svg" alt="search icon" width="24" height="24">
-      <input type="text" placeholder="Search Pointer e.g. Arrow Pointer" aria-label="search pointer">
+      <input 
+        type="text" 
+        v-model="searchText"
+        @input="getSearchText"
+        placeholder="Search Pointer e.g. Arrow Pointer" 
+        aria-label="search pointer"
+      >
     </div>
     <div class="filter-container">
       <div class="filter-btn">
@@ -26,14 +32,17 @@
     },
     data() {
       return {
-        filterMenu: false
+        filterMenu: false,
+        searchText: ''
       }
     },
     computed: {
       
     },
     methods: {
-      
+      getSearchText() {
+        this.$emit('getSearchText', this.searchText.trim().replace(/\s/g, ''))
+      }
     }
   }
 </script>

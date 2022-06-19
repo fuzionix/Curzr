@@ -4,14 +4,17 @@
     <section class="main-section">
       <navigation-bar>
       </navigation-bar>
-      <search-bar></search-bar>
+      <search-bar
+        @getSearchText="getSearchText"
+      >
+      </search-bar>
       <adjustment-bar
         :cursors-config="cursorsConfig"
         @changeRangeValue="changeRangeValue"
       >
       </adjustment-bar>
       <cursor-content
-        :cursorsData="cursorsData"
+        :filtered-cursors-data="filteredCursorsData"
         :cursors-config="cursorsConfig"
       >
       </cursor-content>
@@ -46,10 +49,18 @@
           size: 0,
           delay: 100
         },
-        cursorsData: CursorsData
+        searchFilterText: ''
       }
     },
     computed: {
+      filteredCursorsData() {
+        let filterRule = new RegExp(`${this.searchFilterText}`, 'gi')
+        return Object.fromEntries(Object.entries(CursorsData).filter(([key, value]) => {
+          if (key !== null && key !== undefined && key !== '') {
+            return value.cursorName.replace(/\s/g, '').match(filterRule)
+          }
+        }))
+      }
     },
     methods: {
       changeRangeValue(event) {
@@ -61,6 +72,9 @@
             this.cursorsConfig.delay = parseInt(event.value)
             break
         }
+      },
+      getSearchText(text) {
+        this.searchFilterText = text
       }
     },
     metaInfo: {

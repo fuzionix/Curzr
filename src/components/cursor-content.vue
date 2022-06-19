@@ -1,12 +1,12 @@
 <template>
   <section 
-    v-if="cursorsData !== null && cursorsData !== undefined && Object.keys(this.cursorsData).length > 0"
+    v-if="filteredCursorsData !== null && filteredCursorsData !== undefined && Object.keys(this.filteredCursorsData).length > 0"
     id="cursor-content" 
     class="cursor-content"
     :class="viewMode"
   >
     <cursor-block 
-      v-for="(cursorData, index) in cursorsData" 
+      v-for="(cursorData, index) in filteredCursorsData" 
       :key="index"
       :cursor-data="cursorData"
       :cursors-config="cursorsConfig"
@@ -47,7 +47,7 @@
       'cursor-model': CursorModel
     },
     props: {
-      cursorsData: {
+      filteredCursorsData: {
         type: Object,
         required: true
       },
