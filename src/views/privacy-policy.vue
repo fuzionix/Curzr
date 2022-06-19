@@ -481,10 +481,10 @@
           <p>
             By visiting this page on our website:
             <a
-              href="https://curzr.com/contact"
+              href="https://curzr.com/#/contact"
               rel="external nofollow noopener"
               target="_blank"
-              >https://curzr.com/contact</a
+              >https://curzr.com/#/contact</a
             >
           </p>
         </li>
@@ -506,7 +506,7 @@ export default {
   computed: {},
   methods: {},
   metaInfo: {
-    title: "Code Of Conduct",
+    title: "Privacy Policy",
     titleTemplate: "%s | Curzr",
   },
 };

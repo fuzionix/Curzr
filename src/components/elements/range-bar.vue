@@ -1,6 +1,5 @@
 <template>
   <div id="range-bar" class="range-bar">
-    <label :for="id"></label>
     <input 
       :id="id"
       type="range" 
@@ -9,6 +8,7 @@
       :min="minmax[0]" 
       :max="minmax[1]" 
       @input="changeWidth(); emitValue($event)"
+      :aria-label="id"
     >
   </div>
 </template>

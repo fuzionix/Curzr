@@ -2,7 +2,7 @@
   <section id="search-bar" class="search-bar">
     <div class="search-container">
       <img src="../assets/icon/search-icon.svg" alt="search icon" width="24" height="24">
-      <input type="text" placeholder="Search Pointer e.g. Arrow Pointer">
+      <input type="text" placeholder="Search Pointer e.g. Arrow Pointer" aria-label="search pointer">
     </div>
     <div class="filter-container">
       <div class="filter-btn">
