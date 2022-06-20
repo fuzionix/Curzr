@@ -12,6 +12,13 @@
       :cursors-config="cursorsConfig"
       @changeModelStatus="changeModelStatus" >
     </cursor-block>
+    <div class="cursor-block-coming-soon">
+      <h2 class="title">Coming Soon</h2>
+      <small>Or</small>
+      <span>
+        <router-link to="/contribution">&gt; Contribute yours &lt;</router-link>
+      </span>
+    </div>
     <transition name="fade">
       <keep-alive>
         <cursor-model 
@@ -19,7 +26,7 @@
           :model="model"
           @changeModelStatus="changeModelStatus"
           @changeModel="changeModel"
-          >
+        >
         </cursor-model>
       </keep-alive>
     </transition>
@@ -148,6 +155,39 @@
       color: #0006;
     }
   }
+}
+
+.cursor-block-coming-soon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fcfcfc;
+  background-image:  linear-gradient($--section-line-color 1px, transparent 1px), linear-gradient(to right, $--section-line-color 1px, #fcfcfc 1px);
+  background-size: 20px 20px;
+  background-position: center;
+
+  .title {
+    font-variation-settings: 'wght' $--bold;
+    opacity: .15;
+    user-select: none;
+  }
+
+  small {
+    margin: 1rem 0;
+    opacity: .25;
+  }
+
+  span {
+    font-size: .875rem;
+    opacity: .5;
+    transition: 250ms;
+
+    &:hover {
+      opacity: .75;
+    }
+  }
+  
 }
 
 .fade-enter-active, .fade-leave-active {
