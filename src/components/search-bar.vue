@@ -40,8 +40,13 @@
       
     },
     methods: {
+      /**
+       * Get the search text in the input field. Then Remove any space and symbol before emitting
+       * 
+       * @event input
+       */
       getSearchText() {
-        this.$emit('getSearchText', this.searchText.trim().replace(/\s/g, ''))
+        this.$emit('getSearchText', this.searchText.trim().replace(/[^\d\w]/g, ''))
       }
     }
   }

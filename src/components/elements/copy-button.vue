@@ -25,7 +25,11 @@
       }
     },
     methods: {
-      // Return Promise
+      /**
+       * Return Promise
+       * 
+       * @param {string} copiedText
+       */
       copyToClipboard(copiedText) {
         // Navigator Clipboard API Needs Secure Context (HTTPS)
         if (navigator.clipboard && window.isSecureContext) {
@@ -47,6 +51,9 @@
           });
         }
       },
+      /**
+       * Copy the text from the props 'copiedText'
+       */
       copyText() {
         this.copyToClipboard(this.copiedText).then(() => {
         }).catch(() => {
@@ -55,6 +62,9 @@
         })
         this.setCopyStatus()
       },
+      /**
+       * Set the status true after click on the copy button and reset the status in certain delay time
+       */
       setCopyStatus() {
         this.isCopied = true
         setTimeout(() => {

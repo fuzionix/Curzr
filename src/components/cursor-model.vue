@@ -90,26 +90,59 @@
       }
     },
     methods: {
+      /**
+       * Every cursor has its own init method @see /components/cursors/
+       */
       init() {
         this.$refs.cursor.init()
       },
+      /**
+       * Every cursor has its own move method @see /components/cursors/
+       * 
+       * @param {object} event
+       */
       move(event) {
         this.$refs.cursor.move(event, this.$refs.cursorBlock)
       },
+      /**
+       * Every cursor has its own reset method @see /components/cursors/
+       */
       reset() {
         this.$refs.cursor.reset()
       },
+      /**
+       * Change the content displayed in the center
+       * 
+       * @param {string} value
+       * @event changeValue
+       * 
+       * @values text, button, input field, loading
+       */
       changeContentType(value) {
         this.contentType = value
       },
+      /**
+       * Emit the model value to the parent
+       * 
+       * @param {string} model
+       * @event changeModel
+       */
       changeModel(model) {
         this.$emit('changeModel', model)
       },
+      /**
+       * Close the model when click on the area that is not in the model
+       * 
+       * @param {object} event
+       */
       closeModelByOuterSpace(event) {
         if (event.target === this.$el) {
           this.$emit('changeModelStatus', false)
         }
       },
+      /**
+       * Close the model when click on the close button
+       */
       closeModelByButton() {
         this.$emit('changeModelStatus', false)
       }

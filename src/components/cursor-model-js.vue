@@ -64,6 +64,7 @@
       }
     },
     mounted() {
+      // Render code content
       window.Prism = window.Prism || {}
       window.Prism.manual = true
       Prism.highlightAll()

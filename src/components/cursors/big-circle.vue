@@ -32,11 +32,19 @@
       }
     },
     computed: {
+      /**
+       * The cursor size from the CSS variable
+       */
       cursorSize() {
         return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
       }
     },
     watch: {
+      /**
+       * Change the value of the CSS variable after cursorsConfig changes
+       * 
+       * @param {object} configValue
+       */
       cursorsConfig: {
         handler(configValue) {
           this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
@@ -60,6 +68,9 @@
       })
     },
     methods: {
+      /**
+       * Center the position of cursors after theirs container loaded 
+       */
       init() {
         this.initChild(this.$refs.cursor.childNodes)
       },
@@ -69,6 +80,12 @@
           node.style.left = 0
         })
       },
+      /**
+       * Get the cursor position by event and apply them to the transform property of the cursor 
+       * 
+       * @param {object} event
+       * @param {object} cursorBlock
+       */
       move(event, cursorBlock) {
         this.previousPointerX = this.position.pointerX
         this.previousPointerY = this.position.pointerY
@@ -85,16 +102,25 @@
           this.trigger ? null : node.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0)`
         })
       },
+      /**
+       * Apply the transform property when triggered by the 'mousemove' event listener
+       */
       hover() {
         this.trigger = true
         this.$refs.circle.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0) scale(1.5)`
         this.$refs.text.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0)`
         this.$refs.text.innerHTML = 'ENTER'
       },
+      /**
+       * Apply the transform property when triggered by the 'mouseleave' event listener
+       */
       hoverout() {
         this.trigger = false
         this.$refs.text.innerHTML = 'MOVE'
       },
+      /**
+       * Center the position of cursors when leaving theirs container
+       */
       reset() {
         this.resetChild(this.$refs.cursor.childNodes)
       },

@@ -39,19 +39,26 @@
         filledWidth: 0
       }
     },
-    computed: {
-    },
-    watch: {
-    },
     mounted() {
       this.changeWidth()
     },
     methods: {
+      /**
+       * Change the width of the filled bar (the colored right section in the range slider) according to the value
+       * 
+       * TODO Not work in Firefox browser
+       */
       changeWidth() {
         let sliderWidth = this.$refs.slider.clientWidth
         this.filledWidth = sliderWidth * (this.sliderValue - this.minmax[0]) / (this.minmax[1] - this.minmax[0])
         this.$refs.slider.style.setProperty('--filled-width', this.filledWidth + 'px')
       },
+      /**
+       * Emit the value to the parent
+       * 
+       * @param {object} event
+       * @event input
+       */
       emitValue(event) {
         this.$emit('changeRangeValue', { 
           value: event.target.value, 

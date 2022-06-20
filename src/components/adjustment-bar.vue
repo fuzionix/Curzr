@@ -51,13 +51,22 @@
         required: true
       }
     },
-    computed: {
-      
-    },
     methods: {
+      /**
+       * Emit the value to the parent
+       * 
+       * @param {object} event
+       * @event changeRangeValue
+       */
       changeRangeValue(event) {
         this.$emit('changeRangeValue', event)
       },
+      /**
+       * Apply and remove the class to the certain button according to the @param {string} mode
+       * 
+       * @param {string} mode
+       * @event click
+       */
       changeState(mode) {
         if (mode === 'cursor-content-grid') {
           this.$refs.gridBtn.classList.add('wrapper-active')

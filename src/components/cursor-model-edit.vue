@@ -25,6 +25,11 @@
       }
     },
     methods: {
+      /**
+       * Emit the value to the parent
+       * 
+       * @event click
+       */
       changeToViewcodeModel() {
         this.$emit('changeModel', 'cursor-model-viewcode')
       }

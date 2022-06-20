@@ -33,11 +33,19 @@
       }
     },
     computed: {
+      /**
+       * The cursor size from the CSS variable
+       */
       cursorSize() {
         return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
       }
     },
     watch: {
+      /**
+       * Change the value of the CSS variable after cursorsConfig changes
+       * 
+       * @param {object} configValue
+       */
       cursorsConfig: {
         handler(configValue) {
           this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
@@ -48,10 +56,19 @@
       }
     },
     methods: {
+      /**
+       * Center the position of cursor after its container loaded 
+       */
       init() {
         this.$refs.cursor.style.top = 0 
         this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
       },
+      /**
+       * Get the cursor position by event and apply them to the transform property of the cursor 
+       * 
+       * @param {object} event
+       * @param {object} cursorBlock
+       */
       move(event, cursorBlock) {
         this.previousPointerX = this.position.pointerX
         this.previousPointerY = this.position.pointerY
@@ -65,6 +82,14 @@
 
         this.rotate(this.position)
       },
+      /**
+       * Get the calculated distance between previous point and current point from the @param {object} position.
+       * Calculate the angle using Inverse trigonometric functions and then apply it to the transform property of the cursor 
+       * 
+       * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan}
+       * @see {@link https://en.wikipedia.org/wiki/Inverse_trigonometric_functions}
+       * @param {object} position
+       */
       rotate(position) {
         let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
         this.previousAngle = this.angle
@@ -92,6 +117,9 @@
         }
         this.$refs.cursor.style.transform += ` rotate(${this.angleDisplace}deg)`
       },
+      /**
+       * Center the position of cursor when leaving its container
+       */
       reset() {
         this.$refs.cursor.style.top = ''
         this.$refs.cursor.style.left = ''

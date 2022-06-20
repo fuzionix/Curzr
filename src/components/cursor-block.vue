@@ -82,15 +82,32 @@
       }
     },
     methods: {
+      /**
+       * Every cursor has its own init method @see /components/cursors/
+       */
       init() {
         this.$refs.cursor.init()
       },
+      /**
+       * Every cursor has its own move method @see /components/cursors/
+       * 
+       * @param {object} event
+       */
       move(event) {
         this.$refs.cursor.move(event, this.$refs.cursorBlock)
       },
+      /**
+       * Every cursor has its own reset method @see /components/cursors/
+       */
       reset() {
         this.$refs.cursor.reset()
       },
+      /**
+       * Emit the value to the parent
+       * 
+       * @param {string} model
+       * @event click
+       */
       openModel(model) {
         this.$emit('changeModelStatus', {
           modelStatus: true,

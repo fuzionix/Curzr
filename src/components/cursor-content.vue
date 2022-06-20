@@ -63,15 +63,34 @@
       }
     },
     computed: {
+      /**
+       * The class name that controlled the grid template columns
+       * 
+       * @values cursor-content-grid, cursor-content-list
+       */
       viewMode() {
         return this.$store.state.viewMode
       }
     },
     methods: {
+      /**
+       * Controll visibility and content of the model
+       * 
+       * @param {object} data
+       * @event changeModelStatus
+       */
       changeModelStatus(data) {
         this.modelStatus = data.modelStatus
         this.model = data.model
       },
+      /**
+       * Controll content of the model
+       * 
+       * @param {string} model
+       * @event changeModel
+       * 
+       * @values cursor-model-viewcode, cursor-model-edit
+       */
       changeModel(model) {
         this.model = model
       }

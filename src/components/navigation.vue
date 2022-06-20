@@ -31,6 +31,12 @@
       
     },
     methods: {
+      /**
+       * Toggle the sidemenu by the value of the toggleStatus
+       * 
+       * @param {object} event
+       * @event click
+       */
       toggleSidemenu(event) {
         if (this.toggleStatus) {
           if (getComputedStyle(this.$refs.navigation).getPropertyValue('--sidebar-status') == 1) {

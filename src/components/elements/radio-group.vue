@@ -35,6 +35,11 @@
       }
     },
     methods: {
+      /**
+       * Emit the value to the parent
+       * 
+       * @event change
+       */
       changeValue() {
         this.$emit('changeValue', this.value)
       }

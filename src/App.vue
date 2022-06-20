@@ -10,25 +10,6 @@
 <script>
 export default {
   name: 'App',
-  components: {
-  },
-  data() {
-    return {
-    }
-  },
-  computed: {
-    
-  },
-  watch: {
-    
-  },
-  created() {
-  },
-  mounted() {
-  },
-  methods: {
-
-  },
   metaInfo: {
     meta: [
       {

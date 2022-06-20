@@ -51,6 +51,12 @@
       }
     },
     methods: {
+      /**
+       * Change the component by the value
+       * 
+       * @param {string} value
+       * @event changeValue
+       */
       changeCodeblock(value) {
         switch(value) {
           case 'JavaScript':
@@ -60,6 +66,11 @@
             this.codeblock = 'cursor-model-vue'
         }
       },
+      /**
+       * Emit the model value to the parent
+       * 
+       * @event click
+       */
       changeToEditModel() {
         this.$emit('changeModel', 'cursor-model-edit')
       }

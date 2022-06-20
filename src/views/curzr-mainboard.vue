@@ -53,6 +53,11 @@
       }
     },
     computed: {
+      /**
+       * 1 | Convert CursorsData into an array
+       * 2 | Filter the items by the cursor name that matches the rule of filter
+       * 3 | Convert back into an object
+       */
       filteredCursorsData() {
         let filterRule = new RegExp(`${this.searchFilterText}`, 'gi')
         return Object.fromEntries(Object.entries(CursorsData).filter(([key, value]) => {
@@ -63,6 +68,12 @@
       }
     },
     methods: {
+      /**
+       * Change the property value of cursorsConfig by the data from the <range-bar>
+       * 
+       * @param {object} event
+       * @event changeRangeValue
+       */
       changeRangeValue(event) {
         switch (event.id) {
           case 'range-size':
@@ -73,6 +84,12 @@
             break
         }
       },
+      /**
+       * Get the search value from <search-bar>
+       * 
+       * @param {string} text
+       * @event getSearchText
+       */
       getSearchText(text) {
         this.searchFilterText = text
       }

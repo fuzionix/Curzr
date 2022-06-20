@@ -123,6 +123,11 @@
       }
     },
     methods: {
+      /**
+       * Close the message block
+       * 
+       * @event click
+       */
       closeBlock() {
         this.blockStatus = false
       }
