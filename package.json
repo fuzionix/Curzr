@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "dompurify": "^2.3.8",
     "prismjs": "^1.28.0",
+    "validator": "^13.7.0",
     "vue": "^2.6.14",
     "vue-meta": "^2.4.0",
     "vue-router": "^3.5.1",

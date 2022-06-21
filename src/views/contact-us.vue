@@ -5,18 +5,38 @@
         <navigation-bar-plain class="navigation-bar-plain" />
         <section class="main-content">
           <div class="form-content">
-            <form action="">
+            <form 
+              action="" 
+              @submit.prevent="submitForm"
+            >
               <h4 class="form-title">Contact Us</h4>
               <label>
                 Content
-                <textarea name="" id="" cols="20" rows="5" maxlength="150" placeholder="e.g. Bug finding or your suggestion for this project"></textarea>
-                <small><span>0</span>/150</small>
+                <textarea 
+                  name="" 
+                  id="" 
+                  v-model="contactContent"
+                  cols="20" 
+                  rows="5" 
+                  maxlength="150" 
+                  placeholder="e.g. Bug finding or your suggestion for this project"
+                >
+                </textarea>
+                <small><span>{{ wordCount }}</span> / 150</small>
               </label>
               <label>
                 Your Name (Optional)
-                <input type="text" placeholder="Optional">
+                <input 
+                  type="text" 
+                  placeholder="How do we call you?" 
+                  maxlength="30"
+                >
               </label>
-              <input type="submit" class="submit-button">
+              <input 
+                type="submit" 
+                class="submit-button"
+                value="Post"
+              >
             </form>
           </div>
         </section>
@@ -40,6 +60,8 @@
 </template>
 
 <script>
+  import DOMPurify from 'dompurify'
+
   import NavigationBarPlain from '@/components/navigation-plain.vue'
   import FooterContent from '@/components/footer.vue'
   export default {
@@ -48,8 +70,21 @@
       'navigation-bar-plain': NavigationBarPlain,
       'footer-content': FooterContent,
     },
+    data() {
+      return {
+        contactContent: '',
+        contactContentPurified: ''
+      }
+    },
+    computed: {
+      wordCount() {
+        return this.contactContent.length.toString()
+      }
+    },
     methods: {
-      
+      submitForm() {
+        this.contactContentPurified = DOMPurify.sanitize(this.contactContent)
+      }
     },
     metaInfo: {
       title: 'Contact Us',
@@ -135,14 +170,15 @@
 
               small {
                 text-align: right;
-                letter-spacing: 1px;
+                font-size: .75rem;
+                opacity: .75;
               }
             }
 
             .submit-button {
-              width: 100px;
-              padding: 1rem 0;
-              border-radius: $--common-radius;
+              width: 80px;
+              padding: .75rem 0;
+              border-radius: $--common-radius / 2;
               background: $--theme-color;
               color: #fff;
               border: none;
