@@ -27,6 +27,11 @@ const routes = [
     component: () => import('../views/privacy-policy.vue')
   },
   {
+    path: '/contact-us',
+    name: 'contact-us',
+    component: () => import('../views/contact-us.vue')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('../views/error-404.vue'),

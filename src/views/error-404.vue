@@ -29,6 +29,9 @@
       
     },
     methods: {
+      /**
+       * @event click
+       */
       goBack() {
         window.location.replace("./#/")
       }
@@ -45,6 +48,10 @@
 .error-404 {
   width: 100%;
   min-height: 100vh;
+  background-color: #fcfcfc;
+  background-image:  linear-gradient($--section-line-color 1px, transparent 1px), linear-gradient(to right, $--section-line-color 1px, #fff 1px);
+  background-size: 40px 80px;
+  background-position: center;
 
   .main-section {
     .section-container {
@@ -67,7 +74,7 @@
           width: min(500px, 100%);
           height: auto;
           margin: 4rem 0;
-          filter: drop-shadow(30px 30px 0 #f8f8f8);
+          filter: drop-shadow(30px 30px 0 #7771);
         }
 
         .title {

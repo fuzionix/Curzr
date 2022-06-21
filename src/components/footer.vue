@@ -22,7 +22,7 @@
             <router-link :to="{ name: 'code-of-conduct' }">Code Of Conduct</router-link>
             <router-link :to="{ name: 'privacy-policy' }">Privacy Policy</router-link>
             <router-link to="/">Contribute</router-link>
-            <router-link to="/">Contact Us</router-link>
+            <router-link :to="{ name: 'contact-us' }">Contact Us</router-link>
           </div>
         </div>
         <div class="relavant-link">

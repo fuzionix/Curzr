@@ -16,7 +16,7 @@
       <h2 class="title">Coming Soon</h2>
       <small>Or</small>
       <span>
-        <router-link to="/contribution">&gt; Contribute yours &lt;</router-link>
+        <router-link to="contribution">&gt; Contribute yours &lt;</router-link>
       </span>
     </div>
     <transition name="fade">
