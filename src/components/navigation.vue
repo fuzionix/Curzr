@@ -43,19 +43,19 @@
             this.$parent.$el.childNodes[1].style.paddingLeft = '0px'
             this.$parent.$children[0].$el.style.left = -this.$parent.$children[0].$el.offsetWidth + 'px'
             this.$refs.navigation.style.width = '100%'
-            event.srcElement.style.left = '2rem'
-            event.srcElement.style.transform = 'rotate(180deg)'
+            event.target.style.left = '2rem'
+            event.target.style.transform = 'rotate(180deg)'
           } else if (getComputedStyle(this.$refs.navigation).getPropertyValue('--sidebar-status') == 0) {
             this.$parent.$children[0].$el.style.left = '0px'
-            event.srcElement.style.transform = 'rotate(0deg)'
+            event.target.style.transform = 'rotate(0deg)'
           }
           this.toggleStatus = false
         } else {
           this.$parent.$el.childNodes[1].style.paddingLeft = ''
           this.$parent.$children[0].$el.style.left = ''
           this.$refs.navigation.style.width = ''
-          event.srcElement.style.left = ''
-          event.srcElement.style.transform = ''
+          event.target.style.left = ''
+          event.target.style.transform = ''
           this.toggleStatus = true
         }
       }

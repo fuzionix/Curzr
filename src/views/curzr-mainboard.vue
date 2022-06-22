@@ -49,22 +49,8 @@
           size: 0,
           delay: 100
         },
-        searchFilterText: ''
-      }
-    },
-    computed: {
-      /**
-       * 1 | Convert CursorsData into an array
-       * 2 | Filter the items by the cursor name that matches the rule of filter
-       * 3 | Convert back into an object
-       */
-      filteredCursorsData() {
-        let filterRule = new RegExp(`${this.searchFilterText}`, 'gi')
-        return Object.fromEntries(Object.entries(CursorsData).filter(([key, value]) => {
-          if (key !== null && key !== undefined && key !== '') {
-            return value.cursorName.replace(/\s/g, '').match(filterRule)
-          }
-        }))
+        searchFilterText: '',
+        filteredCursorsData: CursorsData
       }
     },
     methods: {
@@ -92,6 +78,20 @@
        */
       getSearchText(text) {
         this.searchFilterText = text
+        this.searchCursorsData()
+      },
+      /**
+       * 1 | Convert CursorsData into an array
+       * 2 | Search the items by the cursor name that matches the rule of the filter
+       * 3 | Convert back into an object
+       */
+      searchCursorsData() {
+        let filterRule = new RegExp(`${this.searchFilterText}`, 'gi')
+        this.filteredCursorsData = Object.fromEntries(Object.entries(CursorsData).filter(([key, value]) => {
+          if (key !== null && key !== undefined && key !== '') {
+            return value.cursorName.replace(/\s/g, '').match(filterRule)
+          }
+        }))
       }
     },
     metaInfo: {

@@ -13,7 +13,10 @@
     <div class="filter-container">
       <div class="filter-btn">
         <img src="../assets/icon/Filter.svg" alt="filter button" width="24" height="24">
-        <filter-menu class="filter-menu"></filter-menu>
+        <filter-menu 
+          class="filter-menu"
+          @editListItem="editListItem">
+        </filter-menu>
       </div>
       <div class="filtered-list">
         
@@ -47,6 +50,9 @@
        */
       getSearchText() {
         this.$emit('getSearchText', this.searchText.trim().replace(/[^\d\w]/g, ''))
+      },
+      editListItem(e) {
+        console.log(e)
       }
     }
   }

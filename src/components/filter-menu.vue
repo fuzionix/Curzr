@@ -2,13 +2,14 @@
   <section id="filter-menu" class="filter-menu">
     <header>
       <h5 class="menu-title">Filter by features</h5>
-      <small class="menu-subtitle"><span class="tags-count">8</span> tags discovered</small>
+      <small class="menu-subtitle"><span class="tags-count">{{ tagList.length }}</span> tags discovered</small>
     </header>
     <main class="tag-list">
       <div 
         v-for="tagName in tagList" 
         :key="tagName" 
         class="list-tag"
+        @click="editListItem($event, tagName)"
       >
         {{ tagName }}
       </div>
@@ -27,11 +28,31 @@
     },
     data() {
       return {
-        tagList: ['Rotate', 'Click', 'Hover', 'Step', 'Animation', 'Active', 'Focus', 'Loading']
+        tagList: ['Rotate', 'Click', 'Hover', 'Step', 'Animation', 'Active', 'Focus', 'Loading'],
+        targetTagList: []
       }
     },
     computed: {
       
+    },
+    methods: {
+      /**
+       * Add or remove the tag items from the targetTagList array then emit the array to the parent
+       * 
+       * @param {object} event
+       * @param {string} tagName
+       * @event click
+       */
+      editListItem(event, tagName) {
+        event.target.classList.toggle("list-tag-checked")
+        if (!this.targetTagList.includes(tagName)) {
+          this.targetTagList.push(tagName)
+        } else {
+          this.targetTagList.splice(this.targetTagList.indexOf(tagName), 1)
+        }
+
+        this.$emit('editListItem', this.targetTagList)
+      }
     }
   }
 </script>
@@ -78,8 +99,12 @@
       user-select: none;
 
       &:hover {
-        background-color: $--section-line-color;
+        box-shadow: 0 0 0 3px $--section-line-color;
       }
+    }
+
+    .list-tag-checked {
+      background-color: $--section-line-color;
     }
   }
 
