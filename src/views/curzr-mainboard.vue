@@ -6,6 +6,7 @@
       </navigation-bar>
       <search-bar
         @getSearchText="getSearchText"
+        @editListItem="editListItem"
       >
       </search-bar>
       <adjustment-bar
@@ -81,6 +82,15 @@
         this.searchCursorsData()
       },
       /**
+       * Get the filter array from <filter-menu>
+       * 
+       * @param {array} list
+       * @event editListItem
+       */
+      editListItem(list) {
+        this.filterCursorsData(list)
+      },
+      /**
        * 1 | Convert CursorsData into an array
        * 2 | Search the items by the cursor name that matches the rule of the filter
        * 3 | Convert back into an object
@@ -92,6 +102,37 @@
             return value.cursorName.replace(/\s/g, '').match(filterRule)
           }
         }))
+      },
+      /**
+       * 1 | Convert CursorsData into an array
+       * 2 | Filter the items by comparing two arrays
+       * 3 | Compare if the 'taglist' array contains the item in 'CursorsData.features' array
+       * 4 | Convert back into an object
+       * 
+       * @param {array} taglist
+       * 
+       * @example Two arrays comparing
+       * 
+       * CursorsData.features = ['Click', 'Rotate', 'Hover']
+       * taglist = ['Click', 'Active', 'Rotate', 'Multiple']
+       * 
+       * The return value at the map function will be
+       * [true, true, false]
+       * If the array above contains 'true' value, put the item to 'filteredCursorsData'
+       */
+      filterCursorsData(taglist) {
+        if (taglist.length !== 0) {
+          this.filteredCursorsData = Object.fromEntries(Object.entries(CursorsData).filter(([key, value]) => {
+            if (key !== null && key !== undefined && key !== '') {
+              return value.features.map(tagItem => {
+                return taglist.includes(tagItem)
+              }).includes(true)
+            }
+          }))
+        } else {
+          this.filteredCursorsData = CursorsData
+        }
+        
       }
     },
     metaInfo: {

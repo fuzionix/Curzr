@@ -46,7 +46,7 @@
               <input 
                 type="submit" 
                 class="submit-button"
-                value="Post"
+                value="Send"
               >
             </form>
           </div>
@@ -59,13 +59,13 @@
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque vero delectus consectetur sed molestias quis est aperiam saepe modi fugit? Vitae quod dolor dolorum expedita error blanditiis temporibus corporis eum.
           </p>
           <div class="follow-us">
-            <a href="https://github.com/TaylonChan/Curzr">
+            <a target="_blank" href="https://github.com/TaylonChan/Curzr">
               <img src="../assets/icon/github-brands.svg" alt="github icon" width="25" height="25">
             </a>
-            <a href="https://www.instagram.com/project.fung/">
+            <a target="_blank" href="https://www.instagram.com/project.fung/">
               <img src="../assets/icon/instagram-brands.svg" alt="instagram icon" width="25" height="25">
             </a>
-            <a href="https://codepen.io/tag/curzr">
+            <a target="_blank" href="https://codepen.io/tag/curzr">
               <img src="../assets/icon/codepen-brands.svg" alt="codepen icon" width="25" height="25">
             </a>
           </div>
@@ -129,6 +129,10 @@
           } else if (!equals(this.contactNamePurified, this.contactName)) {
             this.errorMessage.contactName = 'Your name may contains dangerous HTML.'
           } else {
+            this.errorMessage = {
+              contactContent: '',
+              contactName: ''
+            }
             console.log('submited')
           }
         }
@@ -220,15 +224,16 @@
               footer {
                 display: flex;
                 justify-content: space-between;
-                font-size: .75rem;
 
                 .error-msg {
                   padding-right: 1rem;
+                  font-size: .75rem;
                   color: red;
                 }
 
                 .word-count {
                   text-align: right;
+                  font-size: .75rem;
                   opacity: .75;
                 }
               }

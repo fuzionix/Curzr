@@ -481,10 +481,10 @@
           <p>
             By visiting this page on our website:
             <a
-              href="https://curzr.com/#/contact"
+              href="https://curzr.com/#/contact-us"
               rel="external nofollow noopener"
               target="_blank"
-              >https://curzr.com/#/contact</a
+              >https://curzr.com/#/contact-us</a
             >
           </p>
         </li>

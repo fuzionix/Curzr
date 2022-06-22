@@ -19,7 +19,12 @@
         </filter-menu>
       </div>
       <div class="filtered-list">
-        
+        <normal-tag
+          v-for="(tag, index) in taglist"
+          :key="index"
+        >
+          {{ tag }}
+        </normal-tag>
       </div>
     </div>
   </section>
@@ -27,16 +32,19 @@
 
 <script>
   import FilterMenu from '@/components/filter-menu.vue'
+  import NormalTag from '@/components/elements/tag.vue'
 
   export default {
     name: 'SearchBar',
     components: {
-      'filter-menu': FilterMenu
+      'filter-menu': FilterMenu,
+      'normal-tag': NormalTag
     },
     data() {
       return {
         filterMenu: false,
-        searchText: ''
+        searchText: '',
+        taglist: []
       }
     },
     computed: {
@@ -51,8 +59,9 @@
       getSearchText() {
         this.$emit('getSearchText', this.searchText.trim().replace(/[^\d\w]/g, ''))
       },
-      editListItem(e) {
-        console.log(e)
+      editListItem(list) {
+        this.taglist = list
+        this.$emit('editListItem', list)
       }
     }
   }
@@ -158,6 +167,16 @@
       .filter-menu {
         opacity: 0;
         visibility: hidden;
+      }
+    }
+
+    .filtered-list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap-reverse;
+
+      & > * {
+        margin: .25rem .5rem .25rem 0;
       }
     }
   }
