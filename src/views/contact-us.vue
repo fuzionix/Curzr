@@ -18,19 +18,30 @@
                   v-model="contactContent"
                   cols="20" 
                   rows="5" 
-                  maxlength="150" 
+                  :maxlength="charLimit.contactContent" 
                   placeholder="e.g. Bug finding or your suggestion for this project"
                 >
                 </textarea>
-                <small><span>{{ wordCount }}</span> / 150</small>
+                <footer>
+                  <small class="error-msg">
+                    {{ errorMessage.contactContent }}
+                  </small>
+                  <small class="word-count"><span>{{ charCount }}</span> / {{ charLimit.contactContent }}</small>
+                </footer>
               </label>
               <label>
                 Your Name (Optional)
                 <input 
                   type="text" 
+                  v-model="contactName"
                   placeholder="How do we call you?" 
-                  maxlength="30"
+                  :maxlength="charLimit.contactName"
                 >
+                <footer>
+                  <small class="error-msg">
+                    {{ errorMessage.contactName }}
+                  </small>
+                </footer>
               </label>
               <input 
                 type="submit" 
@@ -48,9 +59,15 @@
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque vero delectus consectetur sed molestias quis est aperiam saepe modi fugit? Vitae quod dolor dolorum expedita error blanditiis temporibus corporis eum.
           </p>
           <div class="follow-us">
-            <a href=""><img src="../assets/icon/github-brands.svg" alt="github icon" width="25" height="25"></a>
-            <a href=""><img src="../assets/icon/instagram-brands.svg" alt="instagram icon" width="25" height="25"></a>
-            <a href=""><img src="../assets/icon/codepen-brands.svg" alt="codepen icon" width="25" height="25"></a>
+            <a href="https://github.com/TaylonChan/Curzr">
+              <img src="../assets/icon/github-brands.svg" alt="github icon" width="25" height="25">
+            </a>
+            <a href="https://www.instagram.com/project.fung/">
+              <img src="../assets/icon/instagram-brands.svg" alt="instagram icon" width="25" height="25">
+            </a>
+            <a href="https://codepen.io/tag/curzr">
+              <img src="../assets/icon/codepen-brands.svg" alt="codepen icon" width="25" height="25">
+            </a>
           </div>
         </section>
       </div>
@@ -61,6 +78,7 @@
 
 <script>
   import DOMPurify from 'dompurify'
+  import equals from 'validator/lib/equals';
 
   import NavigationBarPlain from '@/components/navigation-plain.vue'
   import FooterContent from '@/components/footer.vue'
@@ -73,17 +91,48 @@
     data() {
       return {
         contactContent: '',
-        contactContentPurified: ''
+        contactContentPurified: '',
+        contactName: '',
+        contactNamePurified: '',
+        errorMessage: {
+          contactContent: '',
+          contactName: ''
+        },
+        charLimit: {
+          contactContent: 150,
+          contactName: 30
+        }
       }
     },
     computed: {
-      wordCount() {
+      /**
+       * The amount of the charactors in the content textarea
+       */
+      charCount() {
         return this.contactContent.length.toString()
       }
     },
     methods: {
       submitForm() {
         this.contactContentPurified = DOMPurify.sanitize(this.contactContent)
+        this.contactNamePurified = DOMPurify.sanitize(this.contactName)
+
+        if (!this.contactContent.length) {
+          this.errorMessage.contactContent = 'Content cannot be empty.'
+        } else if (this.contactContent.length > this.charLimit.contactContent) {
+          this.errorMessage.contactContent = 'The amount of charactors cannot exceed ' + this.charLimit.contactContent + '.'
+        } else if (this.contactName.length > this.charLimit.contactName) {
+          this.errorMessage.contactName = 'The amount of charactors cannot exceed ' + this.charLimit.contactName + '.'
+        } else {
+          if (!equals(this.contactContentPurified, this.contactContent)) {
+            this.errorMessage.contactContent = 'Your content may contains dangerous HTML.'
+          } else if (!equals(this.contactNamePurified, this.contactName)) {
+            this.errorMessage.contactName = 'Your name may contains dangerous HTML.'
+          } else {
+            console.log('submited')
+          }
+        }
+        
       }
     },
     metaInfo: {
@@ -168,10 +217,20 @@
                 padding: 1rem 2rem;
               }
 
-              small {
-                text-align: right;
+              footer {
+                display: flex;
+                justify-content: space-between;
                 font-size: .75rem;
-                opacity: .75;
+
+                .error-msg {
+                  padding-right: 1rem;
+                  color: red;
+                }
+
+                .word-count {
+                  text-align: right;
+                  opacity: .75;
+                }
               }
             }
 
