@@ -4,7 +4,7 @@
       <h5 class="menu-title">Filter by features</h5>
       <small class="menu-subtitle"><span class="tags-count">{{ tagList.length }}</span> tags discovered</small>
     </header>
-    <main class="tag-list">
+    <main class="tag-list" ref="tagList">
       <div 
         v-for="tagName in tagList" 
         :key="tagName" 
@@ -15,7 +15,11 @@
       </div>
     </main>
     <footer>
-      <button>Clear All</button>
+      <button
+        @click="resetListItem()"
+      >
+        Clear All
+      </button>
     </footer>
   </section>
 </template>
@@ -51,6 +55,18 @@
           this.targetTagList.splice(this.targetTagList.indexOf(tagName), 1)
         }
 
+        this.$emit('editListItem', this.targetTagList)
+      },
+      /**
+       * Remove all the tag items from the targetTagList array then emit the array to the parent
+       * 
+       * @event click
+       */
+      resetListItem() {
+        this.$refs.tagList.querySelectorAll('.list-tag').forEach(item => {
+          item.classList.remove("list-tag-checked")
+        })
+        this.targetTagList = []
         this.$emit('editListItem', this.targetTagList)
       }
     }

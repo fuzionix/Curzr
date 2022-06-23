@@ -15,7 +15,7 @@
       >
       </adjustment-bar>
       <cursor-content
-        :filtered-cursors-data="filteredCursorsData"
+        :filtered-cursors-data="intersectCursorsData"
         :cursors-config="cursorsConfig"
       >
       </cursor-content>
@@ -51,7 +51,21 @@
           delay: 100
         },
         searchFilterText: '',
+        searchedCursorsData: CursorsData,
         filteredCursorsData: CursorsData
+      }
+    },
+    computed: {
+      /**
+       * Intersection: 'searchedCursorsData' ∩ 'filteredCursorsData'
+       * 
+       * @see searchCursorsData()
+       * @see filterCursorsData()
+       */
+      intersectCursorsData() {
+        return Object.fromEntries(Object.entries(this.searchedCursorsData).filter(item => {
+          return Object.entries(this.filteredCursorsData).map(item => item[0]).includes(item[0])
+        }))
       }
     },
     methods: {
@@ -97,7 +111,7 @@
        */
       searchCursorsData() {
         let filterRule = new RegExp(`${this.searchFilterText}`, 'gi')
-        this.filteredCursorsData = Object.fromEntries(Object.entries(CursorsData).filter(([key, value]) => {
+        this.searchedCursorsData = Object.fromEntries(Object.entries(CursorsData).filter(([key, value]) => {
           if (key !== null && key !== undefined && key !== '') {
             return value.cursorName.replace(/\s/g, '').match(filterRule)
           }
@@ -106,7 +120,7 @@
       /**
        * 1 | Convert CursorsData into an array
        * 2 | Filter the items by comparing two arrays
-       * 3 | Compare if the 'taglist' array contains the item in 'CursorsData.features' array
+       * 3 | Compare if the 'CursorsData.features' array contains the item in 'taglist' array
        * 4 | Convert back into an object
        * 
        * @param {array} taglist
