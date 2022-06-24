@@ -173,9 +173,6 @@ class ArrowPointer {
         this.previousPointerY = this.position.pointerY
         this.position.pointerX = event.pageX + this.$root.$el.getBoundingClientRect().x
         this.position.pointerY = event.pageY + this.$root.$el.getBoundingClientRect().y
-
-        console.log(event.pageY, this.$root.$el.getBoundingClientRect())
-
         this.position.distanceX = this.previousPointerX - this.position.pointerX
         this.position.distanceY = this.previousPointerY - this.position.pointerY
 
@@ -214,7 +211,7 @@ class ArrowPointer {
   }
 <\/script>
 
-<style lang="scss">
+<style>
 .curzr-arrow-pointer {
   --cursor-size:  20px;
   --cursor-delay: 100ms;
@@ -228,14 +225,6 @@ class ArrowPointer {
   transition: 500ms, transform var(--cursor-delay);
   user-select: none;
   pointer-events: none;
-
-  .inner {
-    fill: #f2f5f8;
-  }
-
-  .outer {
-    fill: #111920;
-  }
 }
 </style>
         `

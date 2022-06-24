@@ -3,7 +3,7 @@
     <div class="block-container">
       <div class="subtitle">
         <img src="../assets/icon/vuejs-brands.svg" alt="html5 icon" width="12" height="12">
-        <small>VUE 2</small>
+        <small>VUE Component</small>
       </div>
       <div class="code-block">
         <div class="dots-container">

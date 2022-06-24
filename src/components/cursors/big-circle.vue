@@ -28,7 +28,6 @@
         previousAngle: 0,
         angleDisplace: 0,
         degrees: 57.296,
-        trigger: false
       }
     },
     computed: {
@@ -53,19 +52,6 @@
         deep: true,
         immeditate: true
       }
-    },
-    mounted() {
-      const buttons = this.$refs.cursor.parentElement.parentElement.querySelectorAll('.curzr-hover')
-      buttons.forEach(button => {
-        button.addEventListener('mousemove', () => {
-          this.hover()
-        })
-      })
-      buttons.forEach(button => {
-        button.addEventListener('mouseleave', () => {
-          this.hoverout()
-        })
-      })
     },
     methods: {
       /**
@@ -96,18 +82,21 @@
         this.position.distanceY = this.previousPointerY - this.position.pointerY
 
         this.moveChild(this.$refs.cursor.childNodes)
+
+        event.target.localName === 'button' || event.target.localName === 'a' || event.target.parentElement.localName === 'button' 
+          ? this.hover() 
+          : this.hoverout()
       },
       moveChild(nodes) {
         nodes.forEach(node => {
-          this.trigger ? null : node.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0)`
+          node.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0)`
         })
       },
       /**
        * Apply the transform property when triggered by the 'mousemove' event listener
        */
       hover() {
-        this.trigger = true
-        this.$refs.circle.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0) scale(1.5)`
+        this.$refs.circle.style.transform += ` scale(1.5)`
         this.$refs.text.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0)`
         this.$refs.text.innerHTML = 'ENTER'
       },
@@ -115,7 +104,6 @@
        * Apply the transform property when triggered by the 'mouseleave' event listener
        */
       hoverout() {
-        this.trigger = false
         this.$refs.text.innerHTML = 'MOVE'
       },
       /**
