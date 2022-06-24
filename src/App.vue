@@ -14,7 +14,11 @@ export default {
     meta: [
       {
         name: 'description',
-        content: 'Curzr is a website which provides tools and resources that help you to create a fascinating, interesting, and animated cursor by just a ‘copy and paste’.',
+        content: 'Curzr is a website which provides tools and resources that help you to create a fascinating, interesting, and animated cursor by just a ‘copy and paste’.'
+      },
+      {
+        name: 'keywords',
+        content: 'custom cursor,cursor,mouse cursor,mouse pointer,css cursor,front end developer,frontend,javascript'
       },
       {
         ['http-equiv']: 'Content-Security-Policy',
