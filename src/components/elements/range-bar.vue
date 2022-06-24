@@ -125,10 +125,18 @@
 
     &::-moz-range-thumb {
       appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       background: #fff;
-      border-radius: 50%;
+      border: 2px solid darken($--section-line-color, 5%);
+      border-radius: 6px;
+      z-index: 2;
+      transition: 100ms;
+
+      &:hover {
+        width: 18px;
+        height: 18px;
+      }
     }
   }
 }

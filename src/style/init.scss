@@ -25,6 +25,7 @@ body {
 *::before,
 *::after {
   box-sizing: inherit;
+  scrollbar-width: none;
 }
 
 a {
@@ -104,6 +105,7 @@ textarea {
   width: 0;
   height: 0;
 }
+
 
 /* ----------- */
 /* Font Import */

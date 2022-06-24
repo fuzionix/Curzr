@@ -249,4 +249,14 @@
     transition: 250ms;
   }
 }
+
+/** Mozilla Firefox */
+@-moz-document url-prefix() {
+  .cursor-block {
+    background: 
+      linear-gradient(90deg, var(--bg-color) calc(10px - var(--dot-size)), transparent 1%) center, 
+      linear-gradient(var(--bg-color) calc(10px - var(--dot-size)), transparent 1%) center, var(--dot-color);
+    background-size: 10px 10px;
+  }
+}
 </style>
