@@ -6,9 +6,9 @@
         @mouseenter="init()"
         @mouseleave="reset()"
         ref="cursorBlock">
-        <div class="close-btn" @click="closeModelByButton($event)">
+        <button class="close-btn" @click="closeModelByButton($event)">
           <img src="../assets/icon/close-btn.svg" alt="close button" width="20" height="20">
-        </div>
+        </button>
         <div class="cursor-features">
           <normal-tag class="tag">Mulitple</normal-tag>
           <normal-tag class="tag">Click</normal-tag>
@@ -211,8 +211,10 @@
         top: 20px;
         left: 20px;
         z-index: 1;
+        border: none;
         opacity: .5;
         transition: 250ms;
+        cursor: none;
 
         img {
           width: 20px;

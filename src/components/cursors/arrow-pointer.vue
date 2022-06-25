@@ -12,8 +12,7 @@
     name: 'ArrowPointer',
     props: {
       cursorsConfig: {
-        type: Object,
-        required: true
+        type: Object
       }
     },
     data() {
@@ -62,6 +61,7 @@
       init() {
         this.$refs.cursor.style.top = 0 
         this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
+        this.$refs.cursor.style.transition = ''
       },
       /**
        * Get the cursor position by event and apply them to the transform property of the cursor 
@@ -124,6 +124,7 @@
         this.$refs.cursor.style.top = ''
         this.$refs.cursor.style.left = ''
         this.$refs.cursor.style.transform = ''
+        this.$refs.cursor.style.transition = '500ms'
       }
     }
   }

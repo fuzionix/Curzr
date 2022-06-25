@@ -35,7 +35,7 @@
         `
 <div class="curzr-big-circle">
   <div class="circle"></div>
-  <small class="text">MOVE</small>
+  <div class="dot"></div>
 </div>
         `,
         javascript:
@@ -44,7 +44,7 @@ class BigCircle {
   constructor() {
     this.root = document.body
     this.circle = document.querySelector(".curzr-big-circle .circle")
-    this.text = document.querySelector(".curzr-big-circle .text")
+    this.dot = document.querySelector(".curzr-big-circle .dot")
 
     this.pointerX = 0
     this.pointerY = 0
@@ -67,19 +67,20 @@ class BigCircle {
       backdropFilter: 'invert(1)'
     }
 
-    this.textStyle = {
+    this.dotStyle = {
       position: 'fixed',
-      fontSize: '.875rem',
-      color: '#fff',
-      letterSpacing: '.25rem',
-      textIndent: '.25rem',
+      width: '10px',
+      height: '10px',
+      backgroundColor: '#0000',
+      borderRadius: '50%',
+      boxShadow: '0 0 0 1.5px #fffd',
       userSelect: 'none',
       pointerEvents: 'none',
       transition: '250ms, transform 75ms'
     }
 
     this.init(this.circle, this.circleStyle)
-    this.init(this.text, this.textStyle)
+    this.init(this.dot, this.dotStyle)
   }
 
   init(el, style) {
@@ -91,7 +92,7 @@ class BigCircle {
     this.pointerY = event.pageY + this.root.getBoundingClientRect().y
   
     this.circle.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
-    this.text.style.transform = \`translate3d(calc(-50% + \${this.pointerX}px), calc(-50% + \${this.pointerY}px), 0)\`
+    this.dot.style.transform = \`translate3d(calc(-50% + \${this.pointerX}px), calc(-50% + \${this.pointerY}px), 0)\`
 
     if (event.target.localName === 'button' || 
         event.target.localName === 'a' || 
@@ -105,11 +106,9 @@ class BigCircle {
 
   hover() {
     this.circle.style.transform += \` scale(1.5)\`
-    this.text.innerHTML = 'ENTER'
   }
 
   hoverout() {
-    this.text.innerHTML = 'MOVE'
   }
 
   click() {

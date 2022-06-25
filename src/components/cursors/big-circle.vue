@@ -1,7 +1,7 @@
 <template>
   <div id="big-circle" class="big-circle" ref="cursor">
     <div class="circle" ref="circle"></div>
-    <small class="text" ref="text">MOVE</small>
+    <div class="dot" ref="dot"></div>
   </div>
 </template>
 
@@ -10,8 +10,7 @@
     name: 'BigCircle',
     props: {
       cursorsConfig: {
-        type: Object,
-        required: true
+        type: Object
       }
     },
     data() {
@@ -65,6 +64,7 @@
         nodes.forEach(node => {
           node.style.top = 0
           node.style.left = 0
+          node.style.transition = ''
         })
       },
       /**
@@ -98,14 +98,11 @@
        */
       hover() {
         this.$refs.circle.style.transform += ` scale(1.5)`
-        this.$refs.text.style.transform = `translate3d(calc(-50% + ${this.position.pointerX}px), calc(-50% + ${this.position.pointerY}px), 0)`
-        this.$refs.text.innerHTML = 'ENTER'
       },
       /**
        * Apply the transform property when triggered by the 'mouseleave' event listener
        */
       hoverout() {
-        this.$refs.text.innerHTML = 'MOVE'
       },
       /**
        * Apply the transform property when triggered by the 'click' event listener
@@ -128,6 +125,7 @@
           node.style.top = ''
           node.style.left = ''
           node.style.transform = ''
+          node.style.transition = '500ms'
         })
       }
     }
@@ -157,15 +155,16 @@
     backdrop-filter: invert(1) grayscale(1);
   }
 
-  .text {
+  .dot {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: .875rem;
-    color: #fff;
-    letter-spacing: .25rem;
-    text-indent: 0.25em;
+    width: 10px;
+    height: 10px;
+    background-color: #0000;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1.5px #fffd;
     user-select: none;
     pointer-events: none;
     transition: 250ms, transform calc(var(--cursor-delay) * 0.75);

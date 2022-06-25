@@ -12,7 +12,7 @@
           <div class="dot"></div>
         </div>
         <pre><component 
-          :is="codeBlock" 
+          :is="cursorData.componentCodeblock" 
           class="language-html" 
           language="html"
           ref="htmlBlock">
@@ -32,7 +32,7 @@
           <div class="dot"></div>
         </div>
         <pre><component 
-          :is="codeBlock" 
+          :is="cursorData.componentCodeblock" 
           class="language-js" 
           language="javascript"
           ref="javascriptBlock">
@@ -49,18 +49,40 @@
   import CopyButton from '@/components/elements/copy-button.vue'
 
   import CodeArrowPointer from '@/components/cursors_code/code-arrow-pointer.vue'
+  import CodeBigCircle from '@/components/cursors_code/code-big-circle.vue'
 
   export default {
     name: 'CursorModelJs',
     components: {
       'copy-button': CopyButton,
-      'code-arrow-pointer': CodeArrowPointer
+      'code-arrow-pointer': CodeArrowPointer,
+      'code-big-circle': CodeBigCircle
+    },
+    props: {
+      cursorData: {
+        type: Object,
+        required: true
+      }
     },
     data() {
       return {
-        codeBlock: 'code-arrow-pointer',
         html: '',
         javascript: ''
+      }
+    },
+    watch: {
+      cursorData: {
+        handler() {
+          Promise.resolve().then(() => {
+            window.Prism = window.Prism || {}
+            window.Prism.manual = true
+            Prism.highlightAll()
+
+            this.html = this.$refs.htmlBlock.html
+            this.javascript = this.$refs.htmlBlock.javascript
+          })
+        },
+        deep: true
       }
     },
     mounted() {

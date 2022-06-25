@@ -19,7 +19,10 @@
     </radio-group>
     <div class="code-block-container">
       <transition name="fade" mode="out-in" :duration="250">
-        <component :is="codeblock"></component>
+        <component 
+          :is="codeblock"
+          :cursor-data="cursorData"
+        />
       </transition>
     </div>
   </section>
