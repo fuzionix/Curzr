@@ -59,6 +59,7 @@
        */
       init() {
         this.initChild(this.$refs.cursor.childNodes)
+        this.$parent.$el.addEventListener('click', this.click)
       },
       initChild(nodes) {
         nodes.forEach(node => {
@@ -107,10 +108,20 @@
         this.$refs.text.innerHTML = 'MOVE'
       },
       /**
+       * Apply the transform property when triggered by the 'click' event listener
+       */
+      click() {
+        this.$refs.circle.style.transform += ` scale(0.75)`
+        setTimeout(() => {
+          this.$refs.circle.style.transform = this.$refs.circle.style.transform.replace(` scale(0.75)`, '')
+        }, 35)
+      },
+      /**
        * Center the position of cursors when leaving theirs container
        */
       reset() {
         this.resetChild(this.$refs.cursor.childNodes)
+        this.$parent.$el.removeEventListener('click', this.click)
       },
       resetChild(nodes) {
         nodes.forEach(node => {

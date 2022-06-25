@@ -10,7 +10,7 @@
     <div class="cursor-type">
       <badge-tag>FREE</badge-tag>
     </div>
-    <h5 class="cursor-name">Normal Cursor</h5>
+    <h5 class="cursor-name">{{ cursorData.cursorName }}</h5>
     <radio-group 
       class="content-type" 
       groupName="content-type"
@@ -41,6 +41,12 @@
       'badge-tag': BadgeTag,
       'normal-button': NormalButton,
       'radio-group': RadioGroup,
+    },
+    props: {
+      cursorData: {
+        type: Object,
+        required: true
+      }
     },
     data() {
       return {

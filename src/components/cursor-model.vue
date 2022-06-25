@@ -29,7 +29,7 @@
           </radio-group>
         </footer>
         <component 
-          :is="cursor"
+          :is="cursorData.componentName"
           ref="cursor">
         </component>
       </div>
@@ -40,7 +40,7 @@
           <keep-alive>
             <component 
               :is="model" 
-              :cursors-config="cursorsConfig"
+              :cursor-data="cursorData"
               class="block-content"
               @changeModel="changeModel">
             </component>
@@ -57,6 +57,8 @@
   import RadioGroup from '@/components/elements/radio-group.vue'
 
   import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
+  import BigCircle from '@/components/cursors/big-circle.vue'
+
   import NormalTag from '@/components/elements/tag.vue'
 
   export default {
@@ -66,7 +68,9 @@
       'cursor-model-edit': CursorModelEdit,
       'radio-group': RadioGroup,
       'normal-tag': NormalTag,
-      'arrow-pointer': ArrowPointer
+
+      'arrow-pointer': ArrowPointer,
+      'big-circle': BigCircle,
     },
     props: {
       model: {
@@ -78,11 +82,14 @@
             'cursor-model-edit'
           ].indexOf(value) !== -1
         }
+      },
+      cursorData: {
+        type: Object,
+        required: true
       }
     },
     data() {
       return {
-        cursor: 'arrow-pointer',
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
         ],

@@ -30,14 +30,14 @@
       <div class="cursor-name">{{ cursorData.cursorName }}</div>
       <div class="button-section">
         <normal-button 
-          class="normal-btn button-transparent curzr-hover" 
+          class="normal-btn button-transparent" 
           @click.native="openModel('cursor-model-edit')"
         >
           <img src="../assets/icon/Customization.svg" alt="" width="20" height="20">
           <small>Edit</small>
         </normal-button>
         <tilted-button 
-          class="tilted-btn curzr-hover" 
+          class="tilted-btn" 
           @click.native="openModel('cursor-model-viewcode')"
         >
           View Code
@@ -111,7 +111,8 @@
       openModel(model) {
         this.$emit('changeModelStatus', {
           modelStatus: true,
-          model: model
+          model: model,
+          cursorData: this.cursorData
         })
       }
     }

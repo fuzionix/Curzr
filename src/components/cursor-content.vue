@@ -24,6 +24,7 @@
         <cursor-model 
           v-if="modelStatus" 
           :model="model"
+          :cursor-data="cursorData"
           @changeModelStatus="changeModelStatus"
           @changeModel="changeModel"
         >
@@ -66,7 +67,8 @@
     data() {
       return {
         modelStatus: false,
-        model: 'cursor-model-viewcode'
+        model: 'cursor-model-viewcode',
+        cursorComponent: ''
       }
     },
     computed: {
@@ -89,6 +91,7 @@
       changeModelStatus(data) {
         this.modelStatus = data.modelStatus
         this.model = data.model
+        this.cursorData = data.cursorData
       },
       /**
        * Controll content of the model
