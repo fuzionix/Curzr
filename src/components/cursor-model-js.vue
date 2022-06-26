@@ -40,6 +40,14 @@
         <copy-button :copiedText="javascript"></copy-button>
       </div>
     </div>
+    <hr>
+    <div class="guide-container">
+      <h3 class="title">How To Use</h3>
+      <ul class="description">
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>     
+      </ul>
+    </div>
   </section>
 </template>
 
@@ -157,6 +165,31 @@
         }
       }
     }
+  }
+
+  .guide-container {
+    
+    .title {
+      font-size: 1.5rem;
+      font-variation-settings: 'wght' $--bold;
+    }
+
+    .description {
+      font-size: .875rem;
+      list-style-type: lower-roman;
+      opacity: .75;
+
+      li {
+        list-style-position: outside;
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  hr {
+    margin: 3rem 0 2rem;
+    border: 1px solid $--section-line-color;
   }
 }
 </style>
