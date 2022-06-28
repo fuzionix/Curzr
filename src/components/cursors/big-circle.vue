@@ -139,12 +139,9 @@
 
   .circle {
     position: absolute;
-    display: flex;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    justify-content: center;
-    align-items: center;
     width: var(--cursor-size);
     height: var(--cursor-size);
     background-color: #fff0;
@@ -162,7 +159,7 @@
     transform: translate(-50%, -50%);
     width: 10px;
     height: 10px;
-    background-color: #0000;
+    background-color: #0007;
     border-radius: 50%;
     box-shadow: 0 0 0 1.5px #fffd;
     user-select: none;

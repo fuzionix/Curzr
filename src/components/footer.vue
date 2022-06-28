@@ -29,7 +29,7 @@
           <h6 class="link-title">Follow Us</h6>
           <div class="link-container">
             <a href="https://github.com/TaylonChan/Curzr" target="_blank">Github</a>
-            <a href="https://www.instagram.com/project.fung/" target="_blank">Instagram</a>
+            <a href="https://www.instagram.com/explore/tags/curzr-pointer/" target="_blank">Instagram</a>
             <a href="https://codepen.io/tag/curzr" target="_blank">Codepen</a>
           </div>
         </div>

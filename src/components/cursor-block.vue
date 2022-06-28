@@ -56,6 +56,7 @@
 
   import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
   import BigCircle from '@/components/cursors/big-circle.vue'
+  import CircleAndDot from '@/components/cursors/circle-and-dot.vue'
 
   export default {
     name: 'CursorBlock',
@@ -64,8 +65,10 @@
       'normal-tag': NormalTag,
       'normal-button': NormalButton,
       'tilted-button': TiltedButton,
+
       'arrow-pointer': ArrowPointer,
-      'big-circle': BigCircle
+      'big-circle': BigCircle,
+      'circle-and-dot': CircleAndDot
     },
     props: {
       cursorData: {
@@ -126,7 +129,7 @@
   --bg-color: #fff;
   --dot-color: #669098;
   --dot-size: 1px;
-  --dot-space: 7.5px;
+  --dot-space: 8px;
   
   position: relative;
   display: flex;
@@ -248,16 +251,6 @@
     background-color: #fcfcfc;
     opacity: 1;
     transition: 250ms;
-  }
-}
-
-/** Mozilla Firefox */
-@-moz-document url-prefix() {
-  .cursor-block {
-    background: 
-      linear-gradient(90deg, var(--bg-color) calc(10px - var(--dot-size)), transparent 1%) center, 
-      linear-gradient(var(--bg-color) calc(10px - var(--dot-size)), transparent 1%) center, var(--dot-color);
-    background-size: 10px 10px;
   }
 }
 </style>

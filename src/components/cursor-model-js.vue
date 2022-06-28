@@ -58,13 +58,16 @@
 
   import CodeArrowPointer from '@/components/cursors_code/code-arrow-pointer.vue'
   import CodeBigCircle from '@/components/cursors_code/code-big-circle.vue'
+  import CodeCircleAndDot from '@/components/cursors_code/code-circle-and-dot.vue'
 
   export default {
     name: 'CursorModelJs',
     components: {
       'copy-button': CopyButton,
+
       'code-arrow-pointer': CodeArrowPointer,
-      'code-big-circle': CodeBigCircle
+      'code-big-circle': CodeBigCircle,
+      'code-circle-and-dot': CodeCircleAndDot
     },
     props: {
       cursorData: {

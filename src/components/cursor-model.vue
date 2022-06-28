@@ -58,6 +58,7 @@
 
   import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
   import BigCircle from '@/components/cursors/big-circle.vue'
+  import CircleAndDot from '@/components/cursors/circle-and-dot.vue'
 
   import NormalTag from '@/components/elements/tag.vue'
 
@@ -71,6 +72,7 @@
 
       'arrow-pointer': ArrowPointer,
       'big-circle': BigCircle,
+      'circle-and-dot': CircleAndDot
     },
     props: {
       model: {

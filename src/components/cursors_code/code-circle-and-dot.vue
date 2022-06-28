@@ -13,7 +13,7 @@
 <script>
   /* eslint-disable no-useless-escape */
   export default {
-    name: 'CodeBigCircle',
+    name: 'CodeCircleAndDot',
     components: {
     },
     props: {
@@ -33,51 +33,48 @@
       return {
         html: 
         `
-<div class="curzr-big-circle">
-  <div class="circle"></div>
-  <div class="dot"></div>
-</div>
+<div class="curzr-circle-and-dot"></div>
         `,
         javascript:
         `
-class BigCircle {
+class CircleAndDot {
   constructor() {
     this.root = document.body
-    this.circle = document.querySelector(".curzr-big-circle .circle")
-    this.dot = document.querySelector(".curzr-big-circle .dot")
+    this.circleDot = document.querySelector(".curzr-circle-and-dot")
 
-    this.pointerX = 0
-    this.pointerY = 0
-    this.cursorSize = 100
+    this.position = {
+      distanceX: 0, 
+      distanceY: 0,
+      distance: 0,
+      pointerX: 0,
+      pointerY: 0,
+    },
+    this.previousPointerX = 0
+    this.previousPointerY = 0
+    this.angle = 0
+    this.previousAngle = 0
+    this.angleDisplace = 0
+    this.degrees = 57.296
+    this.cursorSize = 50
+    this.fading = false
 
-    this.circleStyle = {
+    this.circleDotStyle = {
+      boxSizing: 'border-box',
       position: 'fixed',
       top: \`\${ this.cursorSize / -2 }px\`,
       left: \`\${ this.cursorSize / -2 }px\`,
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
       backgroundColor: '#fff0',
+      border: '20px solid #34dcff',
       borderRadius: '50%',
-      transition: '500ms, transform 100ms',
+      boxShadow: '0 -35px 0 -20px #34dcff00',
+      transition: '250ms, transform 100ms',
       userSelect: 'none',
-      pointerEvents: 'none',
-      backdropFilter: 'invert(1)'
+      pointerEvents: 'none'
     }
 
-    this.dotStyle = {
-      position: 'fixed',
-      width: '10px',
-      height: '10px',
-      backgroundColor: '#0007',
-      borderRadius: '50%',
-      boxShadow: '0 0 0 1.5px #fffd',
-      userSelect: 'none',
-      pointerEvents: 'none',
-      transition: '250ms, transform 75ms'
-    }
-
-    this.init(this.circle, this.circleStyle)
-    this.init(this.dot, this.dotStyle)
+    this.init(this.circleDot, this.circleDotStyle)
   }
 
   init(el, style) {
@@ -85,39 +82,91 @@ class BigCircle {
   }
 
   move(event) {
-    this.pointerX = event.pageX
-    this.pointerY = event.pageY + this.root.getBoundingClientRect().y
-  
-    this.circle.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
-    this.dot.style.transform = \`translate3d(calc(-50% + \${this.pointerX}px), calc(-50% + \${this.pointerY}px), 0)\`
+    this.previousPointerX = this.position.pointerX
+    this.previousPointerY = this.position.pointerY
+    this.position.pointerX = event.pageX + this.root.getBoundingClientRect().x
+    this.position.pointerY = event.pageY + this.root.getBoundingClientRect().y
+    this.position.distanceX = this.previousPointerX - this.position.pointerX
+    this.position.distanceY = this.previousPointerY - this.position.pointerY
+    this.distance = Math.sqrt(this.position.distanceY ** 2 + this.position.distanceX ** 2)
 
     if (event.target.localName === 'button' || 
         event.target.localName === 'a' || 
         event.target.onclick !== null ||
         event.target.className.includes('curzr-hover')) {
       this.hover()
+    } else {
+      this.hoverout()
     }
+
+
+    this.circleDot.style.transform = \`translate3d(\${this.position.pointerX}px, \${this.position.pointerY}px, 0)\`
+
+    this.rotate(this.position)
+    this.fade(this.distance)
+  }
+
+  rotate(position) {
+    let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
+    this.previousAngle = this.angle
+
+    if (position.distanceX <= 0 && position.distanceY >= 0) {
+      this.angle = 90 - unsortedAngle + 0
+    } else if (position.distanceX < 0 && position.distanceY < 0) {
+      this.angle = unsortedAngle + 90
+    } else if (position.distanceX >= 0 && position.distanceY <= 0) {
+      this.angle = 90 - unsortedAngle + 180
+    } else if (position.distanceX > 0 && position.distanceY > 0) {
+      this.angle = unsortedAngle + 270
+    }
+
+    if (isNaN(this.angle)) {
+      this.angle = this.previousAngle
+    } else {
+      if (this.angle - this.previousAngle <= -270) {
+        this.angleDisplace += 360 + this.angle - this.previousAngle
+      } else if (this.angle - this.previousAngle >= 270) {
+        this.angleDisplace += this.angle - this.previousAngle - 360
+      } else {
+        this.angleDisplace += this.angle - this.previousAngle
+      }
+    }
+    this.circleDot.style.transform += \` rotate(\${this.angleDisplace}deg)\`
   }
 
   hover() {
-    this.circle.style.transform += \` scale(1.5)\`
+    this.circleDot.style.border = '15px solid #34dcff'
+  }
+
+  hoverout() {
+    this.circleDot.style.border = '20px solid #34dcff'
+  }
+
+  fade(distance) {
+    this.circleDot.style.boxShadow = \`0 \${-35 - distance}px 0 -20px #34dcff\`
+    if (!this.fading) {
+      this.fading = true
+      setTimeout(() => {
+        this.circleDot.style.boxShadow = '0 -35px 0 -20px #34dcff00'
+        this.fading = false
+      }, 50)
+    }
   }
 
   click() {
-    this.circle.style.transform += \` scale(0.75)\`
+    this.circleDot.style.transform += \` scale(0.75)\`
     setTimeout(() => {
-      this.circle.style.transform = this.circle.style.transform.replace(\` scale(0.75)\`, '')
+      this.circleDot.style.transform = this.circleDot.style.transform.replace(\` scale(0.75)\`, '')
     }, 35)
   }
 
   remove() {
-    this.circle.remove()
-    this.dot.remove()
+    this.circleDot.remove()
   }
 }
 
 (() => {
-  const cursor = new BigCircle()
+  const cursor = new CircleAndDot()
   if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     document.onmousemove = function (event) {
       cursor.move(event)
@@ -128,7 +177,6 @@ class BigCircle {
   } else {
     cursor.remove()
   }
-  
 })()
         `,
         vue: 

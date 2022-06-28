@@ -17,10 +17,10 @@
       "Multiple"
     ]
   },
-  "normalCursor2": {
-    "cursorName": "Normal Cursor",
-    "componentName": "arrow-pointer",
-    "componentCodeblock": "code-arrow-pointer",
+  "CircleAndDot": {
+    "cursorName": "Circle And Dot",
+    "componentName": "circle-and-dot",
+    "componentCodeblock": "code-circle-and-dot",
     "features": [
       "Hover",
       "Click",

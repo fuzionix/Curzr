@@ -118,7 +118,8 @@
 
   .cursor-name {
     margin-top: 1rem;
-    letter-spacing: .5px;
+    letter-spacing: -2px;
+    font-size: 2.5rem;
   }
 
   .content-type {

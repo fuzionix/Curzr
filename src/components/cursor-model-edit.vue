@@ -66,6 +66,8 @@
   .title {
     margin-top: 1rem;
     letter-spacing: .5px;
+    font-size: 1.5rem;
+    font-variation-settings: 'wght' $--bold;
   }
 }
 </style>
