@@ -8,20 +8,24 @@
       <img src="../assets/icon/arrow.svg" alt="view code arrow" width="10" height="10">
     </normal-button>
     <h5 class="title">Edit Cursor</h5>
+    <sketch-color-picker v-model="colors"></sketch-color-picker>
   </section>
 </template>
 
 <script>
+  import { Sketch } from 'vue-color'
+
   import NormalButton from '@/components/elements/normal-button.vue'
 
   export default {
     name: 'CursorModelEdit',
     components: {
+      'sketch-color-picker': Sketch,
       'normal-button': NormalButton,
     },
     data() {
       return {
-        
+        colors: '#194d33'
       }
     },
     methods: {
@@ -68,6 +72,19 @@
     letter-spacing: .5px;
     font-size: 1.5rem;
     font-variation-settings: 'wght' $--bold;
+  }
+}
+</style>
+
+<style lang="scss">
+.block-content {
+  .vc-sketch {
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 0%);
+
+    .vc-sketch-saturation-wrap {
+      border-radius: 6px;
+    }
   }
 }
 </style>

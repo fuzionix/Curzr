@@ -75,6 +75,7 @@
         this.position.pointerX = event.pageX - cursorBlock.getBoundingClientRect().x
         this.position.pointerY = event.pageY - cursorBlock.getBoundingClientRect().y + this.$root.$el.getBoundingClientRect().y
 
+        console.log(event)
         this.position.distanceX = this.previousPointerX - this.position.pointerX
         this.position.distanceY = this.previousPointerY - this.position.pointerY
 

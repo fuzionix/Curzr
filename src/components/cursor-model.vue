@@ -2,8 +2,9 @@
   <section id="cursor-model" class="cursor-model" @click="closeModelByOuterSpace($event)">
     <div class="model-block">
       <div class="block-left"
-        @mousemove="move($event)"
+        @[eventName]="move($event)"
         @mouseenter="init()"
+        @touchstart="init()"
         @mouseleave="reset()"
         ref="cursorBlock">
         <button class="close-btn" @click="closeModelByButton($event)">
@@ -95,7 +96,15 @@
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
         ],
-        contentType: 'Text'
+        contentType: 'Text',
+        eventName: ''
+      }
+    },
+    mounted() {
+      if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        this.eventName = 'mousemove'
+      } else {
+        this.eventName = 'touchmove'
       }
     },
     methods: {
@@ -111,7 +120,11 @@
        * @param {object} event
        */
       move(event) {
-        this.$refs.cursor.move(event, this.$refs.cursorBlock)
+        if (this.eventName === 'touchmove') {
+          this.$refs.cursor.move(event.touches[0], this.$refs.cursorBlock)
+        } else {
+          this.$refs.cursor.move(event, this.$refs.cursorBlock)
+        }
       },
       /**
        * Every cursor has its own reset method @see /components/cursors/
@@ -183,6 +196,7 @@
     background: #fff;
     border-radius: $--common-radius;
     overflow: hidden;
+    touch-action: none;
 
     .block-left {
       position: relative;
