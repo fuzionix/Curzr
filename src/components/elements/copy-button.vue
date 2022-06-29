@@ -3,7 +3,7 @@
     <img v-if="!isCopied" src="../../assets/icon/copy-icon.svg" alt="copy icon" width="16" height="16">
     <img v-else src="../../assets/icon/complete-icon.svg" alt="complete icon" width="16" height="16">
     <span v-if="!isCopied">Copy to clipboard</span>
-    <span v-else>Copied</span>
+    <span v-else role="alert">Copied</span>
   </button>
 </template>
 
