@@ -8,20 +8,28 @@
       <img src="../assets/icon/arrow.svg" alt="view code arrow" width="10" height="10">
     </normal-button>
     <h5 class="title">Edit Cursor</h5>
-    <sketch-color-picker v-model="colors"></sketch-color-picker>
+    <small>Cursor Size</small>
+    <range-bar
+      id="edit-range-size"
+      class="range-bar"
+      :range-value="0"
+      :minmax="[-25, 25]"
+    />
   </section>
 </template>
 
 <script>
-  import { Sketch } from 'vue-color'
+  // import { Sketch } from 'vue-color'
 
   import NormalButton from '@/components/elements/normal-button.vue'
+  import RangeBar from '@/components/elements/range-bar.vue'
 
   export default {
     name: 'CursorModelEdit',
     components: {
-      'sketch-color-picker': Sketch,
+      // 'sketch-color-picker': Sketch,
       'normal-button': NormalButton,
+      'range-bar': RangeBar
     },
     data() {
       return {
@@ -72,6 +80,12 @@
     letter-spacing: .5px;
     font-size: 1.5rem;
     font-variation-settings: 'wght' $--bold;
+  }
+
+  .range-bar {
+    max-width: initial;
+    margin: 1rem;
+    margin-top: 1rem;
   }
 }
 </style>

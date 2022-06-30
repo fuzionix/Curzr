@@ -78,8 +78,8 @@
 
         this.cursorStyle.transform = `translate3d(${this.pointerX}px, ${this.pointerY}px, 0)`
         this.cursorStyle.boxShadow = `
-          ${+this.distanceX}px ${+this.distanceY}px 0 -1px ${this.glitchColorB}, 
-          ${-this.distanceX}px ${-this.distanceY}px 0 -1px ${this.glitchColorR}`
+          ${+this.distanceX}px ${+this.distanceY}px 0 ${this.glitchColorB}, 
+          ${-this.distanceX}px ${-this.distanceY}px 0 ${this.glitchColorR}`
       },
       /**
        * Apply the transform property when triggered by the 'mousemove' event listener
