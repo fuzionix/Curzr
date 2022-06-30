@@ -57,6 +57,7 @@
   import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
   import BigCircle from '@/components/cursors/big-circle.vue'
   import CircleAndDot from '@/components/cursors/circle-and-dot.vue'
+  import GlitchEffect from '@/components/cursors/glitch-effect.vue'
 
   export default {
     name: 'CursorBlock',
@@ -68,7 +69,8 @@
 
       'arrow-pointer': ArrowPointer,
       'big-circle': BigCircle,
-      'circle-and-dot': CircleAndDot
+      'circle-and-dot': CircleAndDot,
+      'glitch-effect': GlitchEffect
     },
     props: {
       cursorData: {

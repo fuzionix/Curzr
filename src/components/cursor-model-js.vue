@@ -59,6 +59,7 @@
   import CodeArrowPointer from '@/components/cursors_code/code-arrow-pointer.vue'
   import CodeBigCircle from '@/components/cursors_code/code-big-circle.vue'
   import CodeCircleAndDot from '@/components/cursors_code/code-circle-and-dot.vue'
+  import CodeGlitchEffect from '@/components/cursors_code/code-glitch-effect.vue'
 
   export default {
     name: 'CursorModelJs',
@@ -67,7 +68,8 @@
 
       'code-arrow-pointer': CodeArrowPointer,
       'code-big-circle': CodeBigCircle,
-      'code-circle-and-dot': CodeCircleAndDot
+      'code-circle-and-dot': CodeCircleAndDot,
+      'code-glitch-effect': CodeGlitchEffect
     },
     props: {
       cursorData: {

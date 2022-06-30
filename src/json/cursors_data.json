@@ -17,7 +17,7 @@
       "Multiple"
     ]
   },
-  "CircleAndDot": {
+  "circleAndDot": {
     "cursorName": "Circle And Dot",
     "componentName": "circle-and-dot",
     "componentCodeblock": "code-circle-and-dot",
@@ -27,10 +27,10 @@
       "Rotate"
     ]
   },
-  "normalCursor3": {
-    "cursorName": "Normal Cursor",
-    "componentName": "arrow-pointer",
-    "componentCodeblock": "code-arrow-pointer",
+  "glitchEffect": {
+    "cursorName": "Glitch Effect",
+    "componentName": "glitch-effect",
+    "componentCodeblock": "code-glitch-effect",
     "features": [
       "Hover",
       "Click"
