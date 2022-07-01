@@ -13,7 +13,7 @@
 <script>
   /* eslint-disable no-useless-escape */
   export default {
-    name: 'CodeGlitchEffect',
+    name: 'CodeMotionBlur',
     components: {
     },
     props: {
@@ -33,24 +33,35 @@
       return {
         html: 
         `
-<div class="curzr-glitch-effect"></div>
+<svg class="curzr-glitch-effect">
+  <filter id="motionblur" x="-100%" y="-100%" width="400%" height="400%">
+    <feGaussianBlur class="curzr-motion-blur" stdDeviation="0, 0"/>
+  </filter>
+  <circle cx="50%" cy="50%" r="12.5" fill="#282828" filter="url(#motionblur)" />
+</svg>
         `,
         javascript:
         `
-class GlitchEffect {
+class MotionBlur {
   constructor() {
     this.root = document.body
     this.cursor = document.querySelector(".curzr-glitch-effect")
+    this.filter = document.querySelector(".curzr-motion-blur")
 
-    this.distanceX = 0, 
-    this.distanceY = 0,
-    this.pointerX = 0,
-    this.pointerY = 0,
+    this.position = {
+      distanceX: 0, 
+      distanceY: 0,
+      pointerX: 0,
+      pointerY: 0,
+    },
     this.previousPointerX = 0
     this.previousPointerY = 0
+    this.angle = 0
+    this.previousAngle = 0
+    this.angleDisplace = 0
+    this.degrees = 57.296
     this.cursorSize = 25
-    this.glitchColorB = '#00feff'
-    this.glitchColorR = '#ff4f71'
+    this.moving = false
 
     this.cursorStyle = {
       boxSizing: 'border-box',
@@ -59,10 +70,9 @@ class GlitchEffect {
       left: \`\${ this.cursorSize / -2 }px\`,
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
-      backgroundColor: '#222',
       borderRadius: '50%',
-      boxShadow: \`0 0 0 \${this.glitchColorB}, 0 0 0 \${this.glitchColorR}\`,
-      transition: '250ms, transform 100ms',
+      overflow: 'visible',
+      transition: '500ms, transform 100ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -75,12 +85,12 @@ class GlitchEffect {
   }
 
   move(event) {
-    this.previousPointerX = this.pointerX
-    this.previousPointerY = this.pointerY
-    this.pointerX = event.pageX + this.root.getBoundingClientRect().x
-    this.pointerY = event.pageY + this.root.getBoundingClientRect().y
-    this.distanceX = Math.min(Math.max(this.previousPointerX - this.pointerX, -10), 10) * 1.5
-    this.distanceY = Math.min(Math.max(this.previousPointerY - this.pointerY, -10), 10) * 1.5
+    this.previousPointerX = this.position.pointerX
+    this.previousPointerY = this.position.pointerY
+    this.position.pointerX = event.pageX + this.root.getBoundingClientRect().x
+    this.position.pointerY = event.pageY + this.root.getBoundingClientRect().y
+    this.position.distanceX = Math.min(Math.max(this.previousPointerX - this.position.pointerX, -20), 20)
+    this.position.distanceY = Math.min(Math.max(this.previousPointerY - this.position.pointerY, -20), 20)
 
     if (event.target.localName === 'button' || 
         event.target.localName === 'a' || 
@@ -91,11 +101,31 @@ class GlitchEffect {
       this.hoverout()
     }
 
-    this.cursor.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
-    this.cursor.style.boxShadow = \`
-      \${+this.distanceX}px \${+this.distanceY}px 0 \${this.glitchColorB}, 
-      \${-this.distanceX}px \${-this.distanceY}px 0 \${this.glitchColorR}\`
+    this.cursor.style.transform = \`translate3d(\${this.position.pointerX}px, \${this.position.pointerY}px, 0)\`
+    this.rotate(this.position)
     this.stop()
+  }
+
+  rotate(position) {
+    let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
+    this.previousAngle = this.angle
+
+    this.angle = unsortedAngle
+
+    if (isNaN(this.angle)) {
+      this.angle = this.previousAngle
+    } else {
+      if (this.angle <= 45) {
+        if (position.distanceX * position.distanceY >= 0) {
+          this.cursor.style.transform += \` rotate(\${+this.angle}deg)\`
+        } else {
+          this.cursor.style.transform += \` rotate(\${-this.angle}deg)\`
+        }
+        this.filter.setAttribute('stdDeviation', \`\${Math.abs(this.position.distanceX / 2)}, 0\`)
+      } else {
+        
+      }
+    }
   }
 
   hover() {
@@ -115,7 +145,7 @@ class GlitchEffect {
     if (!this.moving) {
       this.moving = true
       setTimeout(() => {
-        this.cursor.style.boxShadow = ''
+        this.filter.setAttribute('stdDeviation', \`0, 0\`)
         this.moving = false
       }, 50)
     }
@@ -127,7 +157,7 @@ class GlitchEffect {
 }
 
 (() => {
-  const cursor = new GlitchEffect()
+  const cursor = new MotionBlur()
   if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     document.onmousemove = function (event) {
       cursor.move(event)

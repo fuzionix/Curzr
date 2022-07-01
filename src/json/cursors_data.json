@@ -36,13 +36,14 @@
       "Click"
     ]
   },
-  "normalCursor4": {
-    "cursorName": "Normal Cursor",
-    "componentName": "arrow-pointer",
-    "componentCodeblock": "code-arrow-pointer",
+  "motionBlur": {
+    "cursorName": "Motion Blur",
+    "componentName": "motion-blur",
+    "componentCodeblock": "code-motion-blur",
     "features": [
       "Hover",
-      "Click"
+      "Click",
+      "Rotate"
     ]
   }
 }

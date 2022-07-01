@@ -72,7 +72,8 @@
       'arrow-pointer': Cursors.ArrowPointer,
       'big-circle': Cursors.BigCircle,
       'circle-and-dot': Cursors.CircleAndDot,
-      'glitch-effect': Cursors.GlitchEffect
+      'glitch-effect': Cursors.GlitchEffect,
+      'motion-blur': Cursors.MotionBlur
     },
     props: {
       model: {

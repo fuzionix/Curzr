@@ -38,7 +38,8 @@
       'code-arrow-pointer': Code.CodeArrowPointer,
       'code-big-circle': Code.CodeBigCircle,
       'code-circle-and-dot': Code.CodeCircleAndDot,
-      'code-glitch-effect': Code.CodeGlitchEffect
+      'code-glitch-effect': Code.CodeGlitchEffect,
+      'code-motion-blur': Code.CodeMotionBlur
     },
     props: {
       cursorData: {
