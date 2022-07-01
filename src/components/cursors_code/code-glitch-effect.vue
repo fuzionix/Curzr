@@ -93,8 +93,9 @@ class GlitchEffect {
 
     this.cursor.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
     this.cursor.style.boxShadow = \`
-      \${+this.distanceX}px \${+this.distanceY}px 0 -1px \${this.glitchColorB}, 
-      \${-this.distanceX}px \${-this.distanceY}px 0 -1px \${this.glitchColorR}\`
+      \${+this.distanceX}px \${+this.distanceY}px 0 \${this.glitchColorB}, 
+      \${-this.distanceX}px \${-this.distanceY}px 0 \${this.glitchColorR}\`
+    this.stop()
   }
 
   hover() {
@@ -108,6 +109,16 @@ class GlitchEffect {
     setTimeout(() => {
       this.cursor.style.transform = this.cursor.style.transform.replace(\` scale(0.75)\`, '')
     }, 35)
+  }
+
+  stop() {
+    if (!this.moving) {
+      this.moving = true
+      setTimeout(() => {
+        this.cursorStyle.boxShadow = ''
+        this.moving = false
+      }, 50)
+    }
   }
 
   remove() {

@@ -57,10 +57,7 @@
   import CursorModelEdit from '@/components/cursor-model-edit.vue'
   import RadioGroup from '@/components/elements/radio-group.vue'
 
-  import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
-  import BigCircle from '@/components/cursors/big-circle.vue'
-  import CircleAndDot from '@/components/cursors/circle-and-dot.vue'
-  import GlitchEffect from '@/components/cursors/glitch-effect.vue'
+  import Cursors from '@/components/module/cursors.js'
 
   import NormalTag from '@/components/elements/tag.vue'
 
@@ -72,10 +69,10 @@
       'radio-group': RadioGroup,
       'normal-tag': NormalTag,
 
-      'arrow-pointer': ArrowPointer,
-      'big-circle': BigCircle,
-      'circle-and-dot': CircleAndDot,
-      'glitch-effect': GlitchEffect
+      'arrow-pointer': Cursors.ArrowPointer,
+      'big-circle': Cursors.BigCircle,
+      'circle-and-dot': Cursors.CircleAndDot,
+      'glitch-effect': Cursors.GlitchEffect
     },
     props: {
       model: {

@@ -29,19 +29,16 @@
 
   import CopyButton from '@/components/elements/copy-button.vue'
 
-  import CodeArrowPointer from '@/components/cursors_code/code-arrow-pointer.vue'
-  import CodeBigCircle from '@/components/cursors_code/code-big-circle.vue'
-  import CodeCircleAndDot from '@/components/cursors_code/code-circle-and-dot.vue'
-  import CodeGlitchEffect from '@/components/cursors_code/code-glitch-effect.vue'
+  import Code from '@/components/module/cursors_code.js'
 
   export default {
     name: 'CursorModelVue',
     components: {
       'copy-button': CopyButton,
-      'code-arrow-pointer': CodeArrowPointer,
-      'code-big-circle': CodeBigCircle,
-      'code-circle-and-dot': CodeCircleAndDot,
-      'code-glitch-effect': CodeGlitchEffect
+      'code-arrow-pointer': Code.CodeArrowPointer,
+      'code-big-circle': Code.CodeBigCircle,
+      'code-circle-and-dot': Code.CodeCircleAndDot,
+      'code-glitch-effect': Code.CodeGlitchEffect
     },
     props: {
       cursorData: {

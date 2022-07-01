@@ -54,10 +54,7 @@
   import NormalButton from '@/components/elements/normal-button.vue'
   import TiltedButton from '@/components/elements/tilted-button.vue'
 
-  import ArrowPointer from '@/components/cursors/arrow-pointer.vue'
-  import BigCircle from '@/components/cursors/big-circle.vue'
-  import CircleAndDot from '@/components/cursors/circle-and-dot.vue'
-  import GlitchEffect from '@/components/cursors/glitch-effect.vue'
+  import Cursors from '@/components/module/cursors.js'
 
   export default {
     name: 'CursorBlock',
@@ -67,10 +64,10 @@
       'normal-button': NormalButton,
       'tilted-button': TiltedButton,
 
-      'arrow-pointer': ArrowPointer,
-      'big-circle': BigCircle,
-      'circle-and-dot': CircleAndDot,
-      'glitch-effect': GlitchEffect
+      'arrow-pointer': Cursors.ArrowPointer,
+      'big-circle': Cursors.BigCircle,
+      'circle-and-dot': Cursors.CircleAndDot,
+      'glitch-effect': Cursors.GlitchEffect
     },
     props: {
       cursorData: {

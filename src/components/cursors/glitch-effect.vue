@@ -18,6 +18,7 @@
         pointerY: 0,
         previousPointerX: 0,
         previousPointerY: 0,
+        moving: false,
         glitchColorB: '#00feff',
         glitchColorR: '#ff4f71'
       }
@@ -80,6 +81,8 @@
         this.cursorStyle.boxShadow = `
           ${+this.distanceX}px ${+this.distanceY}px 0 ${this.glitchColorB}, 
           ${-this.distanceX}px ${-this.distanceY}px 0 ${this.glitchColorR}`
+        
+        this.stop()
       },
       /**
        * Apply the transform property when triggered by the 'mousemove' event listener
@@ -99,6 +102,15 @@
         setTimeout(() => {
           this.cursorStyle.transform = this.cursorStyle.transform.replace(` scale(0.75)`, '')
         }, 35)
+      },
+      stop() {
+        if (!this.moving) {
+          this.moving = true
+          setTimeout(() => {
+            this.cursorStyle.boxShadow = ''
+            this.moving = false
+          }, 50)
+        }
       },
       /**
        * Center the position of cursor when leaving its container
