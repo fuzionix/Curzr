@@ -72,7 +72,7 @@ class MotionBlur {
       height: \`\${ this.cursorSize }px\`,
       borderRadius: '50%',
       overflow: 'visible',
-      transition: '500ms, transform 100ms',
+      transition: '200ms, transform 20ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -92,63 +92,42 @@ class MotionBlur {
     this.position.distanceX = Math.min(Math.max(this.previousPointerX - this.position.pointerX, -20), 20)
     this.position.distanceY = Math.min(Math.max(this.previousPointerY - this.position.pointerY, -20), 20)
 
-    if (event.target.localName === 'button' || 
-        event.target.localName === 'a' || 
-        event.target.onclick !== null ||
-        event.target.className.includes('curzr-hover')) {
-      this.hover()
-    } else {
-      this.hoverout()
-    }
-
     this.cursor.style.transform = \`translate3d(\${this.position.pointerX}px, \${this.position.pointerY}px, 0)\`
     this.rotate(this.position)
-    this.stop()
+    this.moving ? this.stop() : this.moving = true
   }
 
   rotate(position) {
     let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
-    this.previousAngle = this.angle
-
-    this.angle = unsortedAngle
-
-    if (isNaN(this.angle)) {
+    
+    if (isNaN(unsortedAngle)) {
       this.angle = this.previousAngle
     } else {
-      if (this.angle <= 45) {
+      if (unsortedAngle <= 45) {
         if (position.distanceX * position.distanceY >= 0) {
-          this.cursor.style.transform += \` rotate(\${+this.angle}deg)\`
+          this.angle = +unsortedAngle
         } else {
-          this.cursor.style.transform += \` rotate(\${-this.angle}deg)\`
+          this.angle = -unsortedAngle
         }
         this.filter.setAttribute('stdDeviation', \`\${Math.abs(this.position.distanceX / 2)}, 0\`)
       } else {
-        
+        if (position.distanceX * position.distanceY <= 0) {
+          this.angle = +90 - unsortedAngle + 90
+        } else {
+          this.angle = -90 + unsortedAngle + 90
+        }
+        this.filter.setAttribute('stdDeviation', \`\${Math.abs(this.position.distanceY / 2)}, 0\`)
       }
     }
-  }
-
-  hover() {
-  }
-
-  hoverout() {
-  }
-
-  click() {
-    this.cursor.style.transform += \` scale(0.75)\`
-    setTimeout(() => {
-      this.cursor.style.transform = this.cursor.style.transform.replace(\` scale(0.75)\`, '')
-    }, 35)
+    this.cursor.style.transform += \` rotate(\${this.angle}deg)\`
+    this.previousAngle = this.angle
   }
 
   stop() {
-    if (!this.moving) {
-      this.moving = true
-      setTimeout(() => {
-        this.filter.setAttribute('stdDeviation', \`0, 0\`)
-        this.moving = false
-      }, 50)
-    }
+    setTimeout(() => {
+      this.filter.setAttribute('stdDeviation', '0, 0')
+      this.moving = false
+    }, 50)
   }
 
   remove() {

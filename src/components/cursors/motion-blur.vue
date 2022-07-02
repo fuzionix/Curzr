@@ -52,7 +52,6 @@
       cursorsConfig: {
         handler(configValue) {
           this.cursorStyle.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
-          this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
         },
         deep: true,
         immeditate: true
@@ -88,27 +87,32 @@
 
         this.cursorStyle.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
         this.rotate(this.position)
-        this.stop()
+        this.moving ? this.stop() : this.moving = true
       },
       rotate(position) {
         let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
-        this.previousAngle = this.angle
 
-        this.angle = unsortedAngle
-
-        if (isNaN(this.angle)) {
+        if (isNaN(unsortedAngle)) {
           this.angle = this.previousAngle
         } else {
-          if (this.angle <= 45) {
+          if (unsortedAngle <= 45) {
             if (position.distanceX * position.distanceY >= 0) {
-              this.cursorStyle.transform += ` rotate(${+this.angle}deg)`
+              this.angle = +unsortedAngle
             } else {
-              this.cursorStyle.transform += ` rotate(${-this.angle}deg)`
+              this.angle = -unsortedAngle
             }
             this.$refs.cursorMotionBlur.setAttribute('stdDeviation', `${Math.abs(this.position.distanceX / 2)}, 0`)
+          } else {
+            if (position.distanceX * position.distanceY <= 0) {
+              this.angle = 180 - unsortedAngle
+            } else {
+              this.angle = unsortedAngle
+            }
+            this.$refs.cursorMotionBlur.setAttribute('stdDeviation', `${Math.abs(this.position.distanceY / 2)}, 0`)
           }
         }
-        console.log(this.$refs.cursorMotionBlur)
+        this.cursorStyle.transform += ` rotate(${this.angle}deg)`
+        this.previousAngle = this.angle
       },
       /**
        * Apply the transform property when triggered by the 'mousemove' event listener
@@ -130,13 +134,10 @@
         }, 35)
       },
       stop() {
-        if (!this.moving) {
-          this.moving = true
-          setTimeout(() => {
-            this.$refs.cursorMotionBlur.setAttribute('stdDeviation', '0, 0')
-            this.moving = false
-          }, 50)
-        }
+        setTimeout(() => {
+          this.$refs.cursorMotionBlur.setAttribute('stdDeviation', '0, 0')
+          this.moving = false
+        }, 50)
       },
       /**
        * Center the position of cursor when leaving its container
@@ -155,7 +156,7 @@
 <style lang="scss" scoped>
 .curzr-glitch-effect {
   --cursor-size:  25px;
-  --cursor-delay: 100ms;
+  --cursor-delay: 20ms;
 
   position: absolute;
   top: 50%;
