@@ -37,7 +37,7 @@
   <filter id="motionblur" x="-100%" y="-100%" width="400%" height="400%">
     <feGaussianBlur class="curzr-motion-blur" stdDeviation="0, 0"/>
   </filter>
-  <circle cx="50%" cy="50%" r="12.5" fill="#282828" filter="url(#motionblur)" />
+  <circle cx="50%" cy="50%" r="10" fill="#120d27" filter="url(#motionblur)" />
 </svg>
         `,
         javascript:

@@ -1,9 +1,9 @@
 <template>
   <svg class="curzr-glitch-effect" ref="cursor">
-    <filter id="motionblur" x="-100%" y="-100%" width="400%" height="400%">
-      <feGaussianBlur ref="cursorMotionBlur" stdDeviation="10, 0"/>
+    <filter :id="`motionblur-${this._uid}`" x="-100%" y="-100%" width="400%" height="400%">
+      <feGaussianBlur class="cursor-motion-blur" stdDeviation="0, 0"/>
     </filter>
-    <circle cx="50%" cy="50%" r="12.5" fill="#282828" filter="url(#motionblur)" />
+    <circle cx="50%" cy="50%" r="10" fill="#120d27" :filter="`url(#motionblur-${this._uid})`" />
   </svg>
 </template>
 
@@ -41,6 +41,9 @@
       },
       cursorStyle() {
         return this.$refs.cursor.style
+      },
+      motionBlur() {
+        return this.$refs.cursor.querySelector('.cursor-motion-blur')
       }
     },
     watch: {
@@ -101,14 +104,14 @@
             } else {
               this.angle = -unsortedAngle
             }
-            this.$refs.cursorMotionBlur.setAttribute('stdDeviation', `${Math.abs(this.position.distanceX / 2)}, 0`)
+            this.motionBlur.setAttribute('stdDeviation', `${Math.abs(this.position.distanceX / 2)}, 0`)
           } else {
             if (position.distanceX * position.distanceY <= 0) {
               this.angle = 180 - unsortedAngle
             } else {
               this.angle = unsortedAngle
             }
-            this.$refs.cursorMotionBlur.setAttribute('stdDeviation', `${Math.abs(this.position.distanceY / 2)}, 0`)
+            this.motionBlur.setAttribute('stdDeviation', `${Math.abs(this.position.distanceY / 2)}, 0`)
           }
         }
         this.cursorStyle.transform += ` rotate(${this.angle}deg)`
@@ -135,7 +138,7 @@
       },
       stop() {
         setTimeout(() => {
-          this.$refs.cursorMotionBlur.setAttribute('stdDeviation', '0, 0')
+          this.motionBlur.setAttribute('stdDeviation', '0, 0')
           this.moving = false
         }, 50)
       },
