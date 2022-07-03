@@ -11,7 +11,7 @@
     <div class="edit-container">
       <div class="input-container">
         <small class="input-name">Size</small>
-        <small class="input-description">Edit the size of the cursor</small>
+        <small class="input-description">Adjust the size of the cursor</small>
         <range-bar
           id="edit-size"
           class="range-bar"
@@ -21,7 +21,7 @@
       </div>
       <div class="input-container">
         <small class="input-name">Delay</small>
-        <small class="input-description">Edit the dalay time of the cursor</small>
+        <small class="input-description">Adjust the duration of the cursor from previous point to next point</small>
         <range-bar
           id="edit-delay"
           class="range-bar"
@@ -29,13 +29,19 @@
           :minmax="[-25, 25]"
         />
       </div>
+      <hr>
+      <div class="input-container">
+        <small class="input-name">Color</small>
+        <small class="input-description">Change the color of cursor body</small>
+        <color-picker class="color-picker" />
+      </div>
     </div>
     
   </section>
 </template>
 
 <script>
-  // import { Sketch } from 'vue-color'
+  import ColorPicker from '@/components/elements/color-picker.vue'
 
   import NormalButton from '@/components/elements/normal-button.vue'
   import RangeBar from '@/components/elements/range-bar.vue'
@@ -43,7 +49,7 @@
   export default {
     name: 'CursorModelEdit',
     components: {
-      // 'sketch-color-picker': Sketch,
+      'color-picker': ColorPicker,
       'normal-button': NormalButton,
       'range-bar': RangeBar
     },
@@ -109,31 +115,28 @@
       }
 
       .input-description { 
+        margin-top: .5rem;
         opacity: .5;
+        font-size: .75rem;
       }
 
       .range-bar {
         max-width: initial;
         margin: 1rem 0 2rem;
       }
+
+      .color-picker {
+        margin: 1rem 0 2rem;
+      }
     }
 
-    
+    hr {
+      margin-bottom: 2rem;
+      border: 0;
+      border-top: 1px solid darken($--section-line-color, 5%);
+    }
   }
 
   
-}
-</style>
-
-<style lang="scss">
-.block-content {
-  .vc-sketch {
-    border-radius: 12px;
-    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 0%);
-
-    .vc-sketch-saturation-wrap {
-      border-radius: 6px;
-    }
-  }
 }
 </style>
