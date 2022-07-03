@@ -112,9 +112,9 @@ class MotionBlur {
         this.filter.setAttribute('stdDeviation', \`\${Math.abs(this.position.distanceX / 2)}, 0\`)
       } else {
         if (position.distanceX * position.distanceY <= 0) {
-          this.angle = +90 - unsortedAngle + 90
+          this.angle = 180 - unsortedAngle
         } else {
-          this.angle = -90 + unsortedAngle + 90
+          this.angle = unsortedAngle
         }
         this.filter.setAttribute('stdDeviation', \`\${Math.abs(this.position.distanceY / 2)}, 0\`)
       }

@@ -5,7 +5,7 @@
         <div class="hash-symbol">
           <span>#</span>
         </div>
-        <input type="text" maxlength="6">
+        <input type="text" maxlength="8" :value="colors.hex | removeHash">
       </label>
     </div>
     <div class="color-block">
@@ -21,9 +21,23 @@
     components: {
       'sketch-color-picker': Sketch
     },
+    filters: {
+      removeHash(value) {
+        return value.slice(1)
+      }
+    },
     data() {
       return {
-        colors: '#194d33'
+        colors: {
+          hex: '#ED24AB'
+        }
+      }
+    },
+    watch: {
+      colors: {
+        handler(value) {
+          console.log(value)
+        }
       }
     }
   }
@@ -66,6 +80,7 @@
         padding-left: 60px;
         outline: 0px solid transparentize($--section-line-color, 0.5);
         font-size: .875rem;
+        letter-spacing: 1px;
         transition: 50ms;
         caret-color: #888;
 

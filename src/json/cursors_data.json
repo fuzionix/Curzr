@@ -41,8 +41,6 @@
     "componentName": "motion-blur",
     "componentCodeblock": "code-motion-blur",
     "features": [
-      "Hover",
-      "Click",
       "Rotate"
     ]
   }
