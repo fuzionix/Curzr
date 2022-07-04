@@ -3,7 +3,7 @@
     <filter :id="`motionblur-${this._uid}`" x="-100%" y="-100%" width="400%" height="400%">
       <feGaussianBlur class="cursor-motion-blur" stdDeviation="0, 0"/>
     </filter>
-    <circle cx="50%" cy="50%" r="10" fill="#120d27" :filter="`url(#motionblur-${this._uid})`" />
+    <circle cx="50%" cy="50%" :r="`${10 + (cursorsConfig.size / 4)}`" fill="#120d27" :filter="`url(#motionblur-${this._uid})`" />
   </svg>
 </template>
 
@@ -84,10 +84,6 @@
         this.position.distanceX = Math.min(Math.max(this.previousPointerX - this.position.pointerX, -20), 20)
         this.position.distanceY = Math.min(Math.max(this.previousPointerY - this.position.pointerY, -20), 20)
 
-        event.target.localName === 'button' || event.target.localName === 'a' || event.target.parentElement.localName === 'button' 
-          ? this.hover() 
-          : this.hoverout()
-
         this.cursorStyle.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
         this.rotate(this.position)
         this.moving ? this.stop() : this.moving = true
@@ -116,25 +112,6 @@
         }
         this.cursorStyle.transform += ` rotate(${this.angle}deg)`
         this.previousAngle = this.angle
-      },
-      /**
-       * Apply the transform property when triggered by the 'mousemove' event listener
-       */
-      hover() {
-      },
-      /**
-       * Apply the transform property when triggered by the 'mouseleave' event listener
-       */
-      hoverout() {
-      },
-      /**
-       * Apply the transform property when triggered by the 'click' event listener
-       */
-      click() {
-        this.cursorStyle.transform += ` scale(0.75)`
-        setTimeout(() => {
-          this.cursorStyle.transform = this.cursorStyle.transform.replace(` scale(0.75)`, '')
-        }, 35)
       },
       stop() {
         setTimeout(() => {

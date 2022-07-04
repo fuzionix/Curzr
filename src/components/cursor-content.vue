@@ -25,6 +25,7 @@
           v-if="modelStatus" 
           :model="model"
           :cursor-data="cursorData"
+          :cursors-config="cursorsConfig"
           @changeModelStatus="changeModelStatus"
           @changeModel="changeModel"
         >

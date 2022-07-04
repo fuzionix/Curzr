@@ -35,6 +35,7 @@
         </footer>
         <component 
           :is="cursorData.componentName"
+          :cursors-config="cursorsConfig"
           ref="cursor">
         </component>
       </div>
@@ -91,6 +92,10 @@
         }
       },
       cursorData: {
+        type: Object,
+        required: true
+      },
+      cursorsConfig: {
         type: Object,
         required: true
       }
