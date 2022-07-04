@@ -11,9 +11,13 @@
           <img src="../assets/icon/close-btn.svg" alt="close button" width="20" height="20">
         </button>
         <div class="cursor-features">
-          <normal-tag class="tag">Mulitple</normal-tag>
-          <normal-tag class="tag">Click</normal-tag>
-          <normal-tag class="tag">Hover</normal-tag>
+          <normal-tag 
+            v-for="(feature, index) in cursorData.features" 
+            :key="index" 
+            class="tag"
+          >
+            {{ feature }}
+          </normal-tag>
         </div>
         <div class="block-content">
           <h2 v-if="contentType === radioItems[0]" class="text">Move the cursor around</h2>
@@ -273,11 +277,7 @@
       position: relative;
       overflow-x: hidden;
       overflow-y: scroll;
-      transition: 500ms;
-      background: rgb(52,220,255);
-      background: 
-        linear-gradient(45deg, rgb(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0.75) 100%), 
-        linear-gradient(135deg, rgb(52, 220, 255) 0%, rgb(51, 255, 175) 100%);
+      transition: 500ms;      
 
       .block-content {
         min-height: 100%;

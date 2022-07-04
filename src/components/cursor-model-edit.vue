@@ -29,14 +29,24 @@
           :minmax="[-25, 25]"
         />
       </div>
+      <div class="input-container">
+        <small class="input-name">Original Cursor</small>
+        <small class="input-description">Remain the default cursor</small>
+        <switch-button class="switch-button" />
+      </div>
       <hr>
       <div class="input-container">
         <small class="input-name">Color</small>
         <small class="input-description">Change the color of cursor body</small>
         <color-picker class="color-picker" />
       </div>
+      <normal-button 
+        class="get-code-btn" 
+        @click.native="changeToViewcodeModel()"
+      >
+        <small>GET THE CODE</small>
+      </normal-button>
     </div>
-    
   </section>
 </template>
 
@@ -44,6 +54,7 @@
   import ColorPicker from '@/components/elements/color-picker.vue'
 
   import NormalButton from '@/components/elements/normal-button.vue'
+  import SwitchButton from '@/components/elements/switch-button.vue'
   import RangeBar from '@/components/elements/range-bar.vue'
 
   export default {
@@ -51,7 +62,8 @@
     components: {
       'color-picker': ColorPicker,
       'normal-button': NormalButton,
-      'range-bar': RangeBar
+      'switch-button': SwitchButton,
+      'range-bar': RangeBar,
     },
     data() {
       return {
@@ -96,6 +108,21 @@
     }
   }
 
+  .get-code-btn {
+    width: 100%;
+    height: 60px;
+    background-color: darken($--theme-color, 10%);
+
+    small {
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    &:hover {
+      background-color: darken($--theme-color, 15%);
+    }
+  }
+
   .title {
     margin: 1rem 1rem 0;
     letter-spacing: .5px;
@@ -126,6 +153,10 @@
       }
 
       .color-picker {
+        margin: 1rem 0 2rem;
+      }
+
+      .switch-button {
         margin: 1rem 0 2rem;
       }
     }
