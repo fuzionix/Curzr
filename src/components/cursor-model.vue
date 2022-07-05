@@ -74,6 +74,7 @@
       'radio-group': RadioGroup,
       'normal-tag': NormalTag,
 
+      'normal-pointer': Cursors.NormalPointer,
       'arrow-pointer': Cursors.ArrowPointer,
       'big-circle': Cursors.BigCircle,
       'circle-and-dot': Cursors.CircleAndDot,

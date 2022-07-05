@@ -1,4 +1,12 @@
 {
+  "normalPointer": {
+    "cursorName": "Normal Pointer",
+    "componentName": "normal-pointer",
+    "componentCodeblock": "code-normal-pointer",
+    "features": [
+      "Hover"
+    ]
+  },
   "arrowPointer": {
     "cursorName": "Arrow Pointer",
     "componentName": "arrow-pointer",

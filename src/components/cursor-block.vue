@@ -64,6 +64,7 @@
       'normal-button': NormalButton,
       'tilted-button': TiltedButton,
 
+      'normal-pointer': Cursors.NormalPointer,
       'arrow-pointer': Cursors.ArrowPointer,
       'big-circle': Cursors.BigCircle,
       'circle-and-dot': Cursors.CircleAndDot,
