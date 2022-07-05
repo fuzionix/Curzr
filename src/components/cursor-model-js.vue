@@ -63,8 +63,8 @@
     components: {
       'copy-button': CopyButton,
 
-      'code-normal-pointer': Code.CodeNormalPointer,
       'code-arrow-pointer': Code.CodeArrowPointer,
+      'code-ring-dot': Code.CodeRingDot,
       'code-big-circle': Code.CodeBigCircle,
       'code-circle-and-dot': Code.CodeCircleAndDot,
       'code-glitch-effect': Code.CodeGlitchEffect,

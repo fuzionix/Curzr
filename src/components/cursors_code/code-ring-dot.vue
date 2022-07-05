@@ -13,7 +13,7 @@
 <script>
   /* eslint-disable no-useless-escape */
   export default {
-    name: 'CodeNormalPointer',
+    name: 'CodeRingDot',
     components: {
     },
     props: {
@@ -33,36 +33,52 @@
       return {
         html: 
         `
-<div class="curzr-normal-pointer">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.79 42.83">
-    <path d="M25.14,20.52L4.33,1.52C3.05,.36,1,1.27,1,2.99V31.17c0,1.72,2.04,2.63,3.32,1.47l3.23-2.93c1-.91,2.6-.57,3.15,.67l4,9.07c.89,2.02,3.25,2.94,5.27,2.05h0c2.02-.89,2.94-3.25,2.05-5.27l-4-9.07c-.55-1.24,.28-2.65,1.63-2.78l4.34-.41c1.72-.16,2.42-2.28,1.15-3.44Z" fill="#111920"/>
-    <path d="M18.36,42.83c-1.92,0-3.76-1.11-4.58-2.98l-4-9.07c-.13-.29-.38-.5-.7-.57-.32-.07-.63,.02-.87,.23l-3.23,2.93c-.89,.81-2.12,1.01-3.21,.52-1.1-.49-1.78-1.53-1.78-2.73V2.99C0,1.79,.68,.74,1.78,.26,2.88-.22,4.11-.02,5,.79L25.81,19.79c.88,.81,1.2,2.02,.82,3.15-.38,1.14-1.36,1.91-2.55,2.02l-4.34,.41c-.32,.03-.59,.21-.76,.48-.16,.28-.18,.6-.05,.9l4,9.07c.54,1.22,.57,2.58,.09,3.83-.48,1.25-1.42,2.23-2.64,2.77-.65,.29-1.34,.42-2.01,.42Zm-9.5-14.64c.21,0,.42,.02,.63,.07,.95,.2,1.72,.83,2.11,1.72l4,9.07c.67,1.51,2.44,2.2,3.96,1.53,.73-.32,1.3-.91,1.59-1.66,.29-.75,.27-1.56-.05-2.3l-4-9.07c-.39-.89-.33-1.88,.16-2.72,.49-.84,1.33-1.37,2.29-1.46l4.34-.41c.59-.05,.79-.52,.84-.67s.17-.64-.27-1.04L3.65,2.26c-.44-.4-.93-.23-1.06-.17-.14,.06-.59,.31-.59,.9V31.17c0,.59,.45,.84,.58,.9,.14,.06,.62,.23,1.06-.17l3.23-2.93c.56-.51,1.26-.78,1.99-.78Z" fill="#f2f5f8"/>
-  </svg>
+<div class="curzr">
+  <div class="curzr-dot"></div>
 </div>
         `,
         javascript:
         `
-class NormalPointer {
+class RingDot {
   constructor() {
     this.root = document.body
-    this.cursor = document.querySelector(".curzr-normal-pointer")
+    this.curzr = document.querySelector(".curzr")
+    this.dot = document.querySelector(".curzr-dot")
 
-    this.pointerX = 0,
-    this.pointerY = 0,
-    this.cursorSize = 15
+    this.pointerX = 0
+    this.pointerY = 0
+    this.cursorSize = 20
 
-    this.cursorStyle = {
-      boxSizing: 'border-box',
+    this.curzrStyle = {
       position: 'fixed',
-      top:'0px',
-      left: '0px',
+      display: 'flex',
+      top: \`\${ this.cursorSize / -2 }px\`,
+      left: \`\${ this.cursorSize / -2 }px\`,
+      justifyContent: 'center',
+      alignItems: 'center',
       width: \`\${ this.cursorSize }px\`,
-      transition: '250ms, transform 100ms',
+      height: \`\${ this.cursorSize }px\`,
+      backgroundColor: '#fff0',
+      boxShadow: '0 0 0 1.5px #282828, 0 0 0 2.5px #f8f8f8',
+      borderRadius: '50%',
+      transition: '200ms, transform 100ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
 
-    this.init(this.cursor, this.cursorStyle)
+    this.dotStyle = {
+      position: 'fixed',
+      width: '4px',
+      height: '4px',
+      backgroundColor: '#282828',
+      boxShadow: '0 0 0 1px #f8f8f8',
+      borderRadius: '50%',
+      userSelect: 'none',
+      pointerEvents: 'none',
+    }
+
+    this.init(this.curzr, this.curzrStyle)
+    this.init(this.dot, this.dotStyle)
   }
 
   init(el, style) {
@@ -72,35 +88,38 @@ class NormalPointer {
   move(event) {
     this.pointerX = event.pageX + this.root.getBoundingClientRect().x
     this.pointerY = event.pageY + this.root.getBoundingClientRect().y
+  
+    this.curzr.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
 
     if (event.target.localName === 'button' || 
         event.target.localName === 'a' || 
         event.target.onclick !== null ||
         event.target.className.includes('curzr-hover')) {
-      this.hover()
+      this.hover(30)
     } else {
       this.hoverout()
     }
-
-    this.cursor.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
   }
 
-  hover() {
+  hover(radius) {
+    this.curzr.style.width = this.curzr.style.height = \`\${radius}px\`
+    this.curzr.style.top = this.curzr.style.left = \`\${radius / -2}px\`
   }
 
   hoverout() {
-  }
-
-  remove() {
-    this.cursor.remove()
+    this.curzr.style.width = this.curzr.style.height = \`\${this.cursorSize}px\`
+    this.curzr.style.top = this.curzr.style.left = \`\${this.cursorSize / -2}px\`
   }
 }
 
 (() => {
-  const cursor = new NormalPointer()
+  const cursor = new RingDot()
   if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     document.onmousemove = function (event) {
       cursor.move(event)
+    }
+    document.onclick = function () {
+      cursor.click()
     }
   } else {
     cursor.remove()

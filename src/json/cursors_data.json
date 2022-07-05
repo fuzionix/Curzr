@@ -1,18 +1,18 @@
 {
-  "normalPointer": {
-    "cursorName": "Normal Pointer",
-    "componentName": "normal-pointer",
-    "componentCodeblock": "code-normal-pointer",
-    "features": [
-      "Hover"
-    ]
-  },
   "arrowPointer": {
     "cursorName": "Arrow Pointer",
     "componentName": "arrow-pointer",
     "componentCodeblock": "code-arrow-pointer",
     "features": [
       "Rotate"
+    ]
+  },
+  "ringDot": {
+    "cursorName": "Ring Dot",
+    "componentName": "ring-dot",
+    "componentCodeblock": "code-ring-dot",
+    "features": [
+      "Hover"
     ]
   },
   "bigCircle": {

@@ -144,12 +144,11 @@
     transform: translate(-50%, -50%);
     width: var(--cursor-size);
     height: var(--cursor-size);
-    background-color: #fff0;
+    background-color: #0008;
     border-radius: 50%;
     transition: 500ms, transform var(--cursor-delay);
     user-select: none;
     pointer-events: none;
-    backdrop-filter: invert(1) grayscale(1);
   }
 
   .dot {
@@ -165,6 +164,13 @@
     user-select: none;
     pointer-events: none;
     transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
+  }
+
+  @supports (backdrop-filter: invert(1) grayscale(1)) {
+    .circle {
+      background-color: #fff0;
+      backdrop-filter: invert(1) grayscale(1);
+    }
   }
 }
 </style>

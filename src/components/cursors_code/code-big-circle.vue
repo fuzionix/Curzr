@@ -61,7 +61,7 @@ class BigCircle {
       transition: '500ms, transform 100ms',
       userSelect: 'none',
       pointerEvents: 'none',
-      backdropFilter: 'invert(1)'
+      backdropFilter: 'invert(1) grayscale(1)'
     }
 
     this.dotStyle = {
@@ -74,6 +74,13 @@ class BigCircle {
       userSelect: 'none',
       pointerEvents: 'none',
       transition: '250ms, transform 75ms'
+    }
+
+    if (CSS.supports("backdrop-filter", "invert(1) grayscale(1)")) {
+      this.circleStyle.backdropFilter = 'invert(1) grayscale(1)'
+      this.circleStyle.backgroundColor = '#fff0'
+    } else {
+      this.circleStyle.backgroundColor = '#0008'
     }
 
     this.init(this.circle, this.circleStyle)
