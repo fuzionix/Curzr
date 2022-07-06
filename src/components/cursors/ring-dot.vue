@@ -16,15 +16,15 @@
       return {
         pointerX: 0,
         pointerY: 0,
+        cursorSize: 0,
+        cursorSizeInit: 0
       }
     },
-    computed: {
+    mounted() {
       /**
        * The cursor size from the CSS variable
        */
-      cursorSize() {
-        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
-      }
+      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
     },
     watch: {
       /**
@@ -34,8 +34,9 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
           this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
         },
         deep: true,
         immeditate: true
@@ -96,6 +97,8 @@
       reset() {
         this.$refs.cursor.style.top = ''
         this.$refs.cursor.style.left = ''
+        this.$refs.cursor.style.width = ''
+        this.$refs.cursor.style.height = ''
         this.$refs.cursor.style.transform = ''
         this.$refs.cursor.style.transition = '500ms'
         this.$parent.$el.removeEventListener('click', this.click)

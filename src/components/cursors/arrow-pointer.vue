@@ -28,16 +28,17 @@
         angle: 0,
         previousAngle: 0,
         angleDisplace: 0,
-        degrees: 57.296
+        degrees: 57.296,
+
+        cursorSize: 0,
+        cursorSizeInit: 0
       }
     },
-    computed: {
+    mounted() {
       /**
        * The cursor size from the CSS variable
        */
-      cursorSize() {
-        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
-      }
+      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
     },
     watch: {
       /**
@@ -47,8 +48,9 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
           this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
         },
         deep: true,
         immeditate: true
