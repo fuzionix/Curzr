@@ -95,6 +95,7 @@ class ArrowPointer {
 
   rotate(position) {
     let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
+    let modAngle
     this.previousAngle = this.angle
 
     if (position.distanceX <= 0 && position.distanceY >= 0) {
@@ -119,6 +120,21 @@ class ArrowPointer {
       }
     }
     this.cursor.style.transform += \` rotate(\${this.angleDisplace}deg)\`
+
+    modAngle = this.angleDisplace % 360
+    if (modAngle >= 45 && modAngle < 135) {
+      this.cursor.style.left = \`\${ -this.cursorSize }px\`
+      this.cursor.style.top = \`\${ -this.cursorSize / 2 }px\`
+    } else if (modAngle >= 135 && modAngle < 225) {
+      this.cursor.style.left = \`\${ -this.cursorSize / 2 }px\`
+      this.cursor.style.top = \`\${ -this.cursorSize }px\`
+    } else if (modAngle >= 225 && modAngle < 315) {
+      this.cursor.style.left = '0px'
+      this.cursor.style.top = \`\${ -this.cursorSize / 2 }px\`
+    } else {
+      this.cursor.style.left = \`\${ -this.cursorSize / 2 }px\`
+      this.cursor.style.top = '0px'
+    }
   }
 
   remove() {

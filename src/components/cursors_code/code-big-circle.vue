@@ -60,17 +60,15 @@ class BigCircle {
       borderRadius: '50%',
       transition: '500ms, transform 100ms',
       userSelect: 'none',
-      pointerEvents: 'none',
-      backdropFilter: 'invert(1) grayscale(1)'
+      pointerEvents: 'none'
     }
 
     this.dotStyle = {
       position: 'fixed',
-      width: '10px',
-      height: '10px',
-      backgroundColor: '#0007',
+      width: '6px',
+      height: '6px',
+      backgroundColor: '#fffd',
       borderRadius: '50%',
-      boxShadow: '0 0 0 1.5px #fffd',
       userSelect: 'none',
       pointerEvents: 'none',
       transition: '250ms, transform 75ms'
@@ -80,7 +78,8 @@ class BigCircle {
       this.circleStyle.backdropFilter = 'invert(1) grayscale(1)'
       this.circleStyle.backgroundColor = '#fff0'
     } else {
-      this.circleStyle.backgroundColor = '#0008'
+      this.circleStyle.backgroundColor = '#000'
+      this.circleStyle.opacity = '0.5'
     }
 
     this.init(this.circle, this.circleStyle)

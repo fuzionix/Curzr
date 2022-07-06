@@ -145,4 +145,17 @@
   user-select: none;
   pointer-events: none;
 }
+
+@supports (backdrop-filter: invert(1)) {
+  .curzr-glitch-effect {
+    background-color: #fff0;
+    backdrop-filter: invert(1);
+  }
+}
+
+@supports not (backdrop-filter: invert(1)) {
+  .curzr-glitch-effect {
+    background-color: #222;
+  }
+}
 </style>

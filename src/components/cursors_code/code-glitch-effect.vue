@@ -67,6 +67,13 @@ class GlitchEffect {
       pointerEvents: 'none'
     }
 
+    if (CSS.supports("backdrop-filter", "invert(1)")) {
+      this.cursorStyle.backdropFilter = 'invert(1)'
+      this.cursorStyle.backgroundColor = '#fff0'
+    } else {
+      this.cursorStyle.backgroundColor = '#222'
+    }
+
     this.init(this.cursor, this.cursorStyle)
   }
 

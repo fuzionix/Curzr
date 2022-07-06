@@ -86,19 +86,19 @@ class RingDot {
   }
 
   move(event) {
-    this.pointerX = event.pageX + this.root.getBoundingClientRect().x
-    this.pointerY = event.pageY + this.root.getBoundingClientRect().y
-  
-    this.curzr.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
-
     if (event.target.localName === 'button' || 
         event.target.localName === 'a' || 
         event.target.onclick !== null ||
         event.target.className.includes('curzr-hover')) {
-      this.hover(30)
+      this.hover(40)
     } else {
       this.hoverout()
     }
+    
+    this.pointerX = event.pageX + this.root.getBoundingClientRect().x
+    this.pointerY = event.pageY + this.root.getBoundingClientRect().y
+  
+    this.curzr.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
   }
 
   hover(radius) {
@@ -109,6 +109,18 @@ class RingDot {
   hoverout() {
     this.curzr.style.width = this.curzr.style.height = \`\${this.cursorSize}px\`
     this.curzr.style.top = this.curzr.style.left = \`\${this.cursorSize / -2}px\`
+  }
+
+  click() {
+    this.curzr.style.transform += \` scale(0.75)\`
+    setTimeout(() => {
+      this.curzr.style.transform = this.curzr.style.transform.replace(\` scale(0.75)\`, '')
+    }, 35)
+  }
+
+  remove() {
+    this.curzr.remove()
+    this.dot.remove()
   }
 }
 

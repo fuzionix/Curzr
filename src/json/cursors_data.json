@@ -12,7 +12,8 @@
     "componentName": "ring-dot",
     "componentCodeblock": "code-ring-dot",
     "features": [
-      "Hover"
+      "Hover",
+      "Click"
     ]
   },
   "bigCircle": {

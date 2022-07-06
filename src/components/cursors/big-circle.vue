@@ -144,7 +144,7 @@
     transform: translate(-50%, -50%);
     width: var(--cursor-size);
     height: var(--cursor-size);
-    background-color: #0008;
+    background-color: #fff0;
     border-radius: 50%;
     transition: 500ms, transform var(--cursor-delay);
     user-select: none;
@@ -156,11 +156,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
-    background-color: #0007;
+    width: 6px;
+    height: 6px;
+    background-color: #fffd;
     border-radius: 50%;
-    box-shadow: 0 0 0 1.5px #fffd;
     user-select: none;
     pointer-events: none;
     transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
@@ -170,6 +169,13 @@
     .circle {
       background-color: #fff0;
       backdrop-filter: invert(1) grayscale(1);
+    }
+  }
+
+  @supports not (backdrop-filter: invert(1) grayscale(1)) {
+    .circle {
+      background-color: #000;
+      opacity: .5;
     }
   }
 }

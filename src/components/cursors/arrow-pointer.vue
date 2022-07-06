@@ -91,6 +91,7 @@
        */
       rotate(position) {
         let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
+        let modAngle
         this.previousAngle = this.angle
 
         if (position.distanceX <= 0 && position.distanceY >= 0) {
@@ -115,6 +116,21 @@
           }
         }
         this.$refs.cursor.style.transform += ` rotate(${this.angleDisplace}deg)`
+
+        modAngle = this.angleDisplace % 360
+        if (modAngle >= 45 && modAngle < 135) {
+          this.$refs.cursor.style.left = `${ -this.cursorSize }px`
+          this.$refs.cursor.style.top = `${ -this.cursorSize / 2 }px`
+        } else if (modAngle >= 135 && modAngle < 225) {
+          this.$refs.cursor.style.left = `${ -this.cursorSize / 2 }px`
+          this.$refs.cursor.style.top = `${ -this.cursorSize }px`
+        } else if (modAngle >= 225 && modAngle < 315) {
+          this.$refs.cursor.style.left = '0px'
+          this.$refs.cursor.style.top = `${ -this.cursorSize / 2 }px`
+        } else {
+          this.$refs.cursor.style.left = `${ -this.cursorSize / 2 }px`
+          this.$refs.cursor.style.top = '0px'
+        }
       },
       /**
        * Center the position of cursor when leaving its container

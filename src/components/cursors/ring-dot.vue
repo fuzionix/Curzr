@@ -49,6 +49,7 @@
         this.$refs.cursor.style.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px' 
         this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
         this.$refs.cursor.style.transition = ''
+        this.$parent.$el.addEventListener('click', this.click)
       },
       /**
        * Get the cursor position by event and apply them to the transform property of the cursor 
@@ -57,12 +58,12 @@
        * @param {object} cursorBlock
        */
       move(event, cursorBlock) {
-        this.pointerX = event.pageX - cursorBlock.getBoundingClientRect().x
-        this.pointerY = event.pageY - cursorBlock.getBoundingClientRect().y + this.$root.$el.getBoundingClientRect().y
-
         event.target.localName === 'button' || event.target.localName === 'a' || event.target.parentElement.localName === 'button' 
           ? this.hover(40) 
           : this.hoverout()
+
+        this.pointerX = event.pageX - cursorBlock.getBoundingClientRect().x
+        this.pointerY = event.pageY - cursorBlock.getBoundingClientRect().y + this.$root.$el.getBoundingClientRect().y
 
         this.$refs.cursor.style.transform = `translate3d(${this.pointerX}px, ${this.pointerY}px, 0)`
       },
@@ -81,6 +82,15 @@
         this.$refs.cursor.style.top = this.$refs.cursor.style.left = `${this.cursorSize / -2}px`
       },
       /**
+       * Apply the transform property when triggered by the 'click' event listener
+       */
+      click() {
+        this.$refs.cursor.style.transform += ` scale(0.75)`
+        setTimeout(() => {
+          this.$refs.cursor.style.transform = this.$refs.cursor.style.transform.replace(` scale(0.75)`, '')
+        }, 35)
+      },
+      /**
        * Center the position of cursor when leaving its container
        */
       reset() {
@@ -88,6 +98,7 @@
         this.$refs.cursor.style.left = ''
         this.$refs.cursor.style.transform = ''
         this.$refs.cursor.style.transition = '500ms'
+        this.$parent.$el.removeEventListener('click', this.click)
       }
     }
   }
