@@ -13,6 +13,7 @@
         </div>
         <pre><component 
           :is="cursorData.componentCodeblock" 
+          :cursors-config="cursorsConfig"
           class="language-html" 
           language="html"
           ref="htmlBlock">
@@ -33,6 +34,7 @@
         </div>
         <pre><component 
           :is="cursorData.componentCodeblock" 
+          :cursors-config="cursorsConfig"
           class="language-js" 
           language="javascript"
           ref="javascriptBlock">
@@ -46,6 +48,18 @@
       <ul class="description">
         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>
         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>     
+      </ul>
+    </div>
+    <div class="guide-container">
+      <h3 class="title">Restriction</h3>
+      <ul class="description">
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>
+      </ul>
+    </div>
+    <div class="disclaimer-container">
+      <h3 class="title">Disclaimer</h3>
+      <ul class="description">
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>
       </ul>
     </div>
   </section>
@@ -74,6 +88,10 @@
       cursorData: {
         type: Object,
         required: true
+      },
+      cursorsConfig: {
+        type: Object,
+        required: true
       }
     },
     data() {
@@ -91,10 +109,23 @@
             Prism.highlightAll()
 
             this.html = this.$refs.htmlBlock.html
-            this.javascript = this.$refs.htmlBlock.javascript
+            this.javascript = this.$refs.javascriptBlock.javascript
           })
         },
         deep: true
+      },
+      cursorsConfig: {
+        handler() {
+          Promise.resolve().then(() => {
+            window.Prism = window.Prism || {}
+            window.Prism.manual = true
+            Prism.highlightAll()
+
+            this.html = this.$refs.htmlBlock.html
+            this.javascript = this.$refs.javascriptBlock.javascript
+          })
+        },
+        deep: true,
       }
     },
     mounted() {
@@ -104,7 +135,7 @@
       Prism.highlightAll()
 
       this.html = this.$refs.htmlBlock.html
-      this.javascript = this.$refs.htmlBlock.javascript
+      this.javascript = this.$refs.javascriptBlock.javascript
     }
   }
 </script>
@@ -136,7 +167,7 @@
       }
 
       pre {
-        padding: 1rem 1rem calc(1rem + 50px);
+        padding: 1rem 1rem calc(1rem + 75px);
         border-radius: $--common-radius;
         background-color: #06252cee;
         font-size: .875rem;
@@ -171,7 +202,7 @@
     }
   }
 
-  .guide-container {
+  .guide-container, .disclaimer-container {
     
     .title {
       font-size: 1.5rem;
@@ -189,6 +220,16 @@
         margin-left: 1rem;
       }
     }
+  }
+
+  .guide-container {
+    padding: 0 2rem 3rem;
+  }
+
+  .disclaimer-container {
+    padding: 2rem;
+    background-color: lighten($--section-line-color, 2.5%);
+    border-radius: $--common-radius;
   }
 
   hr {

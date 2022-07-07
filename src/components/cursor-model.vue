@@ -47,8 +47,10 @@
             <component 
               :is="model" 
               :cursor-data="cursorData"
+              :cursors-config="cursorsConfig"
               class="block-content"
-              @changeModel="changeModel">
+              @changeModel="changeModel"
+              @changeRangeValue="changeRangeValue">
             </component>
           </keep-alive>
         </transition>
@@ -95,14 +97,14 @@
       cursorData: {
         type: Object,
         required: true
-      },
-      cursorsConfig: {
-        type: Object,
-        required: true
       }
     },
     data() {
       return {
+        cursorsConfig: {
+          size: 0,
+          delay: 100
+        },
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
         ],
@@ -122,7 +124,7 @@
        * Every cursor has its own init method @see /components/cursors/
        */
       init() {
-        this.$refs.cursor.init()
+        this.$refs.cursor ?. init()
       },
       /**
        * Every cursor has its own move method @see /components/cursors/
@@ -131,16 +133,16 @@
        */
       move(event) {
         if (this.eventName === 'touchmove') {
-          this.$refs.cursor.move(event.touches[0], this.$refs.cursorBlock)
+          this.$refs.cursor ?. move(event.touches[0], this.$refs.cursorBlock)
         } else {
-          this.$refs.cursor.move(event, this.$refs.cursorBlock)
+          this.$refs.cursor ?. move(event, this.$refs.cursorBlock)
         }
       },
       /**
        * Every cursor has its own reset method @see /components/cursors/
        */
       reset() {
-        this.$refs.cursor.reset()
+        this.$refs.cursor ?. reset()
       },
       /**
        * Change the content displayed in the center
@@ -161,6 +163,22 @@
        */
       changeModel(model) {
         this.$emit('changeModel', model)
+      },
+      /**
+       * Change the property value of cursorsConfig by the data from the <range-bar>
+       * 
+       * @param {object} event
+       * @event changeRangeValue
+       */
+      changeRangeValue(event) {
+        switch (event.id) {
+          case 'edit-size':
+            this.cursorsConfig.size = parseInt(event.value)
+            break
+          case 'edit-delay':
+            this.cursorsConfig.delay = parseInt(event.value)
+            break
+        }
       },
       /**
        * Close the model when click on the area that is not in the model

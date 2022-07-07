@@ -22,6 +22,7 @@
         <component 
           :is="codeblock"
           :cursor-data="cursorData"
+          :cursors-config="cursorsConfig"
         />
       </transition>
     </div>
@@ -47,6 +48,10 @@
     },
     props: {
       cursorData: {
+        type: Object,
+        required: true
+      },
+      cursorsConfig: {
         type: Object,
         required: true
       }

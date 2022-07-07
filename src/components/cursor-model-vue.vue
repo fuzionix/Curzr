@@ -13,6 +13,7 @@
         </div>
         <pre><component 
           :is="cursorData.componentCodeblock" 
+          :cursors-config="cursorsConfig"
           class="language-markup" 
           language="vue"
           ref="vueBlock">
@@ -45,6 +46,10 @@
     },
     props: {
       cursorData: {
+        type: Object,
+        required: true
+      },
+      cursorsConfig: {
         type: Object,
         required: true
       }

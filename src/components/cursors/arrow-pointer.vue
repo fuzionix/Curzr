@@ -12,7 +12,8 @@
     name: 'ArrowPointer',
     props: {
       cursorsConfig: {
-        type: Object
+        type: Object,
+        required: true
       }
     },
     data() {
@@ -119,7 +120,7 @@
         }
         this.$refs.cursor.style.transform += ` rotate(${this.angleDisplace}deg)`
 
-        modAngle = this.angleDisplace % 360
+        modAngle = this.angleDisplace >= 0 ? this.angleDisplace % 360 : 360 + this.angleDisplace % 360
         if (modAngle >= 45 && modAngle < 135) {
           this.$refs.cursor.style.left = `${ -this.cursorSize }px`
           this.$refs.cursor.style.top = `${ -this.cursorSize / 2 }px`
@@ -159,7 +160,7 @@
   z-index: 1;
   width: var(--cursor-size);
   height: var(--cursor-size);
-  transition: 500ms, transform var(--cursor-delay);
+  transition: 250ms, transform var(--cursor-delay);
   user-select: none;
   pointer-events: none;
 

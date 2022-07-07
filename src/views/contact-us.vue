@@ -133,7 +133,6 @@
               contactContent: '',
               contactName: ''
             }
-            console.log('submited')
           }
         }
         

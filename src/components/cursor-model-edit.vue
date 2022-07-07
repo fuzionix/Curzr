@@ -15,8 +15,9 @@
         <range-bar
           id="edit-size"
           class="range-bar"
-          :range-value="0"
+          :range-value="cursorsConfig.size"
           :minmax="[-25, 25]"
+          @changeRangeValue="changeRangeValue"
         />
       </div>
       <div class="input-container">
@@ -25,8 +26,9 @@
         <range-bar
           id="edit-delay"
           class="range-bar"
-          :range-value="0"
-          :minmax="[-25, 25]"
+          :range-value="cursorsConfig.delay"
+          :minmax="[0, 200]"
+          @changeRangeValue="changeRangeValue"
         />
       </div>
       <div class="input-container">
@@ -65,6 +67,12 @@
       'switch-button': SwitchButton,
       'range-bar': RangeBar,
     },
+    props: {
+      cursorsConfig: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         colors: '#194d33'
@@ -78,7 +86,16 @@
        */
       changeToViewcodeModel() {
         this.$emit('changeModel', 'cursor-model-viewcode')
-      }
+      },
+      /**
+       * Emit the value to the parent
+       * 
+       * @param {object} event
+       * @event changeRangeValue
+       */
+      changeRangeValue(event) {
+        this.$emit('changeRangeValue', event)
+      },
     }
   }
 </script>

@@ -20,17 +20,14 @@
       </span>
     </div>
     <transition name="fade">
-      <keep-alive>
-        <cursor-model 
-          v-if="modelStatus" 
-          :model="model"
-          :cursor-data="cursorData"
-          :cursors-config="cursorsConfig"
-          @changeModelStatus="changeModelStatus"
-          @changeModel="changeModel"
-        >
-        </cursor-model>
-      </keep-alive>
+      <cursor-model 
+        v-if="modelStatus" 
+        :model="model"
+        :cursor-data="cursorData"
+        @changeModelStatus="changeModelStatus"
+        @changeModel="changeModel"
+      >
+      </cursor-model>
     </transition>
   </section>
   <section 

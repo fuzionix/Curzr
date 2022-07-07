@@ -3,7 +3,7 @@
     <filter :id="`motionblur-${this._uid}`" x="-100%" y="-100%" width="400%" height="400%">
       <feGaussianBlur class="cursor-motion-blur" stdDeviation="0, 0"/>
     </filter>
-    <circle cx="50%" cy="50%" :r="`${10 + (cursorsConfig.size / 4)}`" fill="#120d27" :filter="`url(#motionblur-${this._uid})`" />
+    <circle cx="50%" cy="50%" :r="`${this.cursorSize}`" fill="#120d27" :filter="`url(#motionblur-${this._uid})`" />
   </svg>
 </template>
 
@@ -29,22 +29,25 @@
         previousAngle: 0,
         angleDisplace: 0,
         degrees: 57.296,
-        moving: false
+        moving: false,
+
+        cursorSize: 0,
+        cursorSizeInit: 0
       }
     },
     computed: {
-      /**
-       * The cursor size from the CSS variable
-       */
-      cursorSize() {
-        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
-      },
       cursorStyle() {
         return this.$refs.cursor.style
       },
       motionBlur() {
         return this.$refs.cursor.querySelector('.cursor-motion-blur')
       }
+    },
+    mounted() {
+      /**
+       * The cursor size from the CSS variable
+       */
+      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2)) / 2
     },
     watch: {
       /**
@@ -54,7 +57,8 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.cursorStyle.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.cursorStyle.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
+          this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
         },
         deep: true,
         immeditate: true
@@ -135,7 +139,7 @@
 
 <style lang="scss" scoped>
 .curzr-glitch-effect {
-  --cursor-size:  25px;
+  --cursor-size:  20px;
   --cursor-delay: 20ms;
 
   position: absolute;
