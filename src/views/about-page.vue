@@ -161,7 +161,7 @@
                 font-weight: bold;
                 word-spacing: 8px;
                 font-variation-settings: 'wght' $--medium;
-                color: #fffd;
+                color: #fffe;
               }
 
               .paragraph {

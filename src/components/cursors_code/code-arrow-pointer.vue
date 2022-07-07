@@ -71,7 +71,7 @@ class ArrowPointer {
       zIndex: '2147483647',
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
-      transition: '250ms, transform 100ms',
+      transition: '250ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }

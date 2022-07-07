@@ -64,6 +64,9 @@
         ],
       }
     },
+    watch: {
+
+    },
     methods: {
       /**
        * Change the component by the value

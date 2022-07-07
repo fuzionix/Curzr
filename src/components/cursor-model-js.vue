@@ -103,39 +103,31 @@
     watch: {
       cursorData: {
         handler() {
-          Promise.resolve().then(() => {
-            window.Prism = window.Prism || {}
-            window.Prism.manual = true
-            Prism.highlightAll()
-
-            this.html = this.$refs.htmlBlock.html
-            this.javascript = this.$refs.javascriptBlock.javascript
-          })
+          this.render()
         },
         deep: true
       },
       cursorsConfig: {
         handler() {
-          Promise.resolve().then(() => {
-            window.Prism = window.Prism || {}
-            window.Prism.manual = true
-            Prism.highlightAll()
-
-            this.html = this.$refs.htmlBlock.html
-            this.javascript = this.$refs.javascriptBlock.javascript
-          })
+          this.render()
         },
         deep: true,
       }
     },
     mounted() {
-      // Render code content
-      window.Prism = window.Prism || {}
-      window.Prism.manual = true
-      Prism.highlightAll()
+      this.render()
+    },
+    methods: {
+      render() {
+        Promise.resolve().then(() => {
+          window.Prism = window.Prism || {}
+          window.Prism.manual = true
+          Prism.highlightAll()
 
-      this.html = this.$refs.htmlBlock.html
-      this.javascript = this.$refs.javascriptBlock.javascript
+          this.html = this.$refs.htmlBlock.html
+          this.javascript = this.$refs.javascriptBlock.javascript
+        })
+      }
     }
   }
 </script>
