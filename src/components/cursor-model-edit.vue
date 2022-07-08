@@ -85,6 +85,7 @@
        * @event click
        */
       changeToViewcodeModel() {
+        this.$store.commit('changeModelName', 'cursor-model-viewcode')
         this.$emit('changeModel', 'cursor-model-viewcode')
       },
       /**

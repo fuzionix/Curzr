@@ -5,13 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    viewMode: 'cursor-content-grid'
+    viewMode: 'cursor-content-grid',
+    modelName: ''
   },
   getters: {
   },
   mutations: {
-    changeMode (value, mode) {
-      value.viewMode = mode.viewMode
+    changeMode (state, mode) {
+      state.viewMode = mode.viewMode
+    },
+    changeModelName (state, model) {
+      state.modelName = model
     }
   },
   actions: {

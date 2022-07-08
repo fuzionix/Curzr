@@ -20,6 +20,7 @@
     <div class="code-block-container">
       <transition name="fade" mode="out-in" :duration="250">
         <component 
+          v-if="renderComponent"
           :is="codeblock"
           :cursor-data="cursorData"
           :cursors-config="cursorsConfig"
@@ -62,10 +63,27 @@
         radioItems: [
           'JavaScript', 'VUE 2'
         ],
+        renderComponent: true
       }
     },
+    computed: {
+      modelName() {
+        return this.$store.state.modelName
+      }
+    }, 
     watch: {
-
+      modelName: {
+        handler() {
+          this.renderComponent = false
+          setTimeout(() => {
+            if (!this.renderComponent) {
+              this.$nextTick(() => {
+                this.renderComponent = true
+              })
+            }
+          }, 1500)
+        }
+      }
     },
     methods: {
       /**
@@ -89,6 +107,7 @@
        * @event click
        */
       changeToEditModel() {
+        this.$store.commit('changeModelName', 'cursor-model-edit')
         this.$emit('changeModel', 'cursor-model-edit')
       }
     }

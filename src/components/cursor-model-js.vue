@@ -103,13 +103,11 @@
     watch: {
       cursorData: {
         handler() {
-          this.render()
         },
         deep: true
       },
       cursorsConfig: {
         handler() {
-          this.render()
         },
         deep: true,
       }
