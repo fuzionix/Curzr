@@ -45,7 +45,7 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 2)) + 'px')
           this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
         },
         deep: true,

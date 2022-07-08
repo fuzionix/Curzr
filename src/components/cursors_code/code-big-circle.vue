@@ -27,19 +27,22 @@
             'vue'
           ].indexOf(value) !== -1
         }
+      },
+      cursorsConfig: {
+        type: Object,
+        required: true
       }
     },
-    data() {
-      return {
-        html: 
-        `
+    computed: {
+      html() {
+        return `
 <div class="curzr-big-circle">
   <div class="circle"></div>
   <div class="dot"></div>
-</div>
-        `,
-        javascript:
-        `
+</div>`
+      },
+      javascript() {
+        return `
 class BigCircle {
   constructor() {
     this.root = document.body
@@ -48,7 +51,7 @@ class BigCircle {
 
     this.pointerX = 0
     this.pointerY = 0
-    this.cursorSize = 100
+    this.cursorSize = ${100 + (this.cursorsConfig.size / 2)}
 
     this.circleStyle = {
       position: 'fixed',
@@ -58,7 +61,7 @@ class BigCircle {
       height: \`\${ this.cursorSize }px\`,
       backgroundColor: '#fff0',
       borderRadius: '50%',
-      transition: '500ms, transform 100ms',
+      transition: '500ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -71,7 +74,7 @@ class BigCircle {
       borderRadius: '50%',
       userSelect: 'none',
       pointerEvents: 'none',
-      transition: '250ms, transform 75ms'
+      transition: '250ms, transform ${this.cursorsConfig.delay * 0.75}ms'
     }
 
     if (CSS.supports("backdrop-filter", "invert(1) grayscale(1)")) {
@@ -135,10 +138,10 @@ class BigCircle {
     cursor.remove()
   }
   
-})()
-        `,
-        vue: 
-        `
+})()`
+      },
+      vue() {
+        return `
 <template>
   <div ref="curzr" class="curzr-big-circle">
     <div class="circle" ref="curzrCircle"></div>
@@ -231,8 +234,7 @@ class BigCircle {
   pointer-events: none;
   transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
 }
-</style>
-        `
+</style>`
       }
     }
   }

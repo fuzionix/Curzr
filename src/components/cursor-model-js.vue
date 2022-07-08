@@ -100,18 +100,6 @@
         javascript: ''
       }
     },
-    watch: {
-      cursorData: {
-        handler() {
-        },
-        deep: true
-      },
-      cursorsConfig: {
-        handler() {
-        },
-        deep: true,
-      }
-    },
     mounted() {
       this.render()
     },

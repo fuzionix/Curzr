@@ -27,16 +27,19 @@
             'vue'
           ].indexOf(value) !== -1
         }
+      },
+      cursorsConfig: {
+        type: Object,
+        required: true
       }
     },
-    data() {
-      return {
-        html: 
-        `
-<div class="curzr-glitch-effect"></div>
-        `,
-        javascript:
-        `
+    computed: {
+      html() {
+        return `
+<div class="curzr-glitch-effect"></div>`
+      },
+      javascript() {
+        return `
 class GlitchEffect {
   constructor() {
     this.root = document.body
@@ -48,7 +51,7 @@ class GlitchEffect {
     this.pointerY = 0,
     this.previousPointerX = 0
     this.previousPointerY = 0
-    this.cursorSize = 25
+    this.cursorSize = ${25 + (this.cursorsConfig.size / 5)}
     this.glitchColorB = '#00feff'
     this.glitchColorR = '#ff4f71'
 
@@ -62,7 +65,7 @@ class GlitchEffect {
       backgroundColor: '#222',
       borderRadius: '50%',
       boxShadow: \`0 0 0 \${this.glitchColorB}, 0 0 0 \${this.glitchColorR}\`,
-      transition: '250ms, transform 100ms',
+      transition: '250ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -145,10 +148,10 @@ class GlitchEffect {
   } else {
     cursor.remove()
   }
-})()
-        `,
-        vue: 
-        `
+})()`
+      },
+      vue() {
+        return `
 <template>
   <div ref="curzr" class="curzr-big-circle">
     <div class="circle" ref="curzrCircle"></div>
@@ -241,8 +244,7 @@ class GlitchEffect {
   pointer-events: none;
   transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
 }
-</style>
-        `
+</style>`
       }
     }
   }

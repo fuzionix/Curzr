@@ -27,25 +27,28 @@
             'vue'
           ].indexOf(value) !== -1
         }
+      },
+      cursorsConfig: {
+        type: Object,
+        required: true
       }
     },
-    data() {
-      return {
-        html: 
-        `
-<svg class="curzr-glitch-effect">
+    computed: {
+      html() {
+        return `
+<svg class="curzr">
   <filter id="motionblur" x="-100%" y="-100%" width="400%" height="400%">
     <feGaussianBlur class="curzr-motion-blur" stdDeviation="0, 0"/>
   </filter>
-  <circle cx="50%" cy="50%" r="10" fill="#120d27" filter="url(#motionblur)" />
-</svg>
-        `,
-        javascript:
-        `
+  <circle cx="50%" cy="50%" r="${10 + (this.cursorsConfig.size / 5)}" fill="#120d27" filter="url(#motionblur)" />
+</svg>`
+      },
+      javascript() {
+        return `
 class MotionBlur {
   constructor() {
     this.root = document.body
-    this.cursor = document.querySelector(".curzr-glitch-effect")
+    this.cursor = document.querySelector(".curzr")
     this.filter = document.querySelector(".curzr-motion-blur")
 
     this.position = {
@@ -60,7 +63,7 @@ class MotionBlur {
     this.previousAngle = 0
     this.angleDisplace = 0
     this.degrees = 57.296
-    this.cursorSize = 25
+    this.cursorSize = ${25 + (this.cursorsConfig.size / 5)}
     this.moving = false
 
     this.cursorStyle = {
@@ -72,7 +75,7 @@ class MotionBlur {
       height: \`\${ this.cursorSize }px\`,
       borderRadius: '50%',
       overflow: 'visible',
-      transition: '200ms, transform 20ms',
+      transition: '200ms, transform ${this.cursorsConfig.delay / 10}ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -147,10 +150,10 @@ class MotionBlur {
   } else {
     cursor.remove()
   }
-})()
-        `,
-        vue: 
-        `
+})()`
+      },
+      vue() {
+        return `
 <template>
   <div ref="curzr" class="curzr-big-circle">
     <div class="circle" ref="curzrCircle"></div>
@@ -243,8 +246,7 @@ class MotionBlur {
   pointer-events: none;
   transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
 }
-</style>
-        `
+</style>`
       }
     }
   }

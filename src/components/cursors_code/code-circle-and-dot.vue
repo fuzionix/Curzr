@@ -27,16 +27,19 @@
             'vue'
           ].indexOf(value) !== -1
         }
+      },
+      cursorsConfig: {
+        type: Object,
+        required: true
       }
     },
-    data() {
-      return {
-        html: 
-        `
-<div class="curzr-circle-and-dot"></div>
-        `,
-        javascript:
-        `
+    computed: {
+      html() {
+        return `
+<div class="curzr-circle-and-dot"></div>`
+      },
+      javascript() {
+        return `
 class CircleAndDot {
   constructor() {
     this.root = document.body
@@ -55,7 +58,7 @@ class CircleAndDot {
     this.previousAngle = 0
     this.angleDisplace = 0
     this.degrees = 57.296
-    this.cursorSize = 50
+    this.cursorSize = ${50 + (this.cursorsConfig.size / 5)}
     this.fading = false
 
     this.circleDotStyle = {
@@ -69,7 +72,7 @@ class CircleAndDot {
       border: '20px solid #34dcff',
       borderRadius: '50%',
       boxShadow: '0 -35px 0 -20px #34dcff00',
-      transition: '250ms, transform 100ms',
+      transition: '250ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -177,10 +180,10 @@ class CircleAndDot {
   } else {
     cursor.remove()
   }
-})()
-        `,
-        vue: 
-        `
+})()`
+      },
+      vue() {
+        return `
 <template>
   <div ref="curzr" class="curzr-big-circle">
     <div class="circle" ref="curzrCircle"></div>
@@ -273,8 +276,7 @@ class CircleAndDot {
   pointer-events: none;
   transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
 }
-</style>
-        `
+</style>`
       }
     }
   }

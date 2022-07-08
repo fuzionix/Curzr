@@ -56,31 +56,23 @@
     },
     data() {
       return {
-        codeBlock: 'code-arrow-pointer',
         vue: '',
       }
     },
-    watch: {
-      cursorData: {
-        handler() {
-          Promise.resolve().then(() => {
-            window.Prism = window.Prism || {}
-            window.Prism.manual = true
-            Prism.highlightAll()
-
-            this.vue = this.$refs.vueBlock.vue
-          })
-        },
-        deep: true
-      }
-    },
     mounted() {
-      // Render code content
-      window.Prism = window.Prism || {}
-      window.Prism.manual = true
-      Prism.highlightAll()
+      this.render()
+    },
+    methods: {
+      render() {
+        Promise.resolve().then(() => {
+          window.Prism = window.Prism || {}
+          window.Prism.manual = true
+          Prism.highlightAll()
 
-      this.vue = this.$refs.vueBlock.vue
+          this.html = this.$refs.htmlBlock.html
+          this.javascript = this.$refs.javascriptBlock.javascript
+        })
+      }
     }
   }
 </script>

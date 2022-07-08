@@ -27,18 +27,21 @@
             'vue'
           ].indexOf(value) !== -1
         }
+      },
+      cursorsConfig: {
+        type: Object,
+        required: true
       }
     },
-    data() {
-      return {
-        html: 
-        `
+    computed: {
+      html() {
+        return `
 <div class="curzr">
   <div class="curzr-dot"></div>
-</div>
-        `,
-        javascript:
-        `
+</div>`
+      },
+      javascript() {
+        return `
 class RingDot {
   constructor() {
     this.root = document.body
@@ -47,7 +50,7 @@ class RingDot {
 
     this.pointerX = 0
     this.pointerY = 0
-    this.cursorSize = 20
+    this.cursorSize = ${20 + (this.cursorsConfig.size / 5)}
 
     this.curzrStyle = {
       position: 'fixed',
@@ -61,7 +64,7 @@ class RingDot {
       backgroundColor: '#fff0',
       boxShadow: '0 0 0 1.5px #282828, 0 0 0 2.5px #f8f8f8',
       borderRadius: '50%',
-      transition: '200ms, transform 100ms',
+      transition: '200ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -136,10 +139,10 @@ class RingDot {
   } else {
     cursor.remove()
   }
-})()
-        `,
-        vue: 
-        `
+})()`
+      },
+      vue() {
+        return `
 <template>
   <div ref="curzr" class="curzr-arrow-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -227,8 +230,7 @@ class RingDot {
   user-select: none;
   pointer-events: none;
 }
-</style>
-        `
+</style>`
       }
     }
   }
