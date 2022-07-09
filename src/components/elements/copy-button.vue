@@ -90,14 +90,8 @@
   height: 50px;
   border: 2px solid #fff2;
   border-radius: $--common-radius / 2;
-  background-color: #fff0;
   box-shadow: 0 16px 40px #0004;
-  backdrop-filter: blur(5px);
   transition: 250ms;
-
-  &:hover {
-    background-color: #fff1;
-  }
 
   img {
     width: 16px;
@@ -111,6 +105,27 @@
     background: linear-gradient(90deg, #fff 0%, #fffa 100%);
     background-clip: text;
     text-fill-color: transparent;
+  }
+}
+
+@supports (backdrop-filter: blur(5px)) {
+  .copy-button {
+    background-color: #fff0;
+    backdrop-filter: blur(5px);
+
+    &:hover {
+      background-color: #fff1;
+    }
+  }
+}
+
+@supports not (backdrop-filter: blur(5px)) {
+  .copy-button {
+    background-color: #06252cee;
+
+    &:hover {
+      background-color: #06252caa;
+    }
   }
 }
 </style>

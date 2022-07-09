@@ -35,23 +35,36 @@
         cursorSizeInit: 0
       }
     },
+    computed: {
+      cursorStyle() {
+        return this.$refs.cursor.style
+      }
+    },
     mounted() {
       /**
        * The cursor size from the CSS variable
        */
       this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+
+      /**
+       * The cursor status of the default cursor visibility
+       */
+      if (!this.cursorsConfig.origin) {
+        this.setOriginalCursor('none')
+      }
     },
     watch: {
       /**
-       * Change the value of the CSS variable after cursorsConfig changes
+       * Change the value of cursor after cursorsConfig changed from model edit or adjustment bar
        * 
        * @param {object} configValue
        */
       cursorsConfig: {
         handler(configValue) {
-          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
-          this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorStyle.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
+          this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
           this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
+          !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
         deep: true,
         immeditate: true
@@ -62,9 +75,9 @@
        * Center the position of cursor after its container loaded 
        */
       init() {
-        this.$refs.cursor.style.top = 0 
-        this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
-        this.$refs.cursor.style.transition = ''
+        this.cursorStyle.top = 0 
+        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.transition = ''
       },
       /**
        * Get the cursor position by event and apply them to the transform property of the cursor 
@@ -80,7 +93,7 @@
         this.position.distanceX = this.previousPointerX - this.position.pointerX
         this.position.distanceY = this.previousPointerY - this.position.pointerY
 
-        this.$refs.cursor.style.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
+        this.cursorStyle.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
 
         this.rotate(this.position)
       },
@@ -118,22 +131,28 @@
             this.angleDisplace += this.angle - this.previousAngle
           }
         }
-        this.$refs.cursor.style.transform += ` rotate(${this.angleDisplace}deg)`
+        this.cursorStyle.transform += ` rotate(${this.angleDisplace}deg)`
 
         modAngle = this.angleDisplace >= 0 ? this.angleDisplace % 360 : 360 + this.angleDisplace % 360
         if (modAngle >= 45 && modAngle < 135) {
-          this.$refs.cursor.style.left = `${ -this.cursorSize }px`
-          this.$refs.cursor.style.top = `${ -this.cursorSize / 2 }px`
+          this.cursorStyle.left = `${ -this.cursorSize }px`
+          this.cursorStyle.top = `${ -this.cursorSize / 2 }px`
         } else if (modAngle >= 135 && modAngle < 225) {
-          this.$refs.cursor.style.left = `${ -this.cursorSize / 2 }px`
-          this.$refs.cursor.style.top = `${ -this.cursorSize }px`
+          this.cursorStyle.left = `${ -this.cursorSize / 2 }px`
+          this.cursorStyle.top = `${ -this.cursorSize }px`
         } else if (modAngle >= 225 && modAngle < 315) {
-          this.$refs.cursor.style.left = '0px'
-          this.$refs.cursor.style.top = `${ -this.cursorSize / 2 }px`
+          this.cursorStyle.left = '0px'
+          this.cursorStyle.top = `${ -this.cursorSize / 2 }px`
         } else {
-          this.$refs.cursor.style.left = `${ -this.cursorSize / 2 }px`
-          this.$refs.cursor.style.top = '0px'
+          this.cursorStyle.left = `${ -this.cursorSize / 2 }px`
+          this.cursorStyle.top = '0px'
         }
+      },
+      setOriginalCursor(value) {
+        this.$refs.cursor.parentElement.style.cursor = value
+        this.$refs.cursor.parentElement.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = value
+        })
       },
       /**
        * Center the position of cursor when leaving its container

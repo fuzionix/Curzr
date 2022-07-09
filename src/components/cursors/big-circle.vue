@@ -35,18 +35,30 @@
        */
       cursorSize() {
         return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+      },
+      cursorStyle() {
+        return this.$refs.cursor.style
+      }
+    },
+    mounted() {
+      /**
+       * The cursor status of the default cursor visibility
+       */
+      if (!this.cursorsConfig.origin) {
+        this.setOriginalCursor('none')
       }
     },
     watch: {
       /**
-       * Change the value of the CSS variable after cursorsConfig changes
+       * Change the value of cursor after cursorsConfig changed from model edit or adjustment bar
        * 
        * @param {object} configValue
        */
       cursorsConfig: {
         handler(configValue) {
-          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 2)) + 'px')
-          this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorStyle.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 2)) + 'px')
+          this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
+          !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
         deep: true,
         immeditate: true
@@ -112,6 +124,12 @@
         setTimeout(() => {
           this.$refs.circle.style.transform = this.$refs.circle.style.transform.replace(` scale(0.75)`, '')
         }, 35)
+      },
+      setOriginalCursor(value) {
+        this.$refs.cursor.parentElement.style.cursor = value
+        this.$refs.cursor.parentElement.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = value
+        })
       },
       /**
        * Center the position of cursors when leaving theirs container

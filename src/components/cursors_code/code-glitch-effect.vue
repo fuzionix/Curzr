@@ -82,6 +82,17 @@ class GlitchEffect {
 
   init(el, style) {
     Object.assign(el.style, style)
+    ${
+      !this.cursorsConfig.origin 
+        ? 
+    `
+    document.body.style.cursor = 'none'
+    document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+      el.style.cursor = 'none'
+    })` 
+        : 
+    ``
+    }
   }
 
   move(event) {

@@ -62,7 +62,7 @@ class RingDot {
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
       backgroundColor: '#fff0',
-      boxShadow: '0 0 0 1.5px #282828, 0 0 0 2.5px #f8f8f8',
+      boxShadow: '0 0 0 1.25px #282828, 0 0 0 2.25px #f8f8f8',
       borderRadius: '50%',
       transition: '200ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
@@ -86,6 +86,17 @@ class RingDot {
 
   init(el, style) {
     Object.assign(el.style, style)
+    ${
+      !this.cursorsConfig.origin 
+        ? 
+    `
+    document.body.style.cursor = 'none'
+    document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+      el.style.cursor = 'none'
+    })` 
+        : 
+    ``
+    }
   }
 
   move(event) {

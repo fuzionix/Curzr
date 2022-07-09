@@ -1,7 +1,7 @@
 <template>
   <div id="switch-button" class="switch-button">
     <label class="checkbox-item">
-      <input type="checkbox">
+      <input type="checkbox" v-model="checked">
       <span class="checkbox-switch"></span>
     </label>
   </div>
@@ -10,12 +10,25 @@
 <script>
   export default {
     name: 'SwitchButton',
-    components: {
-      
+    props: {
+      isChecked: {
+        type: Boolean,
+        required: true
+      }
     },
     data() {
       return {
-
+        checked: this.isChecked
+      }
+    },
+    watch: {
+      checked: {
+        handler() {
+          /**
+           * Emit the value to the parent
+           */
+          this.$emit('changeCheckedValue', this.checked)
+        }
       }
     }
   }

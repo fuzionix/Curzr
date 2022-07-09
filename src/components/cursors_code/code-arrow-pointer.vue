@@ -81,6 +81,17 @@ class ArrowPointer {
 
   init(el, style) {
     Object.assign(el.style, style)
+    ${
+      !this.cursorsConfig.origin 
+        ? 
+    `
+    document.body.style.cursor = 'none'
+    document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+      el.style.cursor = 'none'
+    })` 
+        : 
+    ``
+    }
   }
 
   move(event) {
@@ -99,6 +110,7 @@ class ArrowPointer {
   rotate(position) {
     let unsortedAngle = Math.atan(Math.abs(position.distanceY) / Math.abs(position.distanceX)) * this.degrees
     let modAngle
+    const style = this.cursor.style
     this.previousAngle = this.angle
 
     if (position.distanceX <= 0 && position.distanceY >= 0) {
@@ -122,21 +134,21 @@ class ArrowPointer {
         this.angleDisplace += this.angle - this.previousAngle
       }
     }
-    this.cursor.style.transform += \` rotate(\${this.angleDisplace}deg)\`
+    style.transform += \` rotate(\${this.angleDisplace}deg)\`
 
     modAngle = this.angleDisplace >= 0 ? this.angleDisplace % 360 : 360 + this.angleDisplace % 360
     if (modAngle >= 45 && modAngle < 135) {
-      this.cursor.style.left = \`\${ -this.cursorSize }px\`
-      this.cursor.style.top = \`\${ -this.cursorSize / 2 }px\`
+      style.left = \`\${ -this.cursorSize }px\`
+      style.top = \`\${ -this.cursorSize / 2 }px\`
     } else if (modAngle >= 135 && modAngle < 225) {
-      this.cursor.style.left = \`\${ -this.cursorSize / 2 }px\`
-      this.cursor.style.top = \`\${ -this.cursorSize }px\`
+      style.left = \`\${ -this.cursorSize / 2 }px\`
+      style.top = \`\${ -this.cursorSize }px\`
     } else if (modAngle >= 225 && modAngle < 315) {
-      this.cursor.style.left = '0px'
-      this.cursor.style.top = \`\${ -this.cursorSize / 2 }px\`
+      style.left = '0px'
+      style.top = \`\${ -this.cursorSize / 2 }px\`
     } else {
-      this.cursor.style.left = \`\${ -this.cursorSize / 2 }px\`
-      this.cursor.style.top = '0px'
+      style.left = \`\${ -this.cursorSize / 2 }px\`
+      style.top = '0px'
     }
   }
 

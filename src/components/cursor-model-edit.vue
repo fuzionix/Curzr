@@ -34,7 +34,11 @@
       <div class="input-container">
         <small class="input-name">Original Cursor</small>
         <small class="input-description">Remain the default cursor</small>
-        <switch-button class="switch-button" />
+        <switch-button 
+          class="switch-button" 
+          :isChecked="cursorsConfig.origin" 
+          @changeCheckedValue="changeCheckedValue"
+        />
       </div>
       <hr>
       <div class="input-container">
@@ -70,7 +74,16 @@
     props: {
       cursorsConfig: {
         type: Object,
-        required: true
+        required: true,
+        validator: function (value) {
+          return Object.keys(value).filter((key) => {
+            return [
+              'size', 
+              'delay', 
+              'origin'
+            ].indexOf(key) === -1
+          }).length === 0
+        }
       }
     },
     data() {
@@ -97,6 +110,15 @@
       changeRangeValue(event) {
         this.$emit('changeRangeValue', event)
       },
+      /**
+       * Emit the value to the parent
+       * 
+       * @param {object} event
+       * @event changeCheckedValue
+       */
+      changeCheckedValue(event) {
+        this.$emit('changeCheckedValue', event)
+      }
     }
   }
 </script>

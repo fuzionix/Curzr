@@ -34,18 +34,30 @@
        */
       cursorSize() {
         return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+      },
+      cursorStyle() {
+        return this.$refs.cursor.style
+      }
+    },
+    mounted() {
+      /**
+       * The cursor status of the default cursor visibility
+       */
+      if (!this.cursorsConfig.origin) {
+        this.setOriginalCursor('none')
       }
     },
     watch: {
       /**
-       * Change the value of the CSS variable after cursorsConfig changes
+       * Change the value of cursor after cursorsConfig changed from model edit or adjustment bar
        * 
        * @param {object} configValue
        */
       cursorsConfig: {
         handler(configValue) {
-          this.$refs.cursor.style.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
-          this.$refs.cursor.style.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorStyle.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
+          !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
         deep: true,
         immeditate: true
@@ -56,9 +68,9 @@
        * Center the position of cursor after its container loaded 
        */
       init() {
-        this.$refs.cursor.style.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
-        this.$refs.cursor.style.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
-        this.$refs.cursor.style.transition = ''
+        this.cursorStyle.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.transition = ''
         this.$parent.$el.addEventListener('click', this.click)
       },
       /**
@@ -80,7 +92,7 @@
           ? this.hover() 
           : this.hoverout()
 
-        this.$refs.cursor.style.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
+        this.cursorStyle.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
 
         this.rotate(this.position)
         this.fade(this.distance)
@@ -118,19 +130,19 @@
             this.angleDisplace += this.angle - this.previousAngle
           }
         }
-        this.$refs.cursor.style.transform += ` rotate(${this.angleDisplace}deg)`
+        this.cursorStyle.transform += ` rotate(${this.angleDisplace}deg)`
       },
       /**
        * Apply the transform property when triggered by the 'mousemove' event listener
        */
       hover() {
-        this.$refs.cursor.style.border = '15px solid #34dcff'
+        this.cursorStyle.border = '15px solid #34dcff'
       },
       /**
        * Apply the transform property when triggered by the 'mouseleave' event listener
        */
       hoverout() {
-        this.$refs.cursor.style.border = '20px solid #34dcff'
+        this.cursorStyle.border = '20px solid #34dcff'
       },
       /**
        * Shift the shadow which is the dot around the circle according to the distance 
@@ -140,11 +152,11 @@
        * @param {number} distance
        */
       fade(distance) {
-        this.$refs.cursor.style.boxShadow = `0 ${-35 - distance * 2}px 0 -20px #34dcff`
+        this.cursorStyle.boxShadow = `0 ${-35 - distance * 2}px 0 -20px #34dcff`
         if (!this.fading) {
           this.fading = true
           setTimeout(() => {
-            this.$refs.cursor.style.boxShadow = '0 -35px 0 -20px #34dcff00'
+            this.cursorStyle.boxShadow = '0 -35px 0 -20px #34dcff00'
             this.fading = false
           }, 50)
         }
@@ -153,19 +165,25 @@
        * Apply the transform property when triggered by the 'click' event listener
        */
       click() {
-        this.$refs.cursor.style.transform += ` scale(0.75)`
+        this.cursorStyle.transform += ` scale(0.75)`
         setTimeout(() => {
-          this.$refs.cursor.style.transform = this.$refs.cursor.style.transform.replace(` scale(0.75)`, '')
+          this.cursorStyle.transform = this.cursorStyle.transform.replace(` scale(0.75)`, '')
         }, 35)
+      },
+      setOriginalCursor(value) {
+        this.$refs.cursor.parentElement.style.cursor = value
+        this.$refs.cursor.parentElement.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = value
+        })
       },
       /**
        * Center the position of cursor when leaving its container
        */
       reset() {
-        this.$refs.cursor.style.top = ''
-        this.$refs.cursor.style.left = ''
-        this.$refs.cursor.style.transform = ''
-        this.$refs.cursor.style.transition = '500ms'
+        this.cursorStyle.top = ''
+        this.cursorStyle.left = ''
+        this.cursorStyle.transform = ''
+        this.cursorStyle.transition = '500ms'
         this.$parent.$el.removeEventListener('click', this.click)
       }
     }

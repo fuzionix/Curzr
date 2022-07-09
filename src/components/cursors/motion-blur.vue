@@ -48,10 +48,17 @@
        * The cursor size from the CSS variable
        */
       this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2)) / 2
+
+      /**
+       * The cursor status of the default cursor visibility
+       */
+      if (!this.cursorsConfig.origin) {
+        this.setOriginalCursor('none')
+      }
     },
     watch: {
       /**
-       * Change the value of the CSS variable after cursorsConfig changes
+       * Change the value of cursor after cursorsConfig changed from model edit or adjustment bar
        * 
        * @param {object} configValue
        */
@@ -59,6 +66,7 @@
         handler(configValue) {
           this.cursorStyle.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
           this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
+          !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
         deep: true,
         immeditate: true
@@ -122,6 +130,12 @@
           this.motionBlur.setAttribute('stdDeviation', '0, 0')
           this.moving = false
         }, 50)
+      },
+      setOriginalCursor(value) {
+        this.$refs.cursor.parentElement.style.cursor = value
+        this.$refs.cursor.parentElement.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = value
+        })
       },
       /**
        * Center the position of cursor when leaving its container

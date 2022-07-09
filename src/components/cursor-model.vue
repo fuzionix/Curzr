@@ -50,7 +50,9 @@
               :cursors-config="cursorsConfig"
               class="block-content"
               @changeModel="changeModel"
-              @changeRangeValue="changeRangeValue">
+              @changeRangeValue="changeRangeValue"
+              @changeCheckedValue="changeCheckedValue"
+            >
             </component>
           </keep-alive>
         </transition>
@@ -103,7 +105,8 @@
       return {
         cursorsConfig: {
           size: 0,
-          delay: 100
+          delay: 100,
+          origin: true
         },
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
@@ -181,6 +184,15 @@
         }
       },
       /**
+       * Change the property value of cursorsConfig by the data from the <switch-button>
+       * 
+       * @param {object} event
+       * @event changeCheckedValue
+       */
+      changeCheckedValue(event) {
+        this.cursorsConfig.origin = event
+      },
+      /**
        * Close the model when click on the area that is not in the model
        * 
        * @param {object} event
@@ -232,11 +244,9 @@
       align-items: center;
       justify-content: center;
       flex: 1;
-      position: relative;
       border-right: 1px solid $--section-line-color;
       background: $--background-sub-color;
       transition: 500ms;
-      cursor: none;
 
       .block-content {
         padding: 1rem;
@@ -258,7 +268,6 @@
         border: none;
         opacity: .5;
         transition: 250ms;
-        cursor: none;
 
         img {
           width: 20px;
@@ -290,10 +299,6 @@
         bottom: 0;
         right: 0;
         padding: 1.5rem 2rem;
-
-        .content-type > * {
-          cursor: none;
-        }
       }
     }
 
