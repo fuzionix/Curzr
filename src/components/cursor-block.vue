@@ -143,11 +143,6 @@
     linear-gradient(var(--bg-color) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center, var(--dot-color);
   background-size: var(--dot-space) var(--dot-space);
   background-position: center;
-  cursor: pointer;
-
-  &:hover {
-    cursor: pointer;
-  }
 
   &:hover footer .cursor-name {
     opacity: 1;

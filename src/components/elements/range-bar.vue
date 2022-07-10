@@ -115,6 +115,11 @@
       border-radius: 6px;
       z-index: 2;
       transition: 100ms;
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
 
       &:hover {
         width: 22px;
@@ -132,6 +137,11 @@
       border-radius: 6px;
       z-index: 2;
       transition: 100ms;
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
 
       &:hover {
         width: 18px;

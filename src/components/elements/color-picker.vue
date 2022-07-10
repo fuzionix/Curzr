@@ -151,6 +151,7 @@
     border-radius: 12px;
     background-color: var(--block-color);
     box-shadow: 0 0 0 4px #fff8 inset;
+    cursor: pointer;
   }
 }
 </style>
@@ -165,6 +166,7 @@
     right: 0;
     border-radius: 12px;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 8px 16px rgb(0 0 0 / 0%);
+    cursor: auto;
 
     .vc-sketch-saturation-wrap {
       border-radius: 6px;

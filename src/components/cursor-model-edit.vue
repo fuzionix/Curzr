@@ -138,9 +138,6 @@
         return this.cursorData.componentName.replace(/-./g, x => x[1].toUpperCase())
       }
     },
-    mounted() {
-      console.log(this.cursorsData[this.cursorName].settingOption)
-    },
     methods: {
       /**
        * Emit the value to the parent

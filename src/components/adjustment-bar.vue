@@ -124,6 +124,7 @@
         padding: .5rem;
         border-radius: 6px;
         transition: 250ms;
+        cursor: pointer;
 
         &:hover {
           box-shadow: 0 0 0 2px $--section-line-color inset;

@@ -113,6 +113,7 @@
       box-shadow: 0 0 0 1px $--section-line-color;
       transition: 250ms;
       user-select: none;
+      cursor: pointer;
 
       &:hover {
         box-shadow: 0 0 0 3px $--section-line-color;

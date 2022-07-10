@@ -127,6 +127,7 @@
       border-radius: .5rem;
       background-color: #fff0;
       transition: 250ms;
+      cursor: pointer;
 
       &:hover {
         background-color: $--section-line-color;
@@ -144,6 +145,7 @@
           transition: 250ms;
           opacity: 1;
           visibility: visible;
+          cursor: auto;
         }
 
         img {

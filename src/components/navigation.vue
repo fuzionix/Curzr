@@ -90,6 +90,7 @@
     border-radius: 50%;
     box-shadow: 0 0 0 1px $--section-line-color;
     transition: 250ms;
+    cursor: pointer;
     
     &:hover {
       background-color: $--section-line-color;

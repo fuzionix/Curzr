@@ -63,6 +63,7 @@
       background: darken($--section-line-color, 10%);
       margin: 0;
       transition: 250ms;
+      cursor: pointer;
 
       &:checked {
         background: $--theme-color;
@@ -82,6 +83,7 @@
       border-radius: 4px;
       background-color: #fff;
       transition: 250ms;
+      cursor: pointer;
     }
   }
 }

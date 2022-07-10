@@ -66,6 +66,7 @@
   import RadioGroup from '@/components/elements/radio-group.vue'
 
   import Cursors from '@/components/module/cursors.js'
+  import CursorsData from '@/json/cursors_data.json'
 
   import NormalTag from '@/components/elements/tag.vue'
 
@@ -102,6 +103,7 @@
     },
     data() {
       return {
+        cursorsData: CursorsData,
         cursorsConfig: {
           size: 0,
           delay: 100,
@@ -116,12 +118,21 @@
         eventName: ''
       }
     },
+    computed: {
+      /**
+       * Kebab case from componentName to camel case
+       */
+      cursorName() {
+        return this.cursorData.componentName.replace(/-./g, x => x[1].toUpperCase())
+      }
+    },
     mounted() {
       if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         this.eventName = 'mousemove'
       } else {
         this.eventName = 'touchmove'
       }
+      console.log(this.cursorsData[this.cursorName].settingOption.bodyColor.default)
     },
     methods: {
       /**
