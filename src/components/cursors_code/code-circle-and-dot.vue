@@ -36,14 +36,14 @@
     computed: {
       html() {
         return `
-<div class="curzr-circle-and-dot"></div>`
+<div class="curzr" hidden></div>`
       },
       javascript() {
         return `
 class CircleAndDot {
   constructor() {
     this.root = document.body
-    this.circleDot = document.querySelector(".curzr-circle-and-dot")
+    this.cursor = document.querySelector(".curzr")
 
     this.position = {
       distanceX: 0, 
@@ -61,11 +61,12 @@ class CircleAndDot {
     this.cursorSize = ${50 + (this.cursorsConfig.size / 5)}
     this.fading = false
 
-    this.circleDotStyle = {
+    this.cursorStyle = {
       boxSizing: 'border-box',
       position: 'fixed',
       top: \`\${ this.cursorSize / -2 }px\`,
       left: \`\${ this.cursorSize / -2 }px\`,
+      zIndex: '2147483647',
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
       backgroundColor: '#fff0',
@@ -77,18 +78,19 @@ class CircleAndDot {
       pointerEvents: 'none'
     }
 
-    this.init(this.circleDot, this.circleDotStyle)
+    this.init(this.cursor, this.cursorStyle)
   }
 
   init(el, style) {
     Object.assign(el.style, style)
+    this.cursor.removeAttribute("hidden")
     ${
       !this.cursorsConfig.origin 
         ? 
     `
     document.body.style.cursor = 'none'
     document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
-      el.style.cursor = 'none'
+      el.style.cursor = 'inherit'
     })` 
         : 
     ``
@@ -114,7 +116,7 @@ class CircleAndDot {
     }
 
 
-    this.circleDot.style.transform = \`translate3d(\${this.position.pointerX}px, \${this.position.pointerY}px, 0)\`
+    this.cursor.style.transform = \`translate3d(\${this.position.pointerX}px, \${this.position.pointerY}px, 0)\`
 
     this.rotate(this.position)
     this.fade(this.distance)
@@ -145,37 +147,37 @@ class CircleAndDot {
         this.angleDisplace += this.angle - this.previousAngle
       }
     }
-    this.circleDot.style.transform += \` rotate(\${this.angleDisplace}deg)\`
+    this.cursor.style.transform += \` rotate(\${this.angleDisplace}deg)\`
   }
 
   hover() {
-    this.circleDot.style.border = '15px solid #34dcff'
+    this.cursor.style.border = '15px solid #34dcff'
   }
 
   hoverout() {
-    this.circleDot.style.border = '20px solid #34dcff'
+    this.cursor.style.border = '20px solid #34dcff'
   }
 
   fade(distance) {
-    this.circleDot.style.boxShadow = \`0 \${-35 - distance}px 0 -20px #34dcff\`
+    this.cursor.style.boxShadow = \`0 \${-35 - distance}px 0 -20px #34dcff\`
     if (!this.fading) {
       this.fading = true
       setTimeout(() => {
-        this.circleDot.style.boxShadow = '0 -35px 0 -20px #34dcff00'
+        this.cursor.style.boxShadow = '0 -35px 0 -20px #34dcff00'
         this.fading = false
       }, 50)
     }
   }
 
   click() {
-    this.circleDot.style.transform += \` scale(0.75)\`
+    this.cursor.style.transform += \` scale(0.75)\`
     setTimeout(() => {
-      this.circleDot.style.transform = this.circleDot.style.transform.replace(\` scale(0.75)\`, '')
+      this.cursor.style.transform = this.cursor.style.transform.replace(\` scale(0.75)\`, '')
     }, 35)
   }
 
   remove() {
-    this.circleDot.remove()
+    this.cursor.remove()
   }
 }
 

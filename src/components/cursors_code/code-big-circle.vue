@@ -36,7 +36,7 @@
     computed: {
       html() {
         return `
-<div class="curzr-big-circle">
+<div class="curzr" hidden>
   <div class="circle"></div>
   <div class="dot"></div>
 </div>`
@@ -46,8 +46,9 @@
 class BigCircle {
   constructor() {
     this.root = document.body
-    this.circle = document.querySelector(".curzr-big-circle .circle")
-    this.dot = document.querySelector(".curzr-big-circle .dot")
+    this.cursor = document.querySelector(".curzr")
+    this.circle = document.querySelector(".curzr .circle")
+    this.dot = document.querySelector(".curzr .dot")
 
     this.pointerX = 0
     this.pointerY = 0
@@ -57,6 +58,7 @@ class BigCircle {
       position: 'fixed',
       top: \`\${ this.cursorSize / -2 }px\`,
       left: \`\${ this.cursorSize / -2 }px\`,
+      zIndex: '2147483647',
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
       backgroundColor: '#fff0',
@@ -68,6 +70,7 @@ class BigCircle {
 
     this.dotStyle = {
       position: 'fixed',
+      zIndex: '2147483647',
       width: '6px',
       height: '6px',
       backgroundColor: '#fffd',
@@ -91,13 +94,14 @@ class BigCircle {
 
   init(el, style) {
     Object.assign(el.style, style)
+    this.cursor.removeAttribute("hidden")
     ${
       !this.cursorsConfig.origin 
         ? 
     `
     document.body.style.cursor = 'none'
     document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
-      el.style.cursor = 'none'
+      el.style.cursor = 'inherit'
     })` 
         : 
     ``

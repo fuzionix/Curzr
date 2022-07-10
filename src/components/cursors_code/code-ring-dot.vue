@@ -36,7 +36,7 @@
     computed: {
       html() {
         return `
-<div class="curzr">
+<div class="curzr" hidden>
   <div class="curzr-dot"></div>
 </div>`
       },
@@ -45,18 +45,19 @@
 class RingDot {
   constructor() {
     this.root = document.body
-    this.curzr = document.querySelector(".curzr")
+    this.cursor = document.querySelector(".curzr")
     this.dot = document.querySelector(".curzr-dot")
 
     this.pointerX = 0
     this.pointerY = 0
     this.cursorSize = ${20 + (this.cursorsConfig.size / 5)}
 
-    this.curzrStyle = {
+    this.cursorStyle = {
       position: 'fixed',
       display: 'flex',
       top: \`\${ this.cursorSize / -2 }px\`,
       left: \`\${ this.cursorSize / -2 }px\`,
+      zIndex: '2147483647',
       justifyContent: 'center',
       alignItems: 'center',
       width: \`\${ this.cursorSize }px\`,
@@ -71,6 +72,7 @@ class RingDot {
 
     this.dotStyle = {
       position: 'fixed',
+      zIndex: '2147483647',
       width: '4px',
       height: '4px',
       backgroundColor: '#282828',
@@ -80,19 +82,20 @@ class RingDot {
       pointerEvents: 'none',
     }
 
-    this.init(this.curzr, this.curzrStyle)
+    this.init(this.cursor, this.cursorStyle)
     this.init(this.dot, this.dotStyle)
   }
 
   init(el, style) {
     Object.assign(el.style, style)
+    this.cursor.removeAttribute("hidden")
     ${
       !this.cursorsConfig.origin 
         ? 
     `
     document.body.style.cursor = 'none'
     document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
-      el.style.cursor = 'none'
+      el.style.cursor = 'inherit'
     })` 
         : 
     ``
@@ -112,28 +115,28 @@ class RingDot {
     this.pointerX = event.pageX + this.root.getBoundingClientRect().x
     this.pointerY = event.pageY + this.root.getBoundingClientRect().y
   
-    this.curzr.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
+    this.cursor.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
   }
 
   hover(radius) {
-    this.curzr.style.width = this.curzr.style.height = \`\${radius}px\`
-    this.curzr.style.top = this.curzr.style.left = \`\${radius / -2}px\`
+    this.cursor.style.width = this.cursor.style.height = \`\${radius}px\`
+    this.cursor.style.top = this.cursor.style.left = \`\${radius / -2}px\`
   }
 
   hoverout() {
-    this.curzr.style.width = this.curzr.style.height = \`\${this.cursorSize}px\`
-    this.curzr.style.top = this.curzr.style.left = \`\${this.cursorSize / -2}px\`
+    this.cursor.style.width = this.cursor.style.height = \`\${this.cursorSize}px\`
+    this.cursor.style.top = this.cursor.style.left = \`\${this.cursorSize / -2}px\`
   }
 
   click() {
-    this.curzr.style.transform += \` scale(0.75)\`
+    this.cursor.style.transform += \` scale(0.75)\`
     setTimeout(() => {
-      this.curzr.style.transform = this.curzr.style.transform.replace(\` scale(0.75)\`, '')
+      this.cursor.style.transform = this.cursor.style.transform.replace(\` scale(0.75)\`, '')
     }, 35)
   }
 
   remove() {
-    this.curzr.remove()
+    this.cursor.remove()
     this.dot.remove()
   }
 }

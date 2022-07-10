@@ -107,7 +107,7 @@
       setOriginalCursor(value) {
         this.$refs.cursor.parentElement.style.cursor = value
         this.$refs.cursor.parentElement.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
-          el.style.cursor = value
+          el.style.cursor = 'inherit'
         })
       },
       /**

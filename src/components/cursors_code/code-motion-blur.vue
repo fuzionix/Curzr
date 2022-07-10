@@ -36,7 +36,7 @@
     computed: {
       html() {
         return `
-<svg class="curzr">
+<svg class="curzr" hidden>
   <filter id="motionblur" x="-100%" y="-100%" width="400%" height="400%">
     <feGaussianBlur class="curzr-motion-blur" stdDeviation="0, 0"/>
   </filter>
@@ -71,6 +71,7 @@ class MotionBlur {
       position: 'fixed',
       top: \`\${ this.cursorSize / -2 }px\`,
       left: \`\${ this.cursorSize / -2 }px\`,
+      zIndex: '2147483647',
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
       borderRadius: '50%',
@@ -85,13 +86,14 @@ class MotionBlur {
 
   init(el, style) {
     Object.assign(el.style, style)
+    this.cursor.removeAttribute("hidden")
     ${
       !this.cursorsConfig.origin 
         ? 
     `
     document.body.style.cursor = 'none'
     document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
-      el.style.cursor = 'none'
+      el.style.cursor = 'inherit'
     })` 
         : 
     ``

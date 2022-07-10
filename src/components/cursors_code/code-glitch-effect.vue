@@ -36,14 +36,14 @@
     computed: {
       html() {
         return `
-<div class="curzr-glitch-effect"></div>`
+<div class="curzr" hidden></div>`
       },
       javascript() {
         return `
 class GlitchEffect {
   constructor() {
     this.root = document.body
-    this.cursor = document.querySelector(".curzr-glitch-effect")
+    this.cursor = document.querySelector(".curzr")
 
     this.distanceX = 0, 
     this.distanceY = 0,
@@ -60,6 +60,7 @@ class GlitchEffect {
       position: 'fixed',
       top: \`\${ this.cursorSize / -2 }px\`,
       left: \`\${ this.cursorSize / -2 }px\`,
+      zIndex: '2147483647',
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
       backgroundColor: '#222',
@@ -82,13 +83,14 @@ class GlitchEffect {
 
   init(el, style) {
     Object.assign(el.style, style)
+    this.cursor.removeAttribute("hidden")
     ${
       !this.cursorsConfig.origin 
         ? 
     `
     document.body.style.cursor = 'none'
     document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
-      el.style.cursor = 'none'
+      el.style.cursor = 'inherit'
     })` 
         : 
     ``
