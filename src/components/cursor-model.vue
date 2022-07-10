@@ -50,8 +50,7 @@
               :cursors-config="cursorsConfig"
               class="block-content"
               @changeModel="changeModel"
-              @changeRangeValue="changeRangeValue"
-              @changeCheckedValue="changeCheckedValue"
+              @changeInputValue="changeInputValue"
             >
             </component>
           </keep-alive>
@@ -106,7 +105,9 @@
         cursorsConfig: {
           size: 0,
           delay: 100,
-          origin: true
+          origin: true,
+          bodyColor: '#F2F5F8',
+          outlineColor: '#111920'
         },
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
@@ -173,7 +174,7 @@
        * @param {object} event
        * @event changeRangeValue
        */
-      changeRangeValue(event) {
+      changeInputValue(event) {
         switch (event.id) {
           case 'edit-size':
             this.cursorsConfig.size = parseInt(event.value)
@@ -181,16 +182,16 @@
           case 'edit-delay':
             this.cursorsConfig.delay = parseInt(event.value)
             break
+          case 'edit-origin':
+            this.cursorsConfig.origin = event.value
+            break
+          case 'edit-body-color':
+            this.cursorsConfig.bodyColor = event.value
+            break
+          case 'edit-outline-color':
+            this.cursorsConfig.outlineColor = event.value
+            break
         }
-      },
-      /**
-       * Change the property value of cursorsConfig by the data from the <switch-button>
-       * 
-       * @param {object} event
-       * @event changeCheckedValue
-       */
-      changeCheckedValue(event) {
-        this.cursorsConfig.origin = event
       },
       /**
        * Close the model when click on the area that is not in the model

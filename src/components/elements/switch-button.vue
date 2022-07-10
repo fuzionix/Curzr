@@ -11,6 +11,10 @@
   export default {
     name: 'SwitchButton',
     props: {
+      id: {
+        type: String,
+        required: true
+      },
       isChecked: {
         type: Boolean,
         required: true
@@ -27,7 +31,10 @@
           /**
            * Emit the value to the parent
            */
-          this.$emit('changeCheckedValue', this.checked)
+          this.$emit('changeCheckedValue', {
+            value: this.checked, 
+            id: this.id 
+          })
         }
       }
     }

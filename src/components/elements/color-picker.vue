@@ -29,6 +29,16 @@
     components: {
       'sketch-color-picker': Sketch
     },
+    props: {
+      id: {
+        type: String,
+        required: true
+      },
+      color: {
+        type: String,
+        required: true
+      }
+    },
     filters: {
       removeHash(value) {
         return value.slice(1)
@@ -37,7 +47,7 @@
     data() {
       return {
         colors: {
-          hex: '#ED24AB'
+          hex: this.color
         },
         colorPickerStatus: false
       }
@@ -46,8 +56,18 @@
       colors: {
         handler(value) {
           this.changeBlockColor(value.hex)
+          /**
+           * Emit the value to the parent
+           */
+          this.$emit('changeColorValue', {
+            value: value.hex, 
+            id: this.id 
+          })
         }
       }
+    },
+    mounted() {
+      this.changeBlockColor(this.color)
     },
     methods: {
       /**

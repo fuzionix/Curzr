@@ -9,6 +9,11 @@
     </normal-button>
     <h5 class="title">Edit Cursor</h5>
     <div class="edit-container">
+      <!-- 
+        General Setting | Start
+
+        All cursors will have these edit input fields
+      -->
       <div class="input-container">
         <small class="input-name">Size</small>
         <small class="input-description">Adjust the size of the cursor</small>
@@ -17,7 +22,7 @@
           class="range-bar"
           :range-value="cursorsConfig.size"
           :minmax="[-25, 25]"
-          @changeRangeValue="changeRangeValue"
+          @changeRangeValue="changeInputValue"
         />
       </div>
       <div class="input-container">
@@ -28,24 +33,49 @@
           class="range-bar"
           :range-value="cursorsConfig.delay"
           :minmax="[0, 200]"
-          @changeRangeValue="changeRangeValue"
+          @changeRangeValue="changeInputValue"
         />
       </div>
       <div class="input-container">
         <small class="input-name">Original Cursor</small>
         <small class="input-description">Remain the default cursor</small>
         <switch-button 
+          id="edit-origin"
           class="switch-button" 
           :isChecked="cursorsConfig.origin" 
-          @changeCheckedValue="changeCheckedValue"
+          @changeCheckedValue="changeInputValue"
         />
       </div>
+      <!-- General Setting | End -->
       <hr>
+      <!-- 
+        Optional Setting | Start 
+
+        The cursors will have the specified edit input fields according to the settingOption defined in 'cursors_data.json'
+      -->
       <div class="input-container">
-        <small class="input-name">Color</small>
+        <small class="input-name">Body Color</small>
         <small class="input-description">Change the color of cursor body</small>
-        <color-picker class="color-picker" />
+        <color-picker 
+          id="edit-body-color"
+          class="color-picker" 
+          style="z-index: 2" 
+          :color="cursorsConfig.bodyColor"
+          @changeColorValue="changeInputValue"
+        />
       </div>
+      <div class="input-container">
+        <small class="input-name">Outline Color</small>
+        <small class="input-description">Change the color of cursor outline</small>
+        <color-picker 
+          id="edit-outline-color"
+          class="color-picker" 
+          style="z-index: 1" 
+          :color="cursorsConfig.outlineColor"
+          @changeColorValue="changeInputValue"
+        />
+      </div>
+      <!-- Optional Setting - End -->
       <normal-button 
         class="get-code-btn" 
         @click.native="changeToViewcodeModel()"
@@ -63,6 +93,8 @@
   import SwitchButton from '@/components/elements/switch-button.vue'
   import RangeBar from '@/components/elements/range-bar.vue'
 
+  import CursorsData from '@/json/cursors_data.json'
+
   export default {
     name: 'CursorModelEdit',
     components: {
@@ -72,6 +104,10 @@
       'range-bar': RangeBar,
     },
     props: {
+      cursorData: {
+        type: Object,
+        required: true
+      },
       cursorsConfig: {
         type: Object,
         required: true,
@@ -80,7 +116,9 @@
             return [
               'size', 
               'delay', 
-              'origin'
+              'origin',
+              'bodyColor',
+              'outlineColor'
             ].indexOf(key) === -1
           }).length === 0
         }
@@ -88,8 +126,20 @@
     },
     data() {
       return {
+        cursorsData: CursorsData,
         colors: '#194d33'
       }
+    },
+    computed: {
+      /**
+       * Kebab case from componentName to camel case
+       */
+      cursorName() {
+        return this.cursorData.componentName.replace(/-./g, x => x[1].toUpperCase())
+      }
+    },
+    mounted() {
+      console.log(this.cursorsData[this.cursorName].settingOption)
     },
     methods: {
       /**
@@ -106,18 +156,11 @@
        * 
        * @param {object} event
        * @event changeRangeValue
-       */
-      changeRangeValue(event) {
-        this.$emit('changeRangeValue', event)
-      },
-      /**
-       * Emit the value to the parent
-       * 
-       * @param {object} event
+       * @event changeColorValue
        * @event changeCheckedValue
        */
-      changeCheckedValue(event) {
-        this.$emit('changeCheckedValue', event)
+      changeInputValue(event) {
+        this.$emit('changeInputValue', event)
       }
     }
   }

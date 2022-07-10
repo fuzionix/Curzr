@@ -5,7 +5,15 @@
     "componentCodeblock": "code-arrow-pointer",
     "features": [
       "Rotate"
-    ]
+    ],
+    "settingOption": {
+      "bodyColor": {
+        "default": "#F2F5F8"
+      },
+      "outlineColor": {
+        "default": "#111920"
+      }
+    }
   },
   "ringDot": {
     "cursorName": "Ring Dot",
