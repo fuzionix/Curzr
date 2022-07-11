@@ -52,7 +52,7 @@ class BigCircle {
 
     this.pointerX = 0
     this.pointerY = 0
-    this.cursorSize = ${100 + (this.cursorsConfig.size / 2)}
+    this.cursorSize = ${100 + (this.cursorsConfig.size * 3)}
 
     this.circleStyle = {
       position: 'fixed',

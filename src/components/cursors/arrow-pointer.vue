@@ -44,7 +44,7 @@
       /**
        * The cursor size from the CSS variable
        */
-      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2))
 
       /**
        * The cursor status of the default cursor visibility
@@ -61,8 +61,11 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.cursorStyle.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
-          this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorStyle.setProperty('--size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
+          this.cursorStyle.setProperty('--delay', configValue.delay + 'ms')
+          this.cursorStyle.setProperty('--body-color', configValue.bodyColor)
+          this.cursorStyle.setProperty('--outline-color', configValue.outlineColor)
+
           this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
           !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
@@ -169,26 +172,28 @@
 
 <style lang="scss" scoped>
 .arrow-pointer {
-  --cursor-size:  20px;
-  --cursor-delay: 100ms;
+  --size:  20px;
+  --delay: 100ms;
+  --body-color: #F2F5F8;
+  --outline-color: #111920;
 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  transition: 250ms, transform var(--cursor-delay);
+  width: var(--size);
+  height: var(--size);
+  transition: 250ms, transform var(--delay);
   user-select: none;
   pointer-events: none;
 
   .inner {
-    fill: #f2f5f8;
+    fill: var(--body-color);
   }
 
   .outer {
-    fill: #111920;
+    fill: var(--outline-color);
   }
 }
 </style>

@@ -15,18 +15,18 @@
             <img 
               v-if="route.path === '/'" 
               src="../assets/icon/Shopping-bag-active.svg" 
-              alt="pointer library icon" 
+              alt="cursor library icon" 
               width="20"
               height="20"
             >
             <img 
               v-else 
               src="../assets/icon/Shopping-bag.svg" 
-              alt="pointer library icon" 
+              alt="cursor library icon" 
               width="20"
               height="20"
             >
-            <h6 class="item-name">Pointer Library</h6>
+            <h6 class="item-name">Cursor Library</h6>
             <normal-tag class="status-badge status-badge-new">NEW</normal-tag>
           </router-link>
         </div>
@@ -50,7 +50,7 @@
               width="20"
               height="20"
             >
-            <h6 class="item-name">Chrome Extension</h6>
+            <h6 class="item-name">Extension</h6>
             <normal-tag class="status-badge status-badge-soon">SOON</normal-tag>
           </router-link>
         </div>

@@ -50,7 +50,7 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.cursorStyle.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 5)) + 'px')
+          this.cursorStyle.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 2)) + 'px')
           this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
           !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },

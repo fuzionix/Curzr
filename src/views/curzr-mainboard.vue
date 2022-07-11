@@ -150,7 +150,7 @@
       }
     },
     metaInfo: {
-      title: 'Pointer Library',
+      title: 'Cursor Library',
       titleTemplate: '%s | Curzr'
     }
   }

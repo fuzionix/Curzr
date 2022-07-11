@@ -25,7 +25,7 @@
           <div class="section-right">
             <div class="right-content">
               <h6 class="small-title">CONTRIBUTOR</h6>
-              <h2 class="large-title">We're really excited that you are interested in contributing to this project, and your help is very welcome.</h2>
+              <h2 class="large-title">This is an open source project. And we're really excited that you are interested in contributing to this project, and your help is very welcome.</h2>
               <p class="paragraph">When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change. Please note we have a code of conduct, please follow it in all your interactions with the project.</p>
             </div>
           </div>
