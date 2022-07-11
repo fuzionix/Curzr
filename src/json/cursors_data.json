@@ -22,7 +22,15 @@
     "features": [
       "Hover",
       "Click"
-    ]
+    ],
+    "settingOption": {
+      "bodyColor": {
+        "default": "#F2F5F8"
+      },
+      "outlineColor": {
+        "default": "#111920"
+      }
+    }
   },
   "bigCircle": {
     "cursorName": "Big Circle",
@@ -32,7 +40,12 @@
       "Hover",
       "Click",
       "Multiple"
-    ]
+    ],
+    "settingOption": {
+      "filterInvert": {
+        "default": 1
+      }
+    }
   },
   "circleAndDot": {
     "cursorName": "Circle And Dot",
@@ -42,7 +55,10 @@
       "Hover",
       "Click",
       "Rotate"
-    ]
+    ],
+    "settingOption": {
+      
+    }
   },
   "glitchEffect": {
     "cursorName": "Glitch Effect",
@@ -51,7 +67,10 @@
     "features": [
       "Hover",
       "Click"
-    ]
+    ],
+    "settingOption": {
+      
+    }
   },
   "motionBlur": {
     "cursorName": "Motion Blur",
@@ -59,6 +78,9 @@
     "componentCodeblock": "code-motion-blur",
     "features": [
       "Rotate"
-    ]
+    ],
+    "settingOption": {
+      
+    }
   }
 }

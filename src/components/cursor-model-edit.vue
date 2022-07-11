@@ -53,7 +53,10 @@
 
         The cursors will have the specified edit input fields according to the settingOption defined in 'cursors_data.json'
       -->
-      <div class="input-container">
+      <div 
+        v-if="options.includes('bodyColor')"
+        class="input-container"
+      >
         <small class="input-name">Body Color</small>
         <small class="input-description">Change the color of cursor body</small>
         <color-picker 
@@ -64,7 +67,10 @@
           @changeColorValue="changeInputValue"
         />
       </div>
-      <div class="input-container">
+      <div 
+        v-if="options.includes('outlineColor')"
+        class="input-container"
+      >
         <small class="input-name">Outline Color</small>
         <small class="input-description">Change the color of cursor outline</small>
         <color-picker 
@@ -73,6 +79,20 @@
           style="z-index: 1" 
           :color="cursorsConfig.outlineColor"
           @changeColorValue="changeInputValue"
+        />
+      </div>
+      <div 
+        v-if="options.includes('filterInvert')"
+        class="input-container"
+      >
+        <small class="input-name">Filter Invert</small>
+        <range-bar
+          id="edit-filter-invert"
+          class="range-bar"
+          :range-value="cursorsConfig.filterInvert"
+          :minmax="[0.75, 1]"
+          :step="0.01"
+          @changeRangeValue="changeInputValue"
         />
       </div>
       <!-- Optional Setting - End -->
@@ -118,7 +138,8 @@
               'delay', 
               'origin',
               'bodyColor',
-              'outlineColor'
+              'outlineColor',
+              'filterInvert'
             ].indexOf(key) === -1
           }).length === 0
         }
@@ -136,6 +157,9 @@
        */
       cursorName() {
         return this.cursorData.componentName.replace(/-./g, x => x[1].toUpperCase())
+      },
+      options() {
+        return Object.keys(this.cursorData.settingOption)
       }
     },
     methods: {

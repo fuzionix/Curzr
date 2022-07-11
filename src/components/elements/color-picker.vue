@@ -14,6 +14,7 @@
       @click="openColorPicker"
       @mouseleave="closeColorPicker"
     >
+      <img src="../../assets/icon/pen.svg" alt="edit color icon" width="15" height="15">
       <sketch-color-picker 
         v-show="colorPickerStatus"
         v-model="colors" 
@@ -53,6 +54,12 @@
       }
     },
     watch: {
+      color: {
+        handler(value) {
+          this.colors.hex = value
+          this.changeBlockColor(value)
+        }
+      },
       colors: {
         handler(value) {
           this.changeBlockColor(value.hex)
@@ -145,13 +152,21 @@
     --block-color: #34dcff;
 
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 45px;
     height: 45px;
     margin-left: .75rem;
+    border: 4px solid #fff;
     border-radius: 12px;
     background-color: var(--block-color);
-    box-shadow: 0 0 0 4px #fff8 inset;
     cursor: pointer;
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
   }
 }
 </style>
@@ -176,9 +191,9 @@
       content: '';
       position: absolute;
       top: -60px;
-      left: 0;
-      width: 100%;
-      height: 60px;
+      left: -25px;
+      width: calc(100% + 50px);
+      height: calc(100% + 120px);
     }
   }
 }

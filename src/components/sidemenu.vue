@@ -27,7 +27,7 @@
               height="20"
             >
             <h6 class="item-name">Pointer Library</h6>
-            <normal-tag class="status-badge status-badge-hot">HOT</normal-tag>
+            <normal-tag class="status-badge status-badge-new">NEW</normal-tag>
           </router-link>
         </div>
         <div class="product-list-item">

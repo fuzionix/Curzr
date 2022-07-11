@@ -9,6 +9,7 @@
       :max="minmax[1]" 
       @input="changeWidth(); emitValue($event)"
       :aria-label="id"
+      :step="step"
     >
   </div>
 </template>
@@ -31,6 +32,10 @@
       minmax: {
         type: Array,
         required: true
+      },
+      step: {
+        type: Number,
+        default: 1
       }
     },
     data() {

@@ -108,8 +108,9 @@
           size: 0,
           delay: 100,
           origin: true,
-          bodyColor: '#F2F5F8',
-          outlineColor: '#111920'
+          bodyColor: '',
+          outlineColor: '',
+          filterInvert: 1
         },
         radioItems: [
           'Text', 'Button', 'Input Field', 'Loading'
@@ -132,7 +133,13 @@
       } else {
         this.eventName = 'touchmove'
       }
-      console.log(this.cursorsData[this.cursorName].settingOption.bodyColor.default)
+
+      /**
+       * Apply the default value to 'cursorsConfig' according to 'cursors_data.json' if it exists the option
+       */
+      Object.keys(this.cursorsData[this.cursorName].settingOption).map((option) => {
+        this.cursorsConfig[option] = this.cursorsData[this.cursorName].settingOption[option].default
+      })
     },
     methods: {
       /**
@@ -201,6 +208,9 @@
             break
           case 'edit-outline-color':
             this.cursorsConfig.outlineColor = event.value
+            break
+          case 'edit-filter-invert':
+            this.cursorsConfig.filterInvert = parseFloat(event.value)
             break
         }
       },
