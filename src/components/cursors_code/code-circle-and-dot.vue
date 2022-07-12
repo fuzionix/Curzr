@@ -70,9 +70,9 @@ class CircleAndDot {
       width: \`\${ this.cursorSize }px\`,
       height: \`\${ this.cursorSize }px\`,
       backgroundColor: '#fff0',
-      border: '20px solid #34dcff',
+      border: '20px solid ${this.cursorsConfig.bodyColor}',
       borderRadius: '50%',
-      boxShadow: '0 -35px 0 -20px #34dcff00',
+      boxShadow: '0 -35px 0 -20px #0000',
       transition: '250ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
       pointerEvents: 'none'
@@ -151,19 +151,19 @@ class CircleAndDot {
   }
 
   hover() {
-    this.cursor.style.border = '15px solid #34dcff'
+    this.cursor.style.border = '15px solid ${this.cursorsConfig.bodyColor}'
   }
 
   hoverout() {
-    this.cursor.style.border = '20px solid #34dcff'
+    this.cursor.style.border = '20px solid ${this.cursorsConfig.bodyColor}'
   }
 
   fade(distance) {
-    this.cursor.style.boxShadow = \`0 \${-35 - distance}px 0 -20px #34dcff\`
+    this.cursor.style.boxShadow = \`0 \${-35 - distance}px 0 -20px ${this.cursorsConfig.bodyColor}\`
     if (!this.fading) {
       this.fading = true
       setTimeout(() => {
-        this.cursor.style.boxShadow = '0 -35px 0 -20px #34dcff00'
+        this.cursor.style.boxShadow = '0 -35px 0 -20px ${this.cursorsConfig.bodyColor}00'
         this.fading = false
       }, 50)
     }

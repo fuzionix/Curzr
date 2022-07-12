@@ -72,7 +72,7 @@ class GlitchEffect {
     }
 
     if (CSS.supports("backdrop-filter", "invert(1)")) {
-      this.cursorStyle.backdropFilter = 'invert(1)'
+      this.cursorStyle.backdropFilter = 'invert(${this.cursorsConfig.filterInvert})'
       this.cursorStyle.backgroundColor = '#fff0'
     } else {
       this.cursorStyle.backgroundColor = '#222'

@@ -21,6 +21,7 @@
         position: {
           distanceX: 0, 
           distanceY: 0,
+          distance: 0,
           pointerX: 0,
           pointerY: 0,
         },
@@ -63,14 +64,14 @@
         handler(configValue) {
           this.cursorStyle.setProperty('--size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
           this.cursorStyle.setProperty('--delay', configValue.delay + 'ms')
-          this.cursorStyle.setProperty('--body-color', configValue.bodyColor)
-          this.cursorStyle.setProperty('--outline-color', configValue.outlineColor)
-
+          if (this.cursorsConfig.from === 'model') {
+            this.cursorStyle.setProperty('--body-color', configValue.bodyColor)
+            this.cursorStyle.setProperty('--outline-color', configValue.outlineColor)
+          }
           this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
           !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
-        deep: true,
-        immeditate: true
+        deep: true
       }
     },
     methods: {
@@ -95,10 +96,15 @@
         this.position.pointerY = event.pageY - cursorBlock.getBoundingClientRect().y + this.$root.$el.getBoundingClientRect().y
         this.position.distanceX = this.previousPointerX - this.position.pointerX
         this.position.distanceY = this.previousPointerY - this.position.pointerY
+        this.distance = Math.sqrt(this.position.distanceY ** 2 + this.position.distanceX ** 2)
 
         this.cursorStyle.transform = `translate3d(${this.position.pointerX}px, ${this.position.pointerY}px, 0)`
 
-        this.rotate(this.position)
+        if (this.distance > 1) {
+          this.rotate(this.position)
+        } else {
+          this.cursorStyle.transform += ` rotate(${this.angleDisplace}deg)`
+        }
       },
       /**
        * Get the calculated distance between previous point and current point from the @param {object} position.
@@ -136,20 +142,23 @@
         }
         this.cursorStyle.transform += ` rotate(${this.angleDisplace}deg)`
 
-        modAngle = this.angleDisplace >= 0 ? this.angleDisplace % 360 : 360 + this.angleDisplace % 360
-        if (modAngle >= 45 && modAngle < 135) {
-          this.cursorStyle.left = `${ -this.cursorSize }px`
-          this.cursorStyle.top = `${ -this.cursorSize / 2 }px`
-        } else if (modAngle >= 135 && modAngle < 225) {
-          this.cursorStyle.left = `${ -this.cursorSize / 2 }px`
-          this.cursorStyle.top = `${ -this.cursorSize }px`
-        } else if (modAngle >= 225 && modAngle < 315) {
-          this.cursorStyle.left = '0px'
-          this.cursorStyle.top = `${ -this.cursorSize / 2 }px`
-        } else {
-          this.cursorStyle.left = `${ -this.cursorSize / 2 }px`
-          this.cursorStyle.top = '0px'
-        }
+        setTimeout(() => {
+          modAngle = this.angleDisplace >= 0 ? this.angleDisplace % 360 : 360 + this.angleDisplace % 360
+          if (modAngle >= 45 && modAngle < 135) {
+            this.cursorStyle.left = `${ -this.cursorSize }px`
+            this.cursorStyle.top = `${ -this.cursorSize / 2 }px`
+            console.log(modAngle)
+          } else if (modAngle >= 135 && modAngle < 225) {
+            this.cursorStyle.left = `${ -this.cursorSize / 2 }px`
+            this.cursorStyle.top = `${ -this.cursorSize }px`
+          } else if (modAngle >= 225 && modAngle < 315) {
+            this.cursorStyle.left = '0px'
+            this.cursorStyle.top = `${ -this.cursorSize / 2 }px`
+          } else {
+            this.cursorStyle.left = `${ -this.cursorSize / 2 }px`
+            this.cursorStyle.top = '0px'
+          }
+        }, 0)
       },
       setOriginalCursor(value) {
         this.$refs.cursor.parentElement.style.cursor = value

@@ -25,10 +25,10 @@
     ],
     "settingOption": {
       "bodyColor": {
-        "default": "#F2F5F8"
+        "default": "#111920"
       },
       "outlineColor": {
-        "default": "#111920"
+        "default": "#F2F5F8"
       }
     }
   },
@@ -57,7 +57,9 @@
       "Rotate"
     ],
     "settingOption": {
-      
+      "bodyColor": {
+        "default": "#34DCFF"
+      }
     }
   },
   "glitchEffect": {
@@ -69,7 +71,9 @@
       "Click"
     ],
     "settingOption": {
-      
+      "filterInvert": {
+        "default": 1
+      }
     }
   },
   "motionBlur": {
@@ -80,7 +84,9 @@
       "Rotate"
     ],
     "settingOption": {
-      
+      "bodyColor": {
+        "default": "#120D27"
+      }
     }
   }
 }

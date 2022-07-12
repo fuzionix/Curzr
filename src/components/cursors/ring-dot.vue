@@ -29,7 +29,7 @@
       /**
        * The cursor size from the CSS variable
        */
-      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2))
 
       /**
        * The cursor status of the default cursor visibility
@@ -46,13 +46,16 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.cursorStyle.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
-          this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorStyle.setProperty('--size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
+          this.cursorStyle.setProperty('--delay', configValue.delay + 'ms')
+          if (this.cursorsConfig.from === 'model') {
+            this.cursorStyle.setProperty('--body-color', configValue.bodyColor)
+            this.cursorStyle.setProperty('--outline-color', configValue.outlineColor)
+          }
           this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
           !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
-        deep: true,
-        immeditate: true
+        deep: true
       }
     },
     methods: {
@@ -60,8 +63,8 @@
        * Center the position of cursor after its container loaded 
        */
       init() {
-        this.cursorStyle.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px' 
-        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2) / -2) + 'px' 
+        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2) / -2) + 'px'
         this.cursorStyle.transition = ''
         this.$parent.$el.addEventListener('click', this.click)
       },
@@ -128,8 +131,10 @@
 
 <style lang="scss" scoped>
 .curzr-ring-dot {
-  --cursor-size:  20px;
-  --cursor-delay: 100ms;
+  --size:  20px;
+  --delay: 100ms;
+  --body-color: #111920;
+  --outline-color: #F2F5F8;
 
   position: absolute;
   display: flex;
@@ -139,11 +144,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  transition: 200ms, transform var(--cursor-delay);
+  width: var(--size);
+  height: var(--size);
+  transition: 200ms, transform var(--delay);
   background-color: #fff0;
-  box-shadow: 0 0 0 1.25px #282828, 0 0 0 2.25px #f8f8f8;
+  box-shadow: 0 0 0 1.25px var(--body-color), 0 0 0 2.25px var(--outline-color);
   border-radius: 50%;
   user-select: none;
   pointer-events: none;
@@ -151,8 +156,8 @@
   .curzr-dot {
     width: 4px;
     height: 4px;
-    background-color: #282828;
-    box-shadow: 0 0 0 1px #f8f8f8;
+    background-color: var(--body-color);
+    box-shadow: 0 0 0 1px var(--outline-color);
     border-radius: 50%;
     user-select: none;
     pointer-events: none;

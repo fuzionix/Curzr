@@ -81,7 +81,7 @@ class BigCircle {
     }
 
     if (CSS.supports("backdrop-filter", "invert(1) grayscale(1)")) {
-      this.circleStyle.backdropFilter = 'invert(1) grayscale(1)'
+      this.circleStyle.backdropFilter = 'invert(${this.cursorsConfig.filterInvert}) grayscale(1)'
       this.circleStyle.backgroundColor = '#fff0'
     } else {
       this.circleStyle.backgroundColor = '#000'

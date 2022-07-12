@@ -8,7 +8,7 @@
             <div class="left-content">
               <h6 class="small-title">ABOUT THIS WEBSITE</h6>
               <h2 class="large-title">Curzr is a website which provides tools and resources that help you to create a fascinating, interesting, and animated cursor by just a ‘copy and paste’.</h2>
-              <p class="paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos necessitatibus a ullam fugit recusandae similique nemo sapiente! Soluta possimus quasi atque, maiores ipsam veniam ea magni delectus blanditiis, exercitationem iste.</p>
+              <p class="paragraph">There's a range of cursors which is totally free. Each cursor is unique and has its own behaviour for you to explore. Furthermore, they are customisable with the live preview. It is supported by all browsers, try to copy and paste it into your creative project now!</p>
             </div>
           </div>
           <div class="section-right">
@@ -25,7 +25,7 @@
           <div class="section-right">
             <div class="right-content">
               <h6 class="small-title">CONTRIBUTOR</h6>
-              <h2 class="large-title">This is an open source project. And we're really excited that you are interested in contributing to this project, and your help is very welcome.</h2>
+              <h2 class="large-title">This is an open source project. And we're really excited that you are interested in contributing to this repository on Github, and your help is very welcome.</h2>
               <p class="paragraph">When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change. Please note we have a code of conduct, please follow it in all your interactions with the project.</p>
             </div>
           </div>

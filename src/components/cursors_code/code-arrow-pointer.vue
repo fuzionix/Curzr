@@ -53,6 +53,7 @@ class ArrowPointer {
     this.position = {
       distanceX: 0, 
       distanceY: 0,
+      distance: 0,
       pointerX: 0,
       pointerY: 0,
     },
@@ -102,10 +103,15 @@ class ArrowPointer {
     this.position.pointerY = event.pageY + this.root.getBoundingClientRect().y
     this.position.distanceX = this.previousPointerX - this.position.pointerX
     this.position.distanceY = this.previousPointerY - this.position.pointerY
+    this.distance = Math.sqrt(this.position.distanceY ** 2 + this.position.distanceX ** 2)
   
     this.cursor.style.transform = \`translate3d(\${this.position.pointerX}px, \${this.position.pointerY}px, 0)\`
 
-    this.rotate(this.position)
+    if (this.distance > 1) {
+      this.rotate(this.position)
+    } else {
+      this.cursor.style.transform += \` rotate(\${this.angleDisplace}deg)\`
+    }
   }
 
   rotate(position) {
@@ -137,20 +143,22 @@ class ArrowPointer {
     }
     style.transform += \` rotate(\${this.angleDisplace}deg)\`
 
-    modAngle = this.angleDisplace >= 0 ? this.angleDisplace % 360 : 360 + this.angleDisplace % 360
-    if (modAngle >= 45 && modAngle < 135) {
-      style.left = \`\${ -this.cursorSize }px\`
-      style.top = \`\${ -this.cursorSize / 2 }px\`
-    } else if (modAngle >= 135 && modAngle < 225) {
-      style.left = \`\${ -this.cursorSize / 2 }px\`
-      style.top = \`\${ -this.cursorSize }px\`
-    } else if (modAngle >= 225 && modAngle < 315) {
-      style.left = '0px'
-      style.top = \`\${ -this.cursorSize / 2 }px\`
-    } else {
-      style.left = \`\${ -this.cursorSize / 2 }px\`
-      style.top = '0px'
-    }
+    setTimeout(() => {
+      modAngle = this.angleDisplace >= 0 ? this.angleDisplace % 360 : 360 + this.angleDisplace % 360
+      if (modAngle >= 45 && modAngle < 135) {
+        style.left = \`\${ -this.cursorSize }px\`
+        style.top = \`\${ -this.cursorSize / 2 }px\`
+      } else if (modAngle >= 135 && modAngle < 225) {
+        style.left = \`\${ -this.cursorSize / 2 }px\`
+        style.top = \`\${ -this.cursorSize }px\`
+      } else if (modAngle >= 225 && modAngle < 315) {
+        style.left = '0px'
+        style.top = \`\${ -this.cursorSize / 2 }px\`
+      } else {
+        style.left = \`\${ -this.cursorSize / 2 }px\`
+        style.top = '0px'
+      }
+    }, 0)
   }
 
   remove() {

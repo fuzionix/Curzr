@@ -28,7 +28,7 @@
        * The cursor size from the CSS variable
        */
       cursorSize() {
-        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2))
+        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2))
       },
       cursorStyle() {
         return this.$refs.cursor.style
@@ -50,12 +50,14 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.cursorStyle.setProperty('--cursor-size', (this.cursorSize + (configValue.size / 2)) + 'px')
-          this.cursorStyle.setProperty('--cursor-delay', configValue.delay + 'ms')
+          this.cursorStyle.setProperty('--size', (this.cursorSize + (configValue.size / 2)) + 'px')
+          this.cursorStyle.setProperty('--delay', configValue.delay + 'ms')
+          if (this.cursorsConfig.from === 'model') {
+            this.cursorStyle.setProperty('--filter-invert', `invert(${configValue.filterInvert})`)
+          }
           !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
-        deep: true,
-        immeditate: true
+        deep: true
       }
     },
     methods: {
@@ -63,8 +65,8 @@
        * Center the position of cursor after its container loaded 
        */
       init() {
-        this.cursorStyle.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
-        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2) / -2) + 'px'
         this.cursorStyle.transition = ''
         this.$refs.cursor.addEventListener('click', this.click)
       },
@@ -144,19 +146,20 @@
 
 <style lang="scss" scoped>
 .curzr-glitch-effect {
-  --cursor-size:  25px;
-  --cursor-delay: 100ms;
+  --size:  25px;
+  --delay: 100ms;
+  --filter-invert: invert(1);
 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
+  width: var(--size);
+  height: var(--size);
   background-color: #222;
   border-radius: 50%;
-  transition: 100ms, transform var(--cursor-delay);
+  transition: 100ms, transform var(--delay);
   user-select: none;
   pointer-events: none;
 }
@@ -164,7 +167,7 @@
 @supports (backdrop-filter: invert(1)) {
   .curzr-glitch-effect {
     background-color: #fff0;
-    backdrop-filter: invert(1);
+    backdrop-filter: var(--filter-invert);
   }
 }
 

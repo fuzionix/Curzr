@@ -47,6 +47,7 @@
     data() {
       return {
         cursorsConfig: {
+          from: 'mainboard',
           size: 0,
           delay: 100
         },
