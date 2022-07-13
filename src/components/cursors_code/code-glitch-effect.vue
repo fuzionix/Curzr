@@ -66,7 +66,7 @@ class GlitchEffect {
       backgroundColor: '#222',
       borderRadius: '50%',
       boxShadow: \`0 0 0 \${this.glitchColorB}, 0 0 0 \${this.glitchColorR}\`,
-      transition: '250ms, transform ${this.cursorsConfig.delay}ms',
+      transition: '100ms, transform ${this.cursorsConfig.delay}ms',
       userSelect: 'none',
       pointerEvents: 'none'
     }
@@ -102,8 +102,8 @@ class GlitchEffect {
     this.previousPointerY = this.pointerY
     this.pointerX = event.pageX + this.root.getBoundingClientRect().x
     this.pointerY = event.pageY + this.root.getBoundingClientRect().y
-    this.distanceX = Math.min(Math.max(this.previousPointerX - this.pointerX, -10), 10) * 1.5
-    this.distanceY = Math.min(Math.max(this.previousPointerY - this.pointerY, -10), 10) * 1.5
+    this.distanceX = Math.min(Math.max(this.previousPointerX - this.pointerX, -10), 10)
+    this.distanceY = Math.min(Math.max(this.previousPointerY - this.pointerY, -10), 10)
 
     if (event.target.localName === 'button' || 
         event.target.localName === 'a' || 
@@ -166,23 +166,34 @@ class GlitchEffect {
       vue() {
         return `
 <template>
-  <div ref="curzr" class="curzr-big-circle">
-    <div class="circle" ref="curzrCircle"></div>
-    <div class="dot" ref="curzrDot"></div>
-  </div>
+  <div class="curzr" ref="curzr"></div>
 </template>
 
 <script>
   export default {
-    name: 'BigCircle',
+    name: 'GlitchEffect',
     data() {
       return {
+        distanceX: 0, 
+        distanceY: 0,
         pointerX: 0,
-        pointerY: 0
+        pointerY: 0,
+        previousPointerX: 0,
+        previousPointerY: 0,
+        moving: false,
+        glitchColorB: '#00feff',
+        glitchColorR: '#ff4f71'
+      }
+    },
+    computed: {
+      cursorStyle() {
+        return this.$refs.curzr.style
       }
     },
     mounted() {
       if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        this.cursorSize = Number(getComputedStyle(this.$refs.curzr).getPropertyValue('--size').slice(0, -2))
+        this.$refs.curzr.removeAttribute("hidden")
         document.body.addEventListener('mousemove', (event) => {
           this.move(event, document.body)
         })
@@ -196,66 +207,83 @@ class GlitchEffect {
     },
     methods: {
       move(event, root) {
+        this.previousPointerX = this.pointerX
+        this.previousPointerY = this.pointerY
         this.pointerX = event.pageX + root.getBoundingClientRect().x
         this.pointerY = event.pageY + root.getBoundingClientRect().y
-      
-        this.$refs.curzrCircle.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
-        this.$refs.curzrDot.style.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
+        this.distanceX = Math.min(Math.max(this.previousPointerX - this.pointerX, -10), 10)
+        this.distanceY = Math.min(Math.max(this.previousPointerY - this.pointerY, -10), 10)
 
         if (event.target.localName === 'button' || 
             event.target.localName === 'a' || 
             event.target.onclick !== null ||
             event.target.className.includes('curzr-hover')) {
           this.hover()
+        } else {
+          this.hoverout()
         }
+
+        this.cursorStyle.transform = \`translate3d(\${this.pointerX}px, \${this.pointerY}px, 0)\`
+        this.cursorStyle.boxShadow = \`
+          \${+this.distanceX}px \${+this.distanceY}px 0 \${this.glitchColorB}, 
+          \${-this.distanceX}px \${-this.distanceY}px 0 \${this.glitchColorR}\`
+        
+        this.stop()
       },
       hover() {
-        this.$refs.curzrCircle.style.transform += \` scale(1.5)\`
+      },
+      hoverout() {
       },
       click() {
-        this.$refs.curzrCircle.style.transform += \` scale(0.75)\`
+        this.cursorStyle.transform += \` scale(0.75)\`
         setTimeout(() => {
-          this.$refs.curzrCircle.style.transform = this.$refs.curzrCircle.style.transform.replace(\` scale(0.75)\`, '')
+          this.cursorStyle.transform = this.cursorStyle.transform.replace(\` scale(0.75)\`, '')
         }, 35)
+      },
+      stop() {
+        if (!this.moving) {
+          this.moving = true
+          setTimeout(() => {
+            this.cursorStyle.boxShadow = ''
+            this.moving = false
+          }, 50)
+        }
       }
     }
   }
 <\/script>
 
 <style>
-.curzr-big-circle {
-  --cursor-size: 100px;
-  --cursor-delay: 100ms;
-}
+.curzr {
+  --size:  25px;
+  --delay: 100ms;
+  --filter-invert: invert(1);
 
-.curzr-big-circle .circle {
+  box-sizing: border-box;
   position: fixed;
-  top: calc(var(--cursor-size) / -2);
-  left: calc(var(--cursor-size) / -2);
-  transform: translate(-50%, -50%);
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  background-color: #fff0;
+  top: calc(var(--size) / -2);
+  left: calc(var(--size) / -2);
+  z-index: 2147483647;
+  width: var(--size);
+  height: var(--size);
+  background-color: #222;
   border-radius: 50%;
-  transition: 500ms, transform var(--cursor-delay);
+  transition: 100ms, transform var(--delay);
   user-select: none;
   pointer-events: none;
-  backdrop-filter: invert(1) grayscale(1);
 }
 
-.curzr-big-circle .dot {
-  position: fixed;
-  top: -5px;
-  left: -5px;
-  width: 10px;
-  height: 10px;
-  transform: translate(-50%, -50%);
-  background-color: #0007;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1.5px #fffd;
-  user-select: none;
-  pointer-events: none;
-  transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
+@supports (backdrop-filter: invert(1)) {
+  .curzr {
+    background-color: #fff0;
+    backdrop-filter: var(--filter-invert);
+  }
+}
+
+@supports not (backdrop-filter: invert(1)) {
+  .curzr {
+    background-color: #222;
+  }
 }
 </style>`
       }

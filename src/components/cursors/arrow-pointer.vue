@@ -147,7 +147,6 @@
           if (modAngle >= 45 && modAngle < 135) {
             this.cursorStyle.left = `${ -this.cursorSize }px`
             this.cursorStyle.top = `${ -this.cursorSize / 2 }px`
-            console.log(modAngle)
           } else if (modAngle >= 135 && modAngle < 225) {
             this.cursorStyle.left = `${ -this.cursorSize / 2 }px`
             this.cursorStyle.top = `${ -this.cursorSize }px`

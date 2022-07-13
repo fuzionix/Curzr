@@ -25,21 +25,23 @@
         previousAngle: 0,
         angleDisplace: 0,
         degrees: 57.296,
-        fading: false
+        fading: false,
+
+        cursorSize: 0,
+        cursorSizeInit: 0
       }
     },
     computed: {
-      /**
-       * The cursor size from the CSS variable
-       */
-      cursorSize() {
-        return Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2))
-      },
       cursorStyle() {
         return this.$refs.cursor.style
       }
     },
     mounted() {
+      /**
+       * The cursor size from the CSS variable
+       */
+      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2))
+
       /**
        * The cursor status of the default cursor visibility
        */
@@ -60,6 +62,7 @@
           if (this.cursorsConfig.from === 'model') {
             this.cursorStyle.setProperty('--body-color', configValue.bodyColor)
           }
+          this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
           !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
         deep: true
@@ -138,7 +141,7 @@
        * Apply the transform property when triggered by the 'mousemove' event listener
        */
       hover() {
-        this.cursorStyle.border = `15px solid ${this.cursorsConfig.bodyColor || '#34dcff'}`
+        this.cursorStyle.border = `${this.cursorSize / 2}px solid ${this.cursorsConfig.bodyColor || '#111920'}`
       },
       /**
        * Apply the transform property when triggered by the 'mouseleave' event listener
@@ -154,11 +157,11 @@
        * @param {number} distance
        */
       fade(distance) {
-        this.cursorStyle.boxShadow = `0 ${-35 - distance * 2}px 0 -20px ${this.cursorsConfig.bodyColor || '#34dcff'}`
+        this.cursorStyle.boxShadow = `0 ${-15 - distance * 2}px 0 -8px ${this.cursorsConfig.bodyColor || '#111920'}, 0 0 0 1px #F2F5F8`
         if (!this.fading) {
           this.fading = true
           setTimeout(() => {
-            this.cursorStyle.boxShadow = `0 -35px 0 -20px ${this.cursorsConfig.bodyColor || '#34dcff'}00`
+            this.cursorStyle.boxShadow = `0 -15px 0 -8px ${this.cursorsConfig.bodyColor || '#111920'}00, 0 0 0 1px #F2F5F8`
             this.fading = false
           }, 50)
         }
@@ -194,9 +197,9 @@
 
 <style lang="scss" scoped>
 .curzr-circle-and-dot {
-  --size:  50px;
+  --size:  20px;
   --delay: 100ms;
-  --body-color: #34dcff;
+  --body-color: #111920;
 
   position: absolute;
   top: 50%;
@@ -206,9 +209,9 @@
   width: var(--size);
   height: var(--size);
   background-color: #fff0;
-  border: 20px solid var(--body-color);
+  border: 1.25px solid var(--body-color);
   border-radius: 50%;
-  box-shadow: 0 -35px 0 -20px #0000;
+  box-shadow: 0 -15px 0 -8px #0000, 0 0 0 1px #F2F5F8;
   transition: 250ms, transform var(--delay);
   user-select: none;
   pointer-events: none;
