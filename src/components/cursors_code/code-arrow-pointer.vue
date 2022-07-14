@@ -217,6 +217,17 @@ class ArrowPointer {
         document.body.addEventListener('mousemove', (event) => {
           this.move(event, document.body)
         })
+        ${
+          !this.cursorsConfig.origin 
+            ? 
+        `
+        document.body.style.cursor = 'none'
+        document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = 'inherit'
+        })` 
+            : 
+        ``
+        }
       } else {
         this.$destroy()
         this.$el.parentNode.removeChild(this.$el)
@@ -290,12 +301,12 @@ class ArrowPointer {
   }
 <\/script>
 
-<style>
+<style scoped>
 .curzr {
-  --size:  20px;
-  --delay: 100ms;
-  --body-color: #F2F5F8;
-  --outline-color: #111920;
+  --size:  ${20 + (this.cursorsConfig.size / 5)}px;
+  --delay: ${this.cursorsConfig.delay}ms;
+  --body-color: ${this.cursorsConfig.bodyColor};
+  --outline-color: ${this.cursorsConfig.outlineColor};
 
   box-sizing: border-box;
   position: fixed;

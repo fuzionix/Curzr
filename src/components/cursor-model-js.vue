@@ -46,20 +46,26 @@
     <div class="guide-container">
       <h3 class="title">How To Use</h3>
       <ul class="description">
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>     
+        <li>Place the HTML code in the <code>.html</code> file inside the <code>&lt;body&gt;</code> before <code>&lt;/body&gt;</code>.</li>
+        <li>Place the JavaScript code in the <code>.js</code> file then reference in the <code>.html</code> file. The <code>&lt;script src="..."&gt;</code> should be also inside the <code>&lt;body&gt;</code> before the closing <code>&lt;/body&gt;</code>.</li>
+        <li>Reload the page, then it should be done!</li>     
       </ul>
     </div>
     <div class="guide-container">
       <h3 class="title">Restriction</h3>
       <ul class="description">
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>
+        <li>Make sure there's no <code>margin</code> and <code>translate</code> applied to the root element <code>body</code>. It's suggested to include CSS Base file like <code>Reset.css</code> and <code>Normalize.css</code> before use.</li>
       </ul>
     </div>
     <div class="disclaimer-container">
       <h3 class="title">Disclaimer</h3>
       <ul class="description">
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum quam quod, magnam aliquid enim odio nostrum ut voluptatibus facilis alias officiis aspernatur atque eaque nesciunt voluptates dolore perferendis. Atque, laborum.</li>
+        <li>
+          The original cursor is remained by default, but it can be removed manually in 'Edit Cursor'. 
+          However, totally overriding the default cursor may affect the user experience since some of the custom cursors may lack the corresponding indication for indicating the current status.
+          <br><br>
+          It's totally welcome to use these cursors in your creative project. While using on the dashboard page or e-commerce website is not suggested. 
+        </li>
       </ul>
     </div>
   </section>
@@ -189,7 +195,9 @@
 
     .description {
       font-size: .875rem;
+      line-height: 2;
       list-style-type: lower-roman;
+      word-spacing: 1px;
       opacity: .75;
 
       li {
@@ -197,6 +205,10 @@
         margin-top: 1rem;
         margin-left: 1rem;
       }
+    }
+
+    code {
+      font-weight: bold;
     }
   }
 

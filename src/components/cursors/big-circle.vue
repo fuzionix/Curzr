@@ -163,6 +163,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
     width: var(--size);
     height: var(--size);
     background-color: #fff0;
@@ -177,6 +178,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
     width: 6px;
     height: 6px;
     background-color: #fffd;

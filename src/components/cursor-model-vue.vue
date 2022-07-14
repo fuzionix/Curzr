@@ -21,6 +21,32 @@
         <copy-button :copied-text="vue"></copy-button>
       </div>
     </div>
+    <hr>
+    <div class="guide-container">
+      <h3 class="title">How To Use</h3>
+      <ul class="description">
+        <li>Place the VUE Component code in the <code>.vue</code> file.</li>
+        <li>Import the component to the <code>app.vue</code>. Place it inside the <code>&lt;div id="app"&gt;</code> before the closing <code>&lt;/div&gt;</code></li>
+        <li>Reload the page, then it should be done!</li>     
+      </ul>
+    </div>
+    <div class="guide-container">
+      <h3 class="title">Restriction</h3>
+      <ul class="description">
+        <li>Make sure there's no <code>margin</code> and <code>translate</code> applied to the root element <code>body</code><code>div#app</code>. It's suggested to include CSS Base file like <code>Reset.css</code> and <code>Normalize.css</code> before use.</li>
+      </ul>
+    </div>
+    <div class="disclaimer-container">
+      <h3 class="title">Disclaimer</h3>
+      <ul class="description">
+        <li>
+          The original cursor is remained by default, but it can be removed manually in 'Edit Cursor'. 
+          However, totally overriding the default cursor may affect the user experience since some of the custom cursors may lack the corresponding indication for indicating the current status.
+          <br><br>
+          It's totally welcome to use these cursors in your creative project. While using on the dashboard page or e-commerce website is not suggested.
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 
@@ -69,8 +95,7 @@
           window.Prism.manual = true
           Prism.highlightAll()
 
-          this.html = this.$refs.htmlBlock.html
-          this.javascript = this.$refs.javascriptBlock.javascript
+          this.vue = this.$refs.vueBlock.vue
         })
       }
     }
@@ -137,6 +162,47 @@
         }
       }
     }
+  }
+
+  .guide-container, .disclaimer-container {
+    
+    .title {
+      font-size: 1.5rem;
+      font-variation-settings: 'wght' $--bold;
+    }
+
+    .description {
+      font-size: .875rem;
+      line-height: 2;
+      list-style-type: lower-roman;
+      word-spacing: 1px;
+      opacity: .75;
+
+      li {
+        list-style-position: outside;
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+    }
+
+    code {
+      font-weight: bold;
+    }
+  }
+
+  .guide-container {
+    padding: 0 2rem 3rem;
+  }
+
+  .disclaimer-container {
+    padding: 2rem;
+    background-color: lighten($--section-line-color, 2.5%);
+    border-radius: $--common-radius;
+  }
+
+  hr {
+    margin: 3rem 0 2rem;
+    border: 1px solid $--section-line-color;
   }
 }
 </style>

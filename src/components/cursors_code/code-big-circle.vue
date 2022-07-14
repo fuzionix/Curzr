@@ -184,6 +184,17 @@ class BigCircle {
         document.body.addEventListener('click', () => {
           this.click()
         })
+        ${
+          !this.cursorsConfig.origin 
+            ? 
+        `
+        document.body.style.cursor = 'none'
+        document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = 'inherit'
+        })` 
+            : 
+        ``
+        }
       } else {
         this.$destroy()
         this.$el.parentNode.removeChild(this.$el)
@@ -217,11 +228,11 @@ class BigCircle {
   }
 <\/script>
 
-<style>
+<style scoped>
 .curzr {
-  --size: 100px;
-  --delay: 100ms;
-  --filter-invert: invert(1);
+  --size: ${100 + (this.cursorsConfig.size * 3)}px;
+  --delay: ${this.cursorsConfig.delay}ms;
+  --filter-invert: invert(${this.cursorsConfig.filterInvert});
 }
 
 .curzr .circle {

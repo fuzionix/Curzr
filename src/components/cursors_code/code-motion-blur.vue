@@ -210,6 +210,17 @@ class MotionBlur {
         document.body.addEventListener('mousemove', (event) => {
           this.move(event, document.body)
         })
+        ${
+          !this.cursorsConfig.origin 
+            ? 
+        `
+        document.body.style.cursor = 'none'
+        document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = 'inherit'
+        })` 
+            : 
+        ``
+        }
       } else {
         this.$destroy()
         this.$el.parentNode.removeChild(this.$el)
@@ -265,10 +276,10 @@ class MotionBlur {
   }
 <\/script>
 
-<style>
+<style scoped>
 .curzr {
-  --size:  20px;
-  --delay: 20ms;
+  --size:  ${25 + (this.cursorsConfig.size / 5)}px;
+  --delay: ${this.cursorsConfig.delay / 10}ms;
 
   box-sizing: border-box;
   position: fixed;

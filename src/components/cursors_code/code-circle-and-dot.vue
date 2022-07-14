@@ -237,6 +237,17 @@ class CircleAndDot {
         document.body.addEventListener('click', () => {
           this.click()
         })
+        ${
+          !this.cursorsConfig.origin 
+            ? 
+        `
+        document.body.style.cursor = 'none'
+        document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = 'inherit'
+        })` 
+            : 
+        ``
+        }
       } else {
         this.$destroy()
         this.$el.parentNode.removeChild(this.$el)
@@ -319,11 +330,11 @@ class CircleAndDot {
   }
 <\/script>
 
-<style>
+<style scoped>
 .curzr {
-  --size:  20px;
-  --delay: 100ms;
-  --body-color: #111920;
+  --size:  ${20 + (this.cursorsConfig.size / 5)}px;
+  --delay: ${this.cursorsConfig.delay}ms;
+  --body-color: ${this.cursorsConfig.bodyColor};
 
   box-sizing: border-box;
   position: fixed;
