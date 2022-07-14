@@ -235,8 +235,6 @@ class MotionBlur {
         this.position.distanceX = Math.min(Math.max(this.previousPointerX - this.position.pointerX, -20), 20)
         this.position.distanceY = Math.min(Math.max(this.previousPointerY - this.position.pointerY, -20), 20)
 
-        console.log(this.position.pointerX, root.getBoundingClientRect().y)
-
         this.cursorStyle.transform = \`translate3d(\${this.position.pointerX}px, \${this.position.pointerY}px, 0)\`
         this.rotate(this.position)
         this.moving ? this.stop() : this.moving = true
@@ -263,7 +261,7 @@ class MotionBlur {
             this.motionBlur.setAttribute('stdDeviation', \`\${Math.abs(this.position.distanceY / 2)}, 0\`)
           }
         }
-        this.cursorStyle.transform += \` rotate(${this.angle}deg)\`
+        this.cursorStyle.transform += \` rotate(\${this.angle}deg)\`
         this.previousAngle = this.angle
       },
       stop() {
