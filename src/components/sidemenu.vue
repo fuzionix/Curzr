@@ -80,12 +80,12 @@
         </div>
       </div>
     </section>
-    <section class="adv-list">
+    <!-- <section class="carbon-list">
       <small class="subtitle">Advertisement</small>
-      <div class="adv-content">
+      <div class="carbon-content">
         This is ad content
       </div>
-    </section>
+    </section> -->
     <transition name="fade">
       <section v-if="blockStatus" class="notification">
         <div class="message-container">
@@ -99,7 +99,7 @@
             </div>
             <div class="main-content">
               <p>
-                The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine.
+                Welcome to this brand new free resources website. 
               </p>
             </div>
           </div>
@@ -246,7 +246,7 @@
     }
   }
 
-  .adv-list {
+  .carbon-list {
     display: flex;
     flex-direction: column;
     width: inherit;
@@ -257,7 +257,7 @@
       color: #a6a9b599;
     }
 
-    .adv-content {
+    .carbon-content {
       padding: 1rem 0;
     }
   }

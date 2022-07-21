@@ -55,6 +55,7 @@ class BigCircle {
     this.cursorSize = ${100 + (this.cursorsConfig.size * 3)}
 
     this.circleStyle = {
+      boxSizing: 'border-box',
       position: 'fixed',
       top: \`\${ this.cursorSize / -2 }px\`,
       left: \`\${ this.cursorSize / -2 }px\`,
@@ -69,6 +70,7 @@ class BigCircle {
     }
 
     this.dotStyle = {
+      boxSizing: 'border-box',
       position: 'fixed',
       zIndex: '2147483647',
       width: '6px',
@@ -81,7 +83,7 @@ class BigCircle {
     }
 
     if (CSS.supports("backdrop-filter", "invert(1) grayscale(1)")) {
-      this.circleStyle.backdropFilter = 'invert(1) grayscale(1)'
+      this.circleStyle.backdropFilter = 'invert(${this.cursorsConfig.filterInvert}) grayscale(1)'
       this.circleStyle.backgroundColor = '#fff0'
     } else {
       this.circleStyle.backgroundColor = '#000'
@@ -158,7 +160,7 @@ class BigCircle {
       vue() {
         return `
 <template>
-  <div ref="curzr" class="curzr-big-circle">
+  <div ref="curzr" class="curzr" hidden>
     <div class="circle" ref="curzrCircle"></div>
     <div class="dot" ref="curzrDot"></div>
   </div>
@@ -175,12 +177,24 @@ class BigCircle {
     },
     mounted() {
       if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        this.$refs.curzr.removeAttribute("hidden")
         document.body.addEventListener('mousemove', (event) => {
           this.move(event, document.body)
         })
         document.body.addEventListener('click', () => {
           this.click()
         })
+        ${
+          !this.cursorsConfig.origin 
+            ? 
+        `
+        document.body.style.cursor = 'none'
+        document.body.querySelectorAll("button, label, input, textarea, select, a").forEach((el) => {
+          el.style.cursor = 'inherit'
+        })` 
+            : 
+        ``
+        }
       } else {
         this.$destroy()
         this.$el.parentNode.removeChild(this.$el)
@@ -214,40 +228,60 @@ class BigCircle {
   }
 <\/script>
 
-<style>
-.curzr-big-circle {
-  --cursor-size: 100px;
-  --cursor-delay: 100ms;
+<style scoped>
+.curzr {
+  --size: ${100 + (this.cursorsConfig.size * 3)}px;
+  --delay: ${this.cursorsConfig.delay}ms;
+  --filter-invert: invert(${this.cursorsConfig.filterInvert});
 }
 
-.curzr-big-circle .circle {
+.curzr .circle {
+  box-sizing: border-box;
   position: fixed;
-  top: calc(var(--cursor-size) / -2);
-  left: calc(var(--cursor-size) / -2);
+  display: flex;
+  top: calc(var(--size) / -2);
+  left: calc(var(--size) / -2);
+  z-index: 2147483647;
   transform: translate(-50%, -50%);
-  width: var(--cursor-size);
-  height: var(--cursor-size);
+  justify-content: center;
+  align-items: center;
+  width: var(--size);
+  height: var(--size);
   background-color: #fff0;
   border-radius: 50%;
-  transition: 500ms, transform var(--cursor-delay);
+  transition: 500ms, transform var(--delay);
   user-select: none;
   pointer-events: none;
-  backdrop-filter: invert(1) grayscale(1);
 }
 
-.curzr-big-circle .dot {
+.curzr .dot {
+  box-sizing: border-box;
   position: fixed;
-  top: -5px;
-  left: -5px;
-  width: 10px;
-  height: 10px;
+  top: -3px;
+  left: -3px;
+  z-index: 2147483647;
+  width: 6px;
+  height: 6px;
   transform: translate(-50%, -50%);
-  background-color: #0007;
+  background-color: #fffd;
   border-radius: 50%;
-  box-shadow: 0 0 0 1.5px #fffd;
   user-select: none;
   pointer-events: none;
-  transition: 250ms, transform calc(var(--cursor-delay) * 0.75);
+  transition: 250ms, transform calc(var(--delay) * 0.75);
+}
+
+@supports (backdrop-filter: invert(1) grayscale(1)) {
+  .circle {
+    background-color: #fff0;
+    backdrop-filter: var(--filter-invert) grayscale(1);
+  }
+}
+
+@supports not (backdrop-filter: invert(1) grayscale(1)) {
+  .circle {
+    background-color: #000;
+    opacity: .5;
+  }
 }
 </style>`
       }

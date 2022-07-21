@@ -1,9 +1,9 @@
 <template>
   <svg class="curzr-glitch-effect" ref="cursor">
     <filter :id="`motionblur-${this._uid}`" x="-100%" y="-100%" width="400%" height="400%">
-      <feGaussianBlur class="cursor-motion-blur" stdDeviation="0, 0"/>
+      <feGaussianBlur class="motion-blur" stdDeviation="0, 0"/>
     </filter>
-    <circle cx="50%" cy="50%" :r="`${this.cursorSize}`" fill="#120d27" :filter="`url(#motionblur-${this._uid})`" />
+    <circle cx="50%" cy="50%" :r="`${this.cursorSize}`" :fill="`${this.cursorsConfig.bodyColor || '#120d27'}`" :filter="`url(#motionblur-${this._uid})`" />
   </svg>
 </template>
 
@@ -40,14 +40,14 @@
         return this.$refs.cursor.style
       },
       motionBlur() {
-        return this.$refs.cursor.querySelector('.cursor-motion-blur')
+        return this.$refs.cursor.querySelector('.motion-blur')
       }
     },
     mounted() {
       /**
        * The cursor size from the CSS variable
        */
-      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2)) / 2
+      this.cursorSizeInit = this.cursorSize = Number(getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2)) / 2
 
       /**
        * The cursor status of the default cursor visibility
@@ -64,12 +64,14 @@
        */
       cursorsConfig: {
         handler(configValue) {
-          this.cursorStyle.setProperty('--cursor-size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
+          this.cursorStyle.setProperty('--size', (this.cursorSizeInit + (configValue.size / 5)) + 'px')
           this.cursorSize = this.cursorSizeInit + (configValue.size / 5)
+          if (this.cursorsConfig.from === 'model') {
+            this.cursorStyle.setProperty('--body-color', configValue.bodyColor)
+          }
           !this.cursorsConfig.origin ? this.setOriginalCursor('none') : this.setOriginalCursor('')
         },
-        deep: true,
-        immeditate: true
+        deep: true
       }
     },
     methods: {
@@ -77,8 +79,8 @@
        * Center the position of cursor after its container loaded 
        */
       init() {
-        this.cursorStyle.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
-        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--cursor-size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.top = (getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2) / -2) + 'px'
+        this.cursorStyle.left = (getComputedStyle(this.$refs.cursor).getPropertyValue('--size').slice(0, -2) / -2) + 'px'
         this.cursorStyle.transition = ''
         this.$refs.cursor.addEventListener('click', this.click)
       },
@@ -153,19 +155,19 @@
 
 <style lang="scss" scoped>
 .curzr-glitch-effect {
-  --cursor-size:  20px;
-  --cursor-delay: 20ms;
+  --size:  20px;
+  --delay: 20ms;
 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
   overflow: visible;
-  transition: 500ms, transform var(--cursor-delay);
+  transition: 500ms, transform var(--delay);
   user-select: none;
   pointer-events: none;
 }

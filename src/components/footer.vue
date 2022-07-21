@@ -10,8 +10,8 @@
         <div class="product-page">
           <h6 class="link-title">Resource</h6>
           <div class="link-container">
-            <router-link :to="{ name: 'home' }">Pointer Library</router-link>
-            <router-link :to="{ name: 'home' }">Cursor Builder</router-link>
+            <router-link :to="{ name: 'home' }">Cursor Library</router-link>
+            <router-link :to="{ name: 'home' }">Extension</router-link>
             <router-link :to="{ name: 'home' }">Package</router-link>
           </div>
         </div>

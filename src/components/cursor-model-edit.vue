@@ -134,6 +134,7 @@
         validator: function (value) {
           return Object.keys(value).filter((key) => {
             return [
+              'from',
               'size', 
               'delay', 
               'origin',

@@ -21,9 +21,9 @@
         </div>
         <div class="block-content">
           <h2 v-if="contentType === radioItems[0]" class="text">Move the cursor around</h2>
-          <h2 v-else-if="contentType === radioItems[1]" class="text">Button</h2>
-          <h2 v-else-if="contentType === radioItems[2]" class="text">Input Field</h2>
-          <h2 v-else-if="contentType === radioItems[3]" class="text">Loading</h2>
+          <h2 v-else-if="contentType === radioItems[1]" class="text">Coming Soon</h2>
+          <h2 v-else-if="contentType === radioItems[2]" class="text">Coming Soon</h2>
+          <h2 v-else-if="contentType === radioItems[3]" class="text">Coming Soon</h2>
         </div>
         <footer>
           <radio-group 
@@ -105,6 +105,7 @@
       return {
         cursorsData: CursorsData,
         cursorsConfig: {
+          from: 'model',
           size: 0,
           delay: 100,
           origin: true,
