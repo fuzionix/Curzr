@@ -157,9 +157,6 @@ class MotionBlur {
     document.onmousemove = function (event) {
       cursor.move(event)
     }
-    document.onclick = function () {
-      cursor.click()
-    }
   } else {
     cursor.remove()
   }
