@@ -85,9 +85,13 @@ class BigCircle {
     if (CSS.supports("backdrop-filter", "invert(1) grayscale(1)")) {
       this.circleStyle.backdropFilter = 'invert(${this.cursorsConfig.filterInvert}) grayscale(1)'
       this.circleStyle.backgroundColor = '#fff0'
+      this.dotStyle.backdropFilter = 'invert(${this.cursorsConfig.filterInvert}) grayscale(1)'
+      this.dotStyle.backgroundColor = '#fff0'
     } else {
       this.circleStyle.backgroundColor = '#000'
-      this.circleStyle.opacity = '0.5'
+      this.circleStyle.opacity = '0.75'
+      this.dotStyle.backgroundColor = '#fff'
+      this.dotStyle.opacity = '0.75'
     }
 
     this.init(this.circle, this.circleStyle)
@@ -275,12 +279,20 @@ class BigCircle {
     background-color: #fff0;
     backdrop-filter: var(--filter-invert) grayscale(1);
   }
+  .dot {
+    background-color: #fff0;
+    backdrop-filter: var(--filter-invert) grayscale(1);
+  }
 }
 
 @supports not (backdrop-filter: invert(1) grayscale(1)) {
   .circle {
     background-color: #000;
-    opacity: .5;
+    opacity: .75;
+  }
+  .dot {
+    background-color: #fff;
+    opacity: .75;
   }
 }
 </style>`

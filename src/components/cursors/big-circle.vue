@@ -181,7 +181,6 @@
     z-index: 1;
     width: 6px;
     height: 6px;
-    background-color: #fffd;
     border-radius: 50%;
     user-select: none;
     pointer-events: none;
@@ -193,12 +192,22 @@
       background-color: #fff0;
       backdrop-filter: var(--filter-invert) grayscale(1);
     }
+
+    .dot {
+      background-color: #fff0;
+      backdrop-filter: var(--filter-invert) grayscale(1);
+    }
   }
 
   @supports not (backdrop-filter: invert(1) grayscale(1)) {
     .circle {
       background-color: #000;
-      opacity: .5;
+      opacity: .75;
+    }
+
+    .dot {
+      background-color: #fff;
+      opacity: .75;
     }
   }
 }
