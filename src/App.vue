@@ -19,10 +19,6 @@ export default {
       {
         name: 'keywords',
         content: 'custom cursor,cursor,mouse cursor,mouse pointer,css cursor,front end developer,frontend,javascript'
-      },
-      {
-        ['http-equiv']: 'Content-Security-Policy',
-        content: "default-src 'self'; img-src * 'self' data: https:; child-src 'none'; font-src *; script-src * 'unsafe-eval'; style-src 'unsafe-inline'; style-src-elem * 'unsafe-inline'; connect-src *"
       }
     ]
   }
