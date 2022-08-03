@@ -99,7 +99,7 @@
             </div>
             <div class="main-content">
               <p>
-                Welcome to this brand new free resources website. 
+                {{ notificationContent }} 
               </p>
             </div>
           </div>
@@ -110,7 +110,9 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import NormalTag from '@/components/elements/tag.vue'
+  
   export default {
     name: 'SideMenu',
     components: {
@@ -119,8 +121,19 @@
     data() {
       return {
         route: this.$router.currentRoute,
-        blockStatus: true
+        blockStatus: true,
+        notificationContent: ''
       }
+    },
+    async mounted() {
+      const response = await axios({
+        method: 'get',
+        url: '/api/whatsnew',
+        baseURL: '/api'
+      }).catch((err) => {
+        console.error(err)
+      })
+      this.notificationContent = response && response.data && response.data[0].content
     },
     methods: {
       /**
